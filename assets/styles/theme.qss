@@ -1,0 +1,86 @@
+QMainWindow {
+    background-color: #f8fafc;
+}
+
+QWidget {
+    color: #111827;
+}
+
+#sidebar {
+    background-color: #111827;
+    border-right: 1px solid #1f2937;
+}
+
+#sidebarBrand {
+    color: #ffffff;
+}
+
+#sidebarSubtitle {
+    color: #9ca3af;
+}
+
+#sidebarVersion {
+    color: #6b7280;
+}
+
+#sidebarButton {
+    background-color: transparent;
+    color: #d1d5db;
+    border: none;
+    border-radius: 10px;
+    text-align: left;
+    padding-left: 14px;
+}
+
+#sidebarButton:hover {
+    background-color: #1f2937;
+    color: #ffffff;
+}
+
+#sidebarButton[active="true"] {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+#topBar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+#contentContainer {
+    background-color: #f8fafc;
+}
+
+#mutedText {
+    color: #6b7280;
+}
+
+QLabel#mutedText {
+    color: #6b7280;
+}
+
+#card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 20px;
+}
+
+#largePanel {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 20px;
+    min-height: 360px;
+}
+
+QProgressBar {
+    height: 10px;
+    border-radius: 5px;
+    background-color: #e5e7eb;
+}
+
+QProgressBar::chunk {
+    border-radius: 5px;
+    background-color: #2563eb;
+}

@@ -1,0 +1,8 @@
+{
+    "app_name": "FreeCut AI",
+    "app_version": "1.0.0",
+    "debug": true,
+    "theme_path": "assets/styles/theme.qss",
+    "fonts_path": "assets/fonts",
+    "log_level": "DEBUG"
+}
