@@ -1,8 +1,8 @@
 from typing import Callable, Optional, TypedDict
 
-from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QPushButton
-
+from PySide6.QtCore import Qt, QSize
+from PySide6.QtGui import QIcon
+from PySide6.QtWidgets import QPushButton, QSizePolicy
 
 class VariantConfig(TypedDict):
     bg: str
@@ -63,6 +63,34 @@ class AppButton(QPushButton):
             "text": "#111827",
             "border": "#d1d5db",
         },
+        "warning": {
+            "bg": "#f97316",
+            "hover": "#ea580c",
+            "pressed": "#c2410c",
+            "text": "#ffffff",
+            "border": "#f97316",
+        },
+        "purple": {
+            "bg": "#8e44ad",
+            "hover": "#7d3c98",
+            "pressed": "#6c3483",
+            "text": "#ffffff",
+            "border": "#8e44ad",
+        },
+        "teal": {
+            "bg": "#16a085",
+            "hover": "#138d75",
+            "pressed": "#117a65",
+            "text": "#ffffff",
+            "border": "#16a085",
+        },
+        "dark": {
+            "bg": "#374151",
+            "hover": "#1f2937",
+            "pressed": "#111827",
+            "text": "#ffffff",
+            "border": "#374151",
+        },
     }
 
     SIZES: dict[str, SizeConfig] = {
@@ -94,6 +122,8 @@ class AppButton(QPushButton):
         full_width: bool = False,
         disabled: bool = False,
         loading: bool = False,
+        icon: Optional[QIcon] = None,
+        icon_size: int = 16,
         on_click: Optional[Callable[[], None]] = None,
     ):
         super().__init__(text)
@@ -105,6 +135,10 @@ class AppButton(QPushButton):
         self.loading = loading
 
         self.setCursor(Qt.CursorShape.PointingHandCursor)
+
+        if icon is not None:
+            self.setIcon(icon)
+            self.setIconSize(QSize(icon_size, icon_size))
 
         if on_click is not None:
             self.clicked.connect(on_click)
@@ -121,7 +155,12 @@ class AppButton(QPushButton):
         self.setFixedHeight(size_config["height"])
 
         if self.full_width:
-            self.setMinimumWidth(1000000)
+            self.setSizePolicy(
+                QSizePolicy.Policy.Expanding,
+                QSizePolicy.Policy.Fixed,
+            )
+        else:
+            self.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
 
     def apply_style(self):
         variant_config = self.VARIANTS.get(

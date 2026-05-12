@@ -14,3 +14,201 @@
 2026-05-12 16:13:46 | INFO     | my_app.app.application | application.py:61 | Opening main window.
 2026-05-12 16:13:46 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
 2026-05-12 16:13:46 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:04:49 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:04:50 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:04:50 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:04:50 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:04:50 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:04:50 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:04:50 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:04:50 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:04:50 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:08:54 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:08:55 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:08:55 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:08:55 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:08:55 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:08:55 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:08:55 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:08:55 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:08:55 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:09:17 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:09:17 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:09:17 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:09:17 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:09:17 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:09:17 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:09:17 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:09:17 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:09:17 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:10:11 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:10:11 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:10:11 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:10:11 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:10:11 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:10:12 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:10:12 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:10:12 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:10:12 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:12:38 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:12:38 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:12:38 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:12:38 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:12:38 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:12:39 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:12:39 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:12:39 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:12:39 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:13:29 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:13:30 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:13:30 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:13:30 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:13:30 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:13:30 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:13:30 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:13:30 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:13:30 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:14:21 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:14:22 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:14:22 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:14:22 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:14:22 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:14:22 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:14:22 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:14:22 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:14:22 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:15:52 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:15:52 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:15:52 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:15:52 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:15:52 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:15:53 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:15:53 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:15:53 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:15:53 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:20:18 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:20:18 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:20:18 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:20:19 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:20:19 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:20:19 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:20:19 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:20:19 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:20:19 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:22:16 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:22:16 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:22:16 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:22:16 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:22:16 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:22:16 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:22:16 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:22:16 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:22:16 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:24:50 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:24:50 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:24:50 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:24:50 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:24:50 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:24:51 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:24:51 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:24:51 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:24:51 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:26:53 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:26:53 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:26:53 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:26:53 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:26:53 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:26:53 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:26:53 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:26:53 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:26:53 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:27:16 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:27:17 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:27:17 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:27:17 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:27:17 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:27:17 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:27:17 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:27:17 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:27:17 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:27:41 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:27:41 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:27:41 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:27:41 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:27:41 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:27:42 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:27:42 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:27:42 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:27:42 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:27:45 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:27:45 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:27:45 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:27:45 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:27:45 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:27:46 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:27:46 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:27:46 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:27:46 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:29:35 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:29:36 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:29:36 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:29:36 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:29:36 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:29:36 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:29:36 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:29:36 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:29:36 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:30:05 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:30:05 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:30:05 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:30:05 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:30:06 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:30:06 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:30:06 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:30:06 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:30:06 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:32:18 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:32:19 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:32:19 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:32:19 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:32:19 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:32:19 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:32:19 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:32:19 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:32:19 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:36:49 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:36:49 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:36:49 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:36:49 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:36:49 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:36:50 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:36:50 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:36:50 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:36:50 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:41:43 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:41:43 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:41:43 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:41:43 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:41:44 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:41:44 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:41:44 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:41:44 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:41:44 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:42:02 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:42:02 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:42:02 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:42:02 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:42:02 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:42:03 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:42:03 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:42:03 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:42:03 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:43:26 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:43:27 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:43:27 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:43:27 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:43:27 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:43:27 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:43:27 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:43:27 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:43:27 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.

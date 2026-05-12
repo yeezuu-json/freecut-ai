@@ -15,8 +15,8 @@ class MainWindow(QMainWindow):
 
         logger.info("MainWindow initialized.")
 
-        self.setWindowTitle(config.app_name)
-        self.resize(1200, 780)
+        self.setWindowTitle(f"{config.app_name} - AI Dubbing Studio")
+        self.resize(1280, 760)
 
         self.editor_layout = EditorLayout()
         self.setCentralWidget(self.editor_layout)

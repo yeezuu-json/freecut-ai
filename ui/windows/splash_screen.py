@@ -28,7 +28,7 @@ class SplashScreen(QWidget):
         layout.setContentsMargins(30, 30, 30, 30)
         layout.setSpacing(16)
 
-        self.title_label = QLabel("My PySide6 App")
+        self.title_label = QLabel("FreeCut AI")
         self.title_label.setObjectName("splashTitle")
         self.title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
@@ -41,7 +41,7 @@ class SplashScreen(QWidget):
         self.progress_bar.setValue(0)
         self.progress_bar.setTextVisible(False)
 
-        self.version_label = QLabel("Version 1.0.0")
+        self.version_label = QLabel("v1.0.0")
         self.version_label.setObjectName("splashVersion")
         self.version_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
