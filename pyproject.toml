@@ -5,7 +5,14 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "accelerate>=1.13.0",
+    "faster-whisper>=1.2.1",
+    "httpx>=0.28.1",
     "pyside6>=6.11.0",
     "pyside6-fluent-widgets>=1.11.2",
+    "python-dotenv>=1.2.2",
     "qtawesome>=1.4.2",
+    "sentencepiece>=0.2.1",
+    "torch>=2.11.0",
+    "transformers>=5.8.0",
 ]

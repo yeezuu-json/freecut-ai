@@ -27,6 +27,7 @@ class Application(QObject):
         self.thread.started.connect(self.worker.run)
 
         self.worker.progress_changed.connect(self.splash.update_progress)
+        self.worker.status_changed.connect(self.splash.set_status)
         self.worker.finished.connect(self.on_bootstrap_finished)
         self.worker.failed.connect(self.on_bootstrap_failed)
 
@@ -60,8 +61,9 @@ class Application(QObject):
         logger = get_logger(__name__)
         logger.info("Opening main window.")
 
-        self.app.setFont(get_google_sans(size=10, weight="Regular"))
+        self.splash.set_version(config.app_version)
 
+        self.app.setFont(get_google_sans(size=10, weight="Regular"))
         self.load_theme(config.theme_path)
 
         self.main_window = MainWindow(config)

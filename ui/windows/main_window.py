@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QMainWindow
+from PySide6.QtWidgets import QMainWindow, QMessageBox
 
 from app.logger import get_logger
 from ui.layouts.editor_layout import EditorLayout
@@ -18,5 +18,20 @@ class MainWindow(QMainWindow):
         self.setWindowTitle(f"{config.app_name} - AI Dubbing Studio")
         self.resize(1280, 760)
 
-        self.editor_layout = EditorLayout()
+        self.editor_layout = EditorLayout(config)
         self.setCentralWidget(self.editor_layout)
+
+    def closeEvent(self, event):
+        if hasattr(self.editor_layout, "running_threads") and self.editor_layout.running_threads:
+            result = QMessageBox.question(
+                self,
+                "Process Running",
+                "Transcription is still running. Do you want to close anyway?",
+                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            )
+
+            if result == QMessageBox.StandardButton.No:
+                event.ignore()
+                return
+
+        event.accept()

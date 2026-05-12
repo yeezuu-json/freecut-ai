@@ -1,5 +1,5 @@
 from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QWidget
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QWidget, QProgressBar
 
 from ui.components.app_button import AppButton
 from ui.components.icons import app_icon
@@ -18,15 +18,23 @@ class StatusBarPanel(QWidget):
 
         timing_group = self.build_timing_group()
         export_group = self.build_export_group()
+        self.progress_bar = QProgressBar()
+        self.progress_bar.setObjectName("statusProgress")
+        self.progress_bar.setRange(0, 100)
+        self.progress_bar.setValue(0)
+        self.progress_bar.setFixedWidth(160)
+        self.progress_bar.setTextVisible(True)
+        self.progress_bar.hide()
 
-        status = QLabel("Ready | FreeCut AI Dubbing Studio")
-        status.setObjectName("statusText")
-        status.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        status.setFont(get_google_sans(size=10, weight="Bold"))
+        self.status = QLabel("Ready | FreeCut AI Dubbing Studio")
+        self.status.setObjectName("statusText")
+        self.status.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.status.setFont(get_google_sans(size=10, weight="Bold"))
 
         layout.addWidget(timing_group)
         layout.addStretch()
-        layout.addWidget(status)
+        layout.addWidget(self.status)
+        layout.addWidget(self.progress_bar)
         layout.addStretch()
         layout.addWidget(export_group)
 
@@ -141,3 +149,18 @@ class StatusBarPanel(QWidget):
             variant=variant,
             button_size=size,
         )
+
+    def set_status(self, message: str):
+        self.status.setText(message)
+
+    def set_progress(self, value: int, message: str | None = None):
+        self.progress_bar.show()
+        self.progress_bar.setValue(value)
+
+        if message:
+            self.set_status(message)
+
+    def clear_progress(self):
+        self.progress_bar.setValue(0)
+        self.progress_bar.hide()
+        self.set_status("Ready | FreeCut AI Dubbing Studio")

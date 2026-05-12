@@ -14,6 +14,7 @@ class AppSelect(QPushButton):
         items: list[str],
         value: Optional[str] = None,
         width: int = 220,
+        height: int = 38,
         on_change: Optional[Callable[[str], None]] = None,
     ):
         super().__init__()
@@ -24,7 +25,7 @@ class AppSelect(QPushButton):
 
         self.setObjectName("appSelect")
         self.setFixedWidth(width)
-        self.setFixedHeight(38)
+        self.setFixedHeight(height)
         self.setCursor(Qt.CursorShape.PointingHandCursor)
         self.setFont(get_google_sans(size=10, weight="Medium"))
         self.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
