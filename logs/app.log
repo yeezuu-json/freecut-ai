@@ -212,3 +212,59 @@
 2026-05-12 22:43:27 | INFO     | my_app.app.application | application.py:61 | Opening main window.
 2026-05-12 22:43:27 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
 2026-05-12 22:43:27 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:53:48 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:53:48 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:53:48 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:53:48 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:53:48 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:53:49 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:53:49 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:53:49 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:53:49 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:54:14 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:97 | Selected video: /Users/piseth/Desktop/AI Dubbing Studio/Projects/test01/input/走火入魔.mp4
+2026-05-12 22:54:14 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:102 | Current project video: /Users/piseth/Desktop/AI Dubbing Studio/Projects/test01/input/走火入魔.mp4
+2026-05-12 22:54:42 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:54:43 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:54:43 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:54:43 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:54:43 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:54:43 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:54:43 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:54:43 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:54:43 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:54:47 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:88 | Video selection cancelled.
+2026-05-12 22:55:59 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:97 | Selected video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-12 22:55:59 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:102 | Current project video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-12 22:57:36 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 22:57:36 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 22:57:36 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 22:57:36 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 22:57:36 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 22:57:37 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 22:57:37 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 22:57:37 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 22:57:37 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 22:57:47 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:97 | Selected video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-12 22:57:47 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:102 | Current project video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-12 23:13:55 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 23:13:56 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 23:13:56 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 23:13:56 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 23:13:56 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 23:13:56 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 23:13:56 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 23:13:56 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 23:13:56 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 23:14:02 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:97 | Selected video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-12 23:14:02 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:102 | Current project video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-12 23:15:48 | INFO     | my_app.app.bootstrap | bootstrap.py:25 | Application bootstrap started.
+2026-05-12 23:15:48 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-12 23:15:48 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-12 23:15:48 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-12 23:15:48 | DEBUG    | my_app.app.bootstrap | bootstrap.py:55 | Loading services with config: AppConfig(app_name='FreeCut AI', app_version='1.0.0', debug=True, theme_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss'), fonts_path=PosixPath('/Users/piseth/developer/desktop-app/freecut-ai/assets/fonts'), log_level='DEBUG')
+2026-05-12 23:15:49 | INFO     | my_app.app.bootstrap | bootstrap.py:40 | Application bootstrap finished.
+2026-05-12 23:15:49 | INFO     | my_app.app.application | application.py:61 | Opening main window.
+2026-05-12 23:15:49 | INFO     | my_app.app.application | application.py:56 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-12 23:15:49 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-12 23:15:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:97 | Selected video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-12 23:15:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:102 | Current project video: /Users/piseth/Desktop/Movie/ep1.mp4

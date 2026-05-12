@@ -384,3 +384,20 @@ QSlider::handle:horizontal {
 #statusText {
     color: #111827;
 }
+
+#videoPathText {
+    color: #94a3b8;
+}
+
+#videoWidget {
+    background-color: #111827;
+    border-radius: 6px;
+}
+
+#emptyVideoWidget {
+    background-color: transparent;
+}
+
+#videoPathText {
+    color: #94a3b8;
+}

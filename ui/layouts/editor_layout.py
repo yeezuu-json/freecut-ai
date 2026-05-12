@@ -1,14 +1,25 @@
-from PySide6.QtWidgets import QFrame, QHBoxLayout, QVBoxLayout
+from pathlib import Path
+
+from PySide6.QtWidgets import QFileDialog, QFrame, QHBoxLayout, QVBoxLayout, QWidget
+
+from app.logger import get_logger
+from app.state import AppState
 from ui.components.editor_toolbar import EditorToolbar
 from ui.components.status_bar_panel import StatusBarPanel
-from ui.components.timeline_editor import TimelineEditor
 from ui.components.transcript_table_view import TranscriptTableView
+from ui.components.timeline_editor import TimelineEditor
 from ui.components.video_effects_panel import VideoEffectsPanel
 from ui.components.video_preview_panel import VideoPreviewPanel
 
-class EditorLayout(QFrame):
+
+logger = get_logger(__name__)
+
+
+class EditorLayout(QWidget):
     def __init__(self):
         super().__init__()
+
+        self.state = AppState()
 
         self.setObjectName("editorRoot")
 
@@ -22,47 +33,72 @@ class EditorLayout(QFrame):
         root_layout.addWidget(self.left_panel, 0)
         root_layout.addWidget(self.right_panel, 1)
 
-    def build_left_panel(self) -> QFrame:
-        leftPanel = QFrame()
-        leftPanel.setObjectName("editorLeftPanel")
-        leftPanel.setFixedWidth(330)
+        self.connect_signals()
 
-        layout = QVBoxLayout(leftPanel)
+    def build_left_panel(self):
+        panel = QFrame()
+        panel.setObjectName("leftPanel")
+        panel.setFixedWidth(330)
+
+        layout = QVBoxLayout(panel)
         layout.setContentsMargins(0, 0, 0, 0)
         layout.setSpacing(8)
 
-        # Video Preview Panel
-        videoPreviewPanel = VideoPreviewPanel()
-        layout.addWidget(videoPreviewPanel)
+        self.video_preview = VideoPreviewPanel()
 
-        return leftPanel
-    
-    def build_right_panel(self) -> QFrame:
-        rightPanel = QFrame()
-        rightPanel.setObjectName("editorRightPanel")
+        layout.addWidget(self.video_preview, 1)
 
-        rightPanelLayout = QVBoxLayout(rightPanel)
-        rightPanelLayout.setContentsMargins(0, 0, 0, 0)
-        rightPanelLayout.setSpacing(8)
+        return panel
 
-        # Top Bar
-        editorToolbar = EditorToolbar()
-        rightPanelLayout.addWidget(editorToolbar)
+    def build_right_panel(self):
+        panel = QFrame()
+        panel.setObjectName("rightPanel")
 
-        # Transcribe Table
-        subtitleTable = TranscriptTableView()
-        rightPanelLayout.addWidget(subtitleTable)
+        layout = QVBoxLayout(panel)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.setSpacing(8)
 
-        # Timeline editor
-        timelineEditor = TimelineEditor()
-        rightPanelLayout.addWidget(timelineEditor)
+        self.toolbar = EditorToolbar()
+        self.transcript_table = TranscriptTableView()
+        self.timeline_editor = TimelineEditor()
+        self.effects_panel = VideoEffectsPanel()
+        self.status_bar = StatusBarPanel()
 
-        # Video effects
-        videoEffectsPanel = VideoEffectsPanel()
-        rightPanelLayout.addWidget(videoEffectsPanel)
+        layout.addWidget(self.toolbar)
+        layout.addWidget(self.transcript_table, 2)
+        layout.addWidget(self.timeline_editor, 2)
+        layout.addWidget(self.effects_panel)
+        layout.addWidget(self.status_bar)
 
-        # Status Bar
-        statusBarPanel = StatusBarPanel()
-        rightPanelLayout.addWidget(statusBarPanel)
+        return panel
 
-        return rightPanel
+    def connect_signals(self):
+        self.toolbar.load_video_requested.connect(self.select_video)
+        self.state.video_changed.connect(self.on_video_changed)
+
+    def select_video(self):
+        file_path, _ = QFileDialog.getOpenFileName(
+            self,
+            "Select Video",
+            str(Path.home() / "Desktop"),
+            "Video Files (*.mp4 *.mov *.mkv *.avi *.webm);;All Files (*)",
+        )
+
+        if not file_path:
+            logger.info("Video selection cancelled.")
+            return
+
+        video_path = Path(file_path)
+
+        if not video_path.exists():
+            logger.warning("Selected video does not exist: %s", video_path)
+            return
+
+        logger.info("Selected video: %s", video_path)
+
+        self.state.set_video(video_path)
+
+    def on_video_changed(self, project):
+        logger.info("Current project video: %s", project.video_path)
+
+        self.video_preview.set_video(project.video_path)
