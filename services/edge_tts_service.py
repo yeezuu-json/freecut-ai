@@ -1,4 +1,5 @@
 import asyncio
+import subprocess
 import tempfile
 import threading
 from pathlib import Path
@@ -77,6 +78,9 @@ class EdgeTtsService:
                         loop,
                     )
                     future.result(timeout=30)
+                    # Strip leading and trailing silence so voices sit flush on
+                    # the timeline without dead air before/after the speech.
+                    self._trim_silence(out_path)
                     seg.audio_path = str(out_path)
                     logger.debug("TTS ok: seg=%d path=%s", seg.index, out_path)
                 except Exception:
@@ -145,6 +149,44 @@ class EdgeTtsService:
             return f"{sign}{pct}%"
         except (ValueError, TypeError):
             return "+0%"
+
+    @staticmethod
+    def _trim_silence(path: Path, threshold_db: int = -40) -> None:
+        """
+        Use ffmpeg silenceremove to strip leading and trailing silence from the
+        TTS MP3 file in-place.
+
+        Strategy: two-pass via areverse so the same silenceremove filter handles
+        both ends reliably:
+          1. Strip leading silence.
+          2. Reverse audio → strip new leading silence (= original trailing) → reverse back.
+
+        A small tail buffer (0.05 s) is kept at the end so the very last phoneme
+        is not clipped by encoder look-ahead.
+        """
+        tmp = path.with_suffix(".trim_tmp.mp3")
+        silence_filter = (
+            f"silenceremove=start_periods=1:start_silence=0.03:start_threshold={threshold_db}dB,"
+            f"areverse,"
+            f"silenceremove=start_periods=1:start_silence=0.05:start_threshold={threshold_db}dB,"
+            f"areverse"
+        )
+        cmd = [
+            "ffmpeg", "-loglevel", "error", "-y",
+            "-i", str(path),
+            "-af", silence_filter,
+            "-c:a", "libmp3lame", "-q:a", "4",
+            str(tmp),
+        ]
+        try:
+            subprocess.run(cmd, capture_output=True, check=True)
+            if tmp.exists() and tmp.stat().st_size > 0:
+                tmp.replace(path)
+            else:
+                tmp.unlink(missing_ok=True)
+        except Exception:
+            logger.warning("Silence trim failed for %s – keeping original.", path)
+            tmp.unlink(missing_ok=True)
 
     def _emit(self, pct: int, msg: str) -> None:
         if self.progress_callback:

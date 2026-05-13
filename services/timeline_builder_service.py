@@ -1,3 +1,5 @@
+import json
+import subprocess
 from pathlib import Path
 
 from models.subtitle_segment import SubtitleSegment
@@ -171,7 +173,13 @@ class TimelineBuilderService:
                 continue
 
             start_ms = self.srt_time_to_ms(segment.start_time)
-            end_ms = self.srt_time_to_ms(segment.end_time)
+            end_ms   = self.srt_time_to_ms(segment.end_time)
+            slot_ms  = max(1, end_ms - start_ms)
+
+            # Use the actual trimmed audio file's duration so the segment fits
+            # the speech exactly — not the subtitle slot which may be shorter
+            # (cutting off the last word) or longer (leaving dead air).
+            audio_ms = self._get_audio_duration_ms(segment.audio_path) or slot_ms
 
             cache.items.append(
                 TimelineItem(
@@ -179,10 +187,7 @@ class TimelineBuilderService:
                     type="dubbed_voice",
                     track_id="track_khmer_voice",
                     from_frame=self.ms_to_frames(start_ms, cache.fps),
-                    duration_in_frames=self.ms_to_frames(
-                        max(1, end_ms - start_ms),
-                        cache.fps,
-                    ),
+                    duration_in_frames=self.ms_to_frames(audio_ms, cache.fps),
                     source_path=segment.audio_path,
                     label=f"Voice {segment.index}",
                     linked_segment_id=str(segment.index),
@@ -204,3 +209,22 @@ class TimelineBuilderService:
             + int(seconds) * 1000
             + int(millis)
         )
+
+    @staticmethod
+    def _get_audio_duration_ms(audio_path: str) -> int | None:
+        """Return the actual playback duration of an audio file in milliseconds
+        using ffprobe, or None if the file cannot be probed."""
+        try:
+            result = subprocess.run(
+                [
+                    "ffprobe", "-v", "error",
+                    "-show_entries", "format=duration",
+                    "-of", "json",
+                    audio_path,
+                ],
+                capture_output=True, text=True, check=True,
+            )
+            data = json.loads(result.stdout)
+            return int(float(data["format"]["duration"]) * 1000)
+        except Exception:
+            return None

@@ -482,3 +482,87 @@
 2026-05-13 21:16:56 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:219 | CapCut project written: /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0513 (2)
 2026-05-13 21:16:56 | INFO     | my_app.services.capcut_app_service | capcut_app_service.py:65 | Opened CapCut: /Applications/CapCut.app
 2026-05-13 21:16:56 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1102 | Transcription thread cleaned up.
+2026-05-13 21:31:15 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1106 | EditorLayout cleanup started.
+2026-05-13 21:31:15 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 21:31:15 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1145 | Timeline cache saved on close.
+2026-05-13 21:31:15 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1153 | EditorLayout cleanup complete.
+2026-05-13 21:31:23 | INFO     | my_app.app.bootstrap | bootstrap.py:31 | Application bootstrap started.
+2026-05-13 21:31:24 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-13 21:31:24 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-13 21:31:24 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-13 21:31:24 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-13 21:31:24 | INFO     | my_app.app.bootstrap | bootstrap.py:103 | Whisper model status: ModelCheckResult(provider='local', model='small', is_ready=True, message='Whisper model is downloaded.')
+2026-05-13 21:31:24 | INFO     | my_app.app.bootstrap | bootstrap.py:138 | Transcription provider: local
+2026-05-13 21:31:24 | INFO     | my_app.app.bootstrap | bootstrap.py:139 | Translation provider: gemini
+2026-05-13 21:31:24 | INFO     | my_app.app.bootstrap | bootstrap.py:53 | Application bootstrap finished.
+2026-05-13 21:31:24 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-13 21:31:24 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-13 21:31:24 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-13 21:31:30 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:164 | Selected video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-13 21:31:30 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:169 | Current project video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-13 21:31:31 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:81 | Timeline cache loaded: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 21:31:31 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:192 | Using existing timeline cache.
+2026-05-13 21:31:31 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:194 | Timeline cache loaded: tracks=5 items=46
+2026-05-13 21:31:33 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1163 | Khmer translation ready with 42 segment(s).
+2026-05-13 21:31:33 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:249 | Restored 42 translated segment(s) from cache.
+2026-05-13 21:31:33 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:418 | Stem players set up for ['track_raw_audio', 'track_background', 'track_vocal']
+2026-05-13 21:31:33 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:266 | Restored Demucs stem players from cache.
+2026-05-13 21:31:33 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:665 | Dubbed voice player ready: 42 segments, muted=False.
+2026-05-13 21:31:33 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:271 | Restored dubbed voice player (42 clips).
+2026-05-13 21:31:35 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 21:31:38 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1163 | Khmer translation ready with 42 segment(s).
+2026-05-13 21:31:38 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:562 | Starting TTS for 42 segments.
+2026-05-13 21:31:39 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=1 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0001.mp3
+2026-05-13 21:31:39 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=2 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0002.mp3
+2026-05-13 21:31:40 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=3 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0003.mp3
+2026-05-13 21:31:40 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=4 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0004.mp3
+2026-05-13 21:31:41 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=5 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0005.mp3
+2026-05-13 21:31:41 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=6 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0006.mp3
+2026-05-13 21:31:41 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=7 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0007.mp3
+2026-05-13 21:31:42 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=8 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0008.mp3
+2026-05-13 21:31:42 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=9 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0009.mp3
+2026-05-13 21:31:43 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=10 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0010.mp3
+2026-05-13 21:31:43 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=11 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0011.mp3
+2026-05-13 21:31:44 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=12 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0012.mp3
+2026-05-13 21:31:44 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=13 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0013.mp3
+2026-05-13 21:31:44 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=14 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0014.mp3
+2026-05-13 21:31:45 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=15 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0015.mp3
+2026-05-13 21:31:45 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=16 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0016.mp3
+2026-05-13 21:31:46 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=17 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0017.mp3
+2026-05-13 21:31:46 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=18 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0018.mp3
+2026-05-13 21:31:47 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=19 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0019.mp3
+2026-05-13 21:31:47 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=20 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0020.mp3
+2026-05-13 21:31:48 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=21 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0021.mp3
+2026-05-13 21:31:48 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=22 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0022.mp3
+2026-05-13 21:31:48 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=23 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0023.mp3
+2026-05-13 21:31:49 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=24 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0024.mp3
+2026-05-13 21:31:49 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=25 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0025.mp3
+2026-05-13 21:31:50 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=26 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0026.mp3
+2026-05-13 21:31:50 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=27 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0027.mp3
+2026-05-13 21:31:51 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=28 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0028.mp3
+2026-05-13 21:31:51 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=29 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0029.mp3
+2026-05-13 21:31:51 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=30 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0030.mp3
+2026-05-13 21:31:52 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=31 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0031.mp3
+2026-05-13 21:31:52 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=32 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0032.mp3
+2026-05-13 21:31:53 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=33 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0033.mp3
+2026-05-13 21:31:53 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=34 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0034.mp3
+2026-05-13 21:31:54 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=35 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0035.mp3
+2026-05-13 21:31:54 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=36 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0036.mp3
+2026-05-13 21:31:54 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=37 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0037.mp3
+2026-05-13 21:31:55 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=38 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0038.mp3
+2026-05-13 21:31:55 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=39 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0039.mp3
+2026-05-13 21:31:56 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=40 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0040.mp3
+2026-05-13 21:31:56 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=41 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0041.mp3
+2026-05-13 21:31:57 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=42 path=/Users/piseth/.freecut-ai/cache/tts/ep1/ep1_seg0042.mp3
+2026-05-13 21:31:57 | INFO     | my_app.workers.tts_worker | tts_worker.py:51 | TTS finished. 42/42 segments have audio.
+2026-05-13 21:31:57 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:602 | TTS finished: 42/42 segments have audio.
+2026-05-13 21:31:57 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1163 | Khmer translation ready with 42 segment(s).
+2026-05-13 21:31:58 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 21:31:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:665 | Dubbed voice player ready: 42 segments, muted=False.
+2026-05-13 21:31:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1102 | Transcription thread cleaned up.
+2026-05-13 21:32:43 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:126 | Creating CapCut project 'ep1' → /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0513 (3)
+2026-05-13 21:32:43 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:131 | Using template project: /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0513 (2)
+2026-05-13 21:32:45 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:1129 | Registered project 'ep1' in root_meta_info.json
+2026-05-13 21:32:45 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:219 | CapCut project written: /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0513 (3)
+2026-05-13 21:32:45 | INFO     | my_app.services.capcut_app_service | capcut_app_service.py:65 | Opened CapCut: /Applications/CapCut.app
+2026-05-13 21:32:45 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1102 | Transcription thread cleaned up.

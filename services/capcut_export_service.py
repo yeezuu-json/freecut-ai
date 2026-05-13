@@ -711,12 +711,21 @@ class CapCutExportService:
                         self._make_video_segment(seg_id, mat_id, start_us, dur_us, volume)
                     )
                 else:
+                    # Use the exact file duration for source_timerange so CapCut
+                    # reads the entire audio file even if frame-rounding made
+                    # dur_us slightly shorter than the real file.
+                    file_dur_us = self._get_file_duration_us(actual_path) or dur_us
                     name = item.label or Path(actual_path).stem
                     audio_materials.append(
-                        self._make_audio_material(mat_id, actual_path, dur_us, name)
+                        self._make_audio_material(mat_id, actual_path, file_dur_us, name)
                     )
                     segments.append(
-                        self._make_audio_segment(seg_id, mat_id, start_us, dur_us, volume)
+                        self._make_audio_segment(
+                            seg_id, mat_id, start_us,
+                            target_dur_us=dur_us,
+                            source_dur_us=file_dur_us,
+                            volume=volume,
+                        )
                     )
 
             if segments:
@@ -1280,13 +1289,28 @@ class CapCutExportService:
         }
 
     def _make_audio_segment(
-        self, seg_id: str, mat_id: str, start_us: int, duration_us: int, volume: float
+        self,
+        seg_id: str,
+        mat_id: str,
+        start_us: int,
+        target_dur_us: int,
+        source_dur_us: int | None = None,
+        volume: float = 1.0,
     ) -> dict:
+        """
+        target_dur_us  – how long the segment occupies on the CapCut timeline
+                         (= trimmed audio duration after silence removal).
+        source_dur_us  – how much of the source file to read.  Defaults to
+                         target_dur_us when not provided, but should be the exact
+                         file duration from ffprobe so the last frame is never
+                         clipped by rounding.
+        """
+        src_dur = source_dur_us if source_dur_us is not None else target_dur_us
         return {
             "id": seg_id,
             "material_id": mat_id,
-            "source_timerange": {"start": 0, "duration": duration_us},
-            "target_timerange": {"start": start_us, "duration": duration_us},
+            "source_timerange": {"start": 0, "duration": src_dur},
+            "target_timerange": {"start": start_us, "duration": target_dur_us},
             "render_timerange": {"start": 0, "duration": 0},
             "desc": "",
             "state": 0,
@@ -1351,3 +1375,20 @@ class CapCutExportService:
         if fps <= 0:
             fps = 30.0
         return int((frames / fps) * 1_000_000)
+
+    def _get_file_duration_us(self, file_path: str) -> int | None:
+        """Return the exact duration of a media file in microseconds via ffprobe."""
+        try:
+            result = subprocess.run(
+                [
+                    "ffprobe", "-v", "error",
+                    "-show_entries", "format=duration",
+                    "-of", "json",
+                    file_path,
+                ],
+                capture_output=True, text=True, check=True,
+            )
+            data = json.loads(result.stdout)
+            return int(float(data["format"]["duration"]) * 1_000_000)
+        except Exception:
+            return None
