@@ -13,10 +13,10 @@ ProgressCallback = Callable[[int, str], None]
 _BATCH_SIZE = 20
 
 # Models to try in order when the primary model is overloaded.
+# Only include models confirmed available on the v1beta endpoint.
 _FALLBACK_CHAIN = [
     "gemini-2.5-flash",
     "gemini-2.0-flash",
-    "gemini-1.5-flash",
 ]
 
 _MAX_RETRIES = 4

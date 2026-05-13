@@ -1,5 +1,6 @@
 import asyncio
 import tempfile
+import threading
 from pathlib import Path
 from typing import Callable
 
@@ -43,36 +44,49 @@ class EdgeTtsService:
         segments,           # list[SubtitleSegment]
         video_stem: str,
     ) -> list:              # returns the same list with audio_path filled in
+        # Create ONE event loop for the entire session and run it on a
+        # dedicated thread so it never conflicts with Qt's event loop.
+        loop = asyncio.new_event_loop()
+        loop_thread = threading.Thread(target=loop.run_forever, daemon=True)
+        loop_thread.start()
+
         total = len(segments)
         results = []
 
-        for idx, seg in enumerate(segments):
-            pct = int(idx / total * 95)
-            self._emit(pct, f"Generating voice {idx + 1}/{total}…")
+        try:
+            for idx, seg in enumerate(segments):
+                pct = int(idx / total * 95)
+                self._emit(pct, f"Generating voice {idx + 1}/{total}…")
 
-            text = seg.khmer_text.strip() or seg.original_text.strip()
-            if not text:
-                logger.debug("Segment %d has no text – skipping TTS.", seg.index)
+                text = seg.khmer_text.strip() or seg.original_text.strip()
+                if not text:
+                    logger.debug("Segment %d has no text – skipping TTS.", seg.index)
+                    results.append(seg)
+                    continue
+
+                voice  = KHMER_VOICES.get(seg.voice, KHMER_VOICES["Default"])
+                pitch  = self._to_hz_offset(seg.pitch)
+                rate   = self._to_rate_str(seg.speed)
+                volume = self._to_volume_str(seg.volume)
+
+                out_path = self.output_dir / f"{video_stem}_seg{seg.index:04d}.mp3"
+
+                try:
+                    future = asyncio.run_coroutine_threadsafe(
+                        self._synthesize_one(text, voice, pitch, rate, volume, out_path),
+                        loop,
+                    )
+                    future.result(timeout=30)
+                    seg.audio_path = str(out_path)
+                    logger.debug("TTS ok: seg=%d path=%s", seg.index, out_path)
+                except Exception:
+                    logger.exception("TTS failed for segment %d.", seg.index)
+
                 results.append(seg)
-                continue
-
-            voice   = KHMER_VOICES.get(seg.voice, KHMER_VOICES["Default"])
-            pitch   = self._to_hz_offset(seg.pitch)
-            rate    = self._to_rate_str(seg.speed)
-            volume  = self._to_volume_str(seg.volume)
-
-            out_path = self.output_dir / f"{video_stem}_seg{seg.index:04d}.mp3"
-
-            try:
-                asyncio.run(
-                    self._synthesize_one(text, voice, pitch, rate, volume, out_path)
-                )
-                seg.audio_path = str(out_path)
-                logger.debug("TTS ok: seg=%d path=%s", seg.index, out_path)
-            except Exception:
-                logger.exception("TTS failed for segment %d.", seg.index)
-
-            results.append(seg)
+        finally:
+            loop.call_soon_threadsafe(loop.stop)
+            loop_thread.join(timeout=5)
+            loop.close()
 
         self._emit(100, "Voice generation complete")
         return results

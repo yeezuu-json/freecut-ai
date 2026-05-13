@@ -51,7 +51,7 @@ class TranscriptTableView(QTableWidget):
         self.setColumnWidth(self._COL_PLAY,    90)
         self.setColumnWidth(self._COL_AUDIO,   80)
         self.setColumnWidth(self._COL_DL,      90)
-        self.setColumnWidth(self._COL_ECC,     60)
+        self.setColumnWidth(self._COL_ECC,     30)
 
         self.setFont(get_google_sans(size=10))
         self.setWordWrap(True)

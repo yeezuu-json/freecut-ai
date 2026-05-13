@@ -65,7 +65,7 @@ class EditorToolbar(QWidget):
         )
 
         video_mp3_button = AppButton(
-            text="Video → MP3",
+            text="Vid -> MP3",
             icon=app_icon("music", "fa6s.music", color="#ffffff"),
             variant="purple",
             button_size="sm",
@@ -73,22 +73,15 @@ class EditorToolbar(QWidget):
         )
 
         extract_audio_button = AppButton(
-            text="Extract Audio",
+            text="Ext Audio",
             icon=app_icon("waveform", "fa6s.wave-square", color="#ffffff"),
             variant="teal",
             button_size="sm",
             on_click=self.extract_audio_requested.emit,
         )
 
-        detect_gender_button = AppButton(
-            text="Detect Gender",
-            icon=app_icon("gender-bigender", "fa6s.venus-mars", color="#ffffff"),
-            variant="primary",
-            button_size="sm",
-        )
-
         translate_button = AppButton(
-            text="Translate SRT",
+            text="Translate",
             icon=app_icon("language", "fa6s.language", color="#ffffff"),
             variant="warning",
             button_size="sm",
@@ -119,15 +112,14 @@ class EditorToolbar(QWidget):
         )
 
         button_row.addWidget(load_video_button)
+        button_row.addWidget(extract_audio_button)
         button_row.addWidget(self.model_select)
         button_row.addWidget(auto_transcribe_button)
-        button_row.addWidget(video_mp3_button)
-        button_row.addWidget(extract_audio_button)
-        button_row.addWidget(detect_gender_button)
         button_row.addWidget(translation_model_select)
         button_row.addWidget(translate_button)
         button_row.addWidget(generate_voice_button)
-        button_row.addWidget(export_srt_button)
+        button_row.addWidget(video_mp3_button)
+        # button_row.addWidget(export_srt_button)
         button_row.addStretch()
 
         root.addWidget(title)

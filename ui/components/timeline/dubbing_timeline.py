@@ -324,6 +324,7 @@ class DubbingTimeline(QWidget):
         # Scroll area
         self._scroll = QScrollArea()
         self._scroll.setObjectName("timelineScroll")
+        self._scroll.setMinimumWidth(900)
         self._scroll.setWidgetResizable(True)
         self._scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
         self._scroll.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)

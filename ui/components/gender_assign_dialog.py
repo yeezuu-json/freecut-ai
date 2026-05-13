@@ -285,19 +285,45 @@ class GenderAssignDialog(QDialog):
         self.setModal(True)
         self.resize(1100, 620)
         self.setStyleSheet("""
-            QDialog { background: #1a1d2e; color: #c4c9d1; }
-            QLabel  { color: #c4c9d1; }
-            QTableWidget { background: #12131f; color: #c4c9d1;
-                           gridline-color: #252840; border: none; }
-            QHeaderView::section { background: #1e2235; color: #8892a4;
-                                   padding: 4px; border: none;
-                                   border-right: 1px solid #252840; }
-            QTableWidget::item { padding: 4px; }
-            QTableWidget::item:selected { background: #2a3050; }
+            QDialog { background: #1a1d2e; color: #e2e8f0; }
+            QLabel  { color: #e2e8f0; }
+
+            QTableWidget {
+                background: #12131f;
+                color: #e2e8f0;
+                gridline-color: #2a2d45;
+                border: 1px solid #2a2d45;
+                border-radius: 4px;
+            }
+            QTableWidget::item {
+                padding: 4px 6px;
+                color: #e2e8f0;
+                background: #12131f;
+            }
+            QTableWidget::item:alternate {
+                background: #1a1d2e;
+            }
+            QTableWidget::item:selected {
+                background: #2a3258;
+                color: #ffffff;
+            }
+            QHeaderView::section {
+                background: #1e2235;
+                color: #94a3b8;
+                padding: 5px 6px;
+                border: none;
+                border-right: 1px solid #2a2d45;
+                border-bottom: 1px solid #2a2d45;
+                font-weight: bold;
+            }
             QScrollBar:horizontal, QScrollBar:vertical {
-                background: #12131f; border: none; }
+                background: #12131f; border: none; width: 8px; height: 8px;
+            }
             QScrollBar::handle:horizontal, QScrollBar::handle:vertical {
-                background: #2e3250; border-radius: 3px; }
+                background: #3b4268; border-radius: 4px; min-width: 30px; min-height: 30px;
+            }
+            QScrollBar::add-line, QScrollBar::sub-line { width: 0; height: 0; }
+            QWidget#cellWidget { background: transparent; }
         """)
 
         root = QVBoxLayout(self)
@@ -394,6 +420,7 @@ class GenderAssignDialog(QDialog):
 
         # Gender toggle buttons.
         gender_widget = QWidget()
+        gender_widget.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground, True)
         gender_widget.setStyleSheet("background: transparent;")
         gl = QHBoxLayout(gender_widget)
         gl.setContentsMargins(4, 2, 4, 2)
@@ -432,7 +459,7 @@ class GenderAssignDialog(QDialog):
 
     def _set_cell(self, row: int, col: int, value: str) -> None:
         item = QTableWidgetItem(value)
-        item.setForeground(QColor("#c4c9d1"))
+        item.setForeground(QColor("#e2e8f0"))
         item.setTextAlignment(Qt.AlignmentFlag.AlignVCenter | Qt.AlignmentFlag.AlignLeft)
         self._table.setItem(row, col, item)
 
