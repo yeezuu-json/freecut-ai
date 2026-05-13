@@ -219,7 +219,7 @@ class SettingsDialog(QDialog):
         # Connections to the global ModelDownloadManager singleton that must be
         # explicitly disconnected when the dialog closes, because the singleton
         # outlives this dialog and would otherwise hold stale widget references.
-        self._mgr_connections: list = []
+        self._mgr_connections: list[tuple] = []
 
         self.setWindowTitle("Settings")
         self.setMinimumWidth(560)
@@ -235,9 +235,9 @@ class SettingsDialog(QDialog):
     # ── lifecycle ─────────────────────────────────────────────────────────────
 
     def closeEvent(self, event) -> None:
-        for signal, slot in self._mgr_connections:
+        for manager, signal_name, slot in self._mgr_connections:
             try:
-                signal.disconnect(slot)
+                getattr(manager, signal_name).disconnect(slot)
             except RuntimeError:
                 pass
         self._mgr_connections.clear()
@@ -581,8 +581,8 @@ class SettingsDialog(QDialog):
 
         dl_manager.download_progress.connect(_on_mgr_progress)
         dl_manager.download_finished.connect(_on_mgr_finished)
-        self._mgr_connections.append((dl_manager.download_progress, _on_mgr_progress))
-        self._mgr_connections.append((dl_manager.download_finished, _on_mgr_finished))
+        self._mgr_connections.append((dl_manager, "download_progress", _on_mgr_progress))
+        self._mgr_connections.append((dl_manager, "download_finished", _on_mgr_finished))
 
         # ── button click ──────────────────────────────────────────────────────
 
