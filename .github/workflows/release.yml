@@ -1,0 +1,140 @@
+name: Build & Release
+
+# Triggers on any tag like v1.0.0-beta, v1.2.3, etc.
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-14          # Apple Silicon runner
+            name: macOS
+            artifact: FreeCut-AI-macOS.zip
+
+          - os: windows-latest
+            name: Windows
+            artifact: FreeCut-AI-Windows.zip
+
+    runs-on: ${{ matrix.os }}
+    name: Build (${{ matrix.name }})
+
+    steps:
+      # ── 1. Checkout ──────────────────────────────────────────────────────
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ── 2. Free up disk space (GitHub runners are tight with torch) ───────
+      - name: Free disk space (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          sudo rm -rf /Library/Developer/CommandLineTools/SDKs
+          df -h
+
+      - name: Free disk space (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          Remove-Item "C:\Android" -Recurse -Force -ErrorAction SilentlyContinue
+          Remove-Item "C:\hostedtoolcache\windows\go" -Recurse -Force -ErrorAction SilentlyContinue
+          Get-PSDrive C | Select-Object Used, Free
+
+      # ── 3. Python + uv ───────────────────────────────────────────────────
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          version: "latest"
+
+      # ── 4. Cache the venv (torch etc. are huge — avoid re-downloading) ──
+      - name: Cache venv
+        uses: actions/cache@v4
+        with:
+          path: .venv
+          key: venv-${{ matrix.os }}-${{ hashFiles('uv.lock') }}
+          restore-keys: venv-${{ matrix.os }}-
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      # ── 5. ffmpeg binaries ───────────────────────────────────────────────
+      - name: Get ffmpeg (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          brew install ffmpeg
+          mkdir -p bin
+          cp "$(which ffmpeg)"  bin/ffmpeg
+          cp "$(which ffprobe)" bin/ffprobe
+
+      - name: Get ffmpeg (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $url = "https://github.com/BtbN/ffmpeg-builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip"
+          Invoke-WebRequest -Uri $url -OutFile ffmpeg.zip -TimeoutSec 120
+          Expand-Archive ffmpeg.zip -DestinationPath ffmpeg_tmp
+          $ffdir = Get-ChildItem ffmpeg_tmp | Select-Object -First 1
+          New-Item -ItemType Directory -Force -Path bin | Out-Null
+          Copy-Item "$($ffdir.FullName)\bin\ffmpeg.exe"  bin\ffmpeg.exe
+          Copy-Item "$($ffdir.FullName)\bin\ffprobe.exe" bin\ffprobe.exe
+          Remove-Item ffmpeg.zip, ffmpeg_tmp -Recurse -Force
+
+      # ── 6. PyInstaller build ─────────────────────────────────────────────
+      - name: Build with PyInstaller
+        run: uv run pyinstaller freecut_ai.spec --noconfirm
+
+      # ── 7. Package ───────────────────────────────────────────────────────
+      - name: Package macOS .app → zip
+        if: runner.os == 'macOS'
+        run: |
+          cd dist
+          ditto -c -k --sequesterRsrc --keepParent "FreeCut AI.app" "FreeCut-AI-macOS.zip"
+          ls -lh "FreeCut-AI-macOS.zip"
+
+      - name: Package Windows folder → zip
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          cd dist
+          Compress-Archive -Path "FreeCut AI" -DestinationPath "FreeCut-AI-Windows.zip"
+          Get-Item "FreeCut-AI-Windows.zip" | Select-Object Name, Length
+
+      # ── 8. Upload to GitHub Release ──────────────────────────────────────
+      - name: Upload release asset
+        uses: softprops/action-gh-release@v2
+        with:
+          prerelease: ${{ contains(github.ref_name, 'beta') || contains(github.ref_name, 'alpha') || contains(github.ref_name, 'rc') }}
+          files: dist/${{ matrix.artifact }}
+          body: |
+            ## FreeCut AI ${{ github.ref_name }}
+
+            AI-powered video dubbing desktop app for Khmer content creators.
+
+            ### Download
+            | Platform | File |
+            |----------|------|
+            | macOS (Apple Silicon) | `FreeCut-AI-macOS.zip` |
+            | Windows 10/11 (64-bit) | `FreeCut-AI-Windows.zip` |
+
+            ### Features
+            - 🎙 AI Transcription (Whisper)
+            - 🇰🇭 Khmer TTS Dubbing (Edge Neural voices)
+            - 🎵 Audio Stem Separation (Demucs)
+            - 🎬 Native CapCut Project Export
+            - 🌐 Gemini AI Translation
+
+            ### Installation
+            **macOS:** Unzip → drag to Applications → right-click → Open (first time only)
+            **Windows:** Unzip → run `FreeCut AI.exe`
+
+            > ⚠️ Requires a `GEMINI_API_KEY` in a `.env` file next to the app.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
