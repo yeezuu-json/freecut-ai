@@ -961,6 +961,13 @@ class EditorLayout(QWidget):
                 vocals_path = candidate
                 logger.info("Using vocals stem for transcription: %s", vocals_path)
 
+        # ── lazy model download ───────────────────────────────────────────────
+        if selected_provider == "local":
+            from ui.components.model_download_dialog import ModelDownloadDialog
+            if not ModelDownloadDialog.ensure(selected_provider, selected_model, parent=self):
+                self.status_bar.set_progress(0, "Transcription cancelled — model not downloaded.")
+                return
+
         self.status_bar.set_progress(0, "Preparing transcription...")
 
         thread = QThread(self)
@@ -1199,6 +1206,13 @@ class EditorLayout(QWidget):
             model,
             len(self.state.segments),
         )
+
+        # ── lazy model download ───────────────────────────────────────────────
+        if provider == "local_nllb":
+            from ui.components.model_download_dialog import ModelDownloadDialog
+            if not ModelDownloadDialog.ensure(provider, model, parent=self):
+                self.status_bar.set_progress(0, "Translation cancelled — model not downloaded.")
+                return
 
         self.status_bar.set_progress(0, "Preparing Khmer translation...")
 

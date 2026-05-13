@@ -14,7 +14,7 @@ class SplashScreen(QWidget):
         super().__init__()
 
         self.setWindowTitle("Loading")
-        self.setFixedSize(480, 340)
+        self.setFixedSize(520, 400)
 
         self.setWindowFlags(
             Qt.WindowType.FramelessWindowHint
@@ -55,20 +55,39 @@ class SplashScreen(QWidget):
         self.status_box.setObjectName("splashStatusBox")
 
         status_layout = QVBoxLayout(self.status_box)
-        status_layout.setContentsMargins(14, 12, 14, 12)
-        status_layout.setSpacing(8)
+        status_layout.setContentsMargins(14, 10, 14, 10)
+        status_layout.setSpacing(6)
 
-        self.config_status = self.create_status_label("Config", "Waiting")
-        self.logger_status = self.create_status_label("Logger", "Waiting")
-        self.font_status = self.create_status_label("Fonts", "Waiting")
-        self.ffmpeg_status = self.create_status_label("FFmpeg", "Waiting")
-        self.model_status = self.create_status_label("AI Models", "Waiting")
+        # Two-column grid of status items
+        col_widget = QWidget()
+        col_widget.setStyleSheet("background: transparent;")
+        from PySide6.QtWidgets import QGridLayout
+        grid = QGridLayout(col_widget)
+        grid.setContentsMargins(0, 0, 0, 0)
+        grid.setSpacing(6)
 
-        status_layout.addWidget(self.config_status)
-        status_layout.addWidget(self.logger_status)
-        status_layout.addWidget(self.font_status)
-        status_layout.addWidget(self.ffmpeg_status)
-        status_layout.addWidget(self.model_status)
+        self.config_status  = self.create_status_label("Config",     "Waiting")
+        self.logger_status  = self.create_status_label("Logger",     "Waiting")
+        self.font_status    = self.create_status_label("Fonts",      "Waiting")
+        self.ffmpeg_status  = self.create_status_label("FFmpeg",     "Waiting")
+        self.storage_status = self.create_status_label("Storage",    "Waiting")
+        self.api_status     = self.create_status_label("API Keys",   "Waiting")
+        self.capcut_status  = self.create_status_label("CapCut",     "Waiting")
+        self.model_status   = self.create_status_label("AI Models",  "Waiting")
+        # Placeholder — wired to a real check later
+        self.license_status = self.create_status_label("License",    "—")
+
+        items = [
+            self.config_status,  self.logger_status,
+            self.font_status,    self.ffmpeg_status,
+            self.storage_status, self.api_status,
+            self.capcut_status,  self.model_status,
+            self.license_status,
+        ]
+        for i, item in enumerate(items):
+            grid.addWidget(item, i // 2, i % 2)
+
+        status_layout.addWidget(col_widget)
 
         self.version_label = QLabel("v1.0.0")
         self.version_label.setObjectName("splashVersion")
@@ -113,21 +132,20 @@ class SplashScreen(QWidget):
 
         text = f"{icon} {key}: {status}"
 
-        if key == "Config":
-            self.config_status.setText(text)
-            self.set_status_property(self.config_status, ok)
-        elif key == "Logger":
-            self.logger_status.setText(text)
-            self.set_status_property(self.logger_status, ok)
-        elif key == "Fonts":
-            self.font_status.setText(text)
-            self.set_status_property(self.font_status, ok)
-        elif key == "FFmpeg":
-            self.ffmpeg_status.setText(text)
-            self.set_status_property(self.ffmpeg_status, ok)
-        elif key == "AI Models":
-            self.model_status.setText(text)
-            self.set_status_property(self.model_status, ok)
+        _map = {
+            "Config":   self.config_status,
+            "Logger":   self.logger_status,
+            "Fonts":    self.font_status,
+            "FFmpeg":   self.ffmpeg_status,
+            "Storage":  self.storage_status,
+            "API Keys": self.api_status,
+            "CapCut":   self.capcut_status,
+            "AI Models":self.model_status,
+            "License":  self.license_status,
+        }
+        if key in _map:
+            _map[key].setText(text)
+            self.set_status_property(_map[key], ok)
 
     def set_status_property(self, label: QLabel, ok: bool | None):
         if ok is True:

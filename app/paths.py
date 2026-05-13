@@ -11,8 +11,9 @@ FONTS_DIR = ASSETS_DIR / "fonts"
 STYLES_DIR = ASSETS_DIR / "styles"
 THEME_FILE = STYLES_DIR / "theme.qss"
 
-LOGS_DIR = BASE_DIR / "logs"
-LOG_FILE = LOGS_DIR / "app.log"
+LOGS_DIR    = BASE_DIR / "logs"
+LOG_FILE    = LOGS_DIR / "app.log"
+STORAGE_DIR = BASE_DIR / "storage"
 
 # ── Persistent per-user cache ─────────────────────────────────────────────────
 # These directories survive app restarts so expensive AI steps can be reused.

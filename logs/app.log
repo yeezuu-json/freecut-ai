@@ -570,3 +570,14 @@
 2026-05-13 22:45:03 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
 2026-05-13 22:45:03 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1145 | Timeline cache saved on close.
 2026-05-13 22:45:03 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1153 | EditorLayout cleanup complete.
+2026-05-13 23:23:09 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-13 23:23:09 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-13 23:23:09 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-13 23:23:10 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-13 23:23:10 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-13 23:23:10 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-13 23:23:10 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-13 23:23:10 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-13 23:23:10 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-13 23:24:24 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-13 23:24:24 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.

@@ -27,6 +27,7 @@ from PySide6.QtWidgets import (
 from app.config import AppConfig
 from app.logger import get_logger
 from app.paths import CONFIG_FILE
+from services.model_manager import ModelManager
 from ui.components.app_select import AppSelect
 
 logger = get_logger(__name__)
@@ -258,6 +259,7 @@ class SettingsDialog(QDialog):
         body.addWidget(self._build_transcription_group())
         body.addWidget(self._build_translation_group())
         body.addWidget(self._build_api_keys_group())
+        body.addWidget(self._build_local_models_group())
         body.addWidget(self._build_cache_group())
         body.addStretch()
 
@@ -425,6 +427,111 @@ class SettingsDialog(QDialog):
         ))
 
         return group
+
+    def _build_local_models_group(self) -> QGroupBox:
+        """Panel that shows each local model with its download status + button."""
+        group = QGroupBox("Local AI Models")
+        vbox = QVBoxLayout(group)
+        vbox.setSpacing(10)
+        vbox.setContentsMargins(8, 16, 8, 12)
+
+        hint = QLabel(
+            "Local models are free and run entirely on your computer.\n"
+            "They are only downloaded on demand — never at startup."
+        )
+        hint.setObjectName("hintLabel")
+        hint.setWordWrap(True)
+        vbox.addWidget(hint)
+
+        manager = ModelManager()
+
+        whisper_models = [
+            ("tiny",      "local",     "Whisper Tiny",       "~75 MB"),
+            ("base",      "local",     "Whisper Base",       "~145 MB"),
+            ("small",     "local",     "Whisper Small",      "~465 MB"),
+            ("medium",    "local",     "Whisper Medium",     "~1.5 GB"),
+            ("large-v3",  "local",     "Whisper Large V3",   "~3.1 GB"),
+        ]
+        nllb_models = [
+            ("facebook/nllb-200-distilled-600M",  "local_nllb", "NLLB 600M",  "~2.4 GB"),
+            ("facebook/nllb-200-distilled-1.3B",  "local_nllb", "NLLB 1.3B",  "~5.3 GB"),
+        ]
+
+        sep = QLabel("Whisper  (speech recognition)")
+        sep.setStyleSheet("color: #64748b; font-size: 11px; font-weight: 600;")
+        vbox.addWidget(sep)
+        for m in whisper_models:
+            vbox.addLayout(self._model_row(manager, *m))
+
+        sep2 = QLabel("NLLB  (offline translation)")
+        sep2.setStyleSheet("color: #64748b; font-size: 11px; font-weight: 600; margin-top: 4px;")
+        vbox.addWidget(sep2)
+        for m in nllb_models:
+            vbox.addLayout(self._model_row(manager, *m))
+
+        return group
+
+    def _model_row(
+        self,
+        manager: ModelManager,
+        model_value: str,
+        provider: str,
+        label: str,
+        size_hint: str,
+    ) -> QHBoxLayout:
+        """One row: [label + size]  [status badge]  [Download / Ready button]"""
+        row = QHBoxLayout()
+        row.setSpacing(8)
+
+        name_lbl = QLabel(f"{label}  <span style='color:#64748b;font-size:11px'>{size_hint}</span>")
+        name_lbl.setTextFormat(Qt.TextFormat.RichText)
+        row.addWidget(name_lbl, 1)
+
+        if provider == "local":
+            is_ready = manager.check_local_whisper_model(model_value).is_ready
+        else:
+            is_ready = manager.check_nllb_model(model_value).is_ready
+
+        status_lbl = QLabel("✓ Ready" if is_ready else "Not downloaded")
+        status_lbl.setStyleSheet(
+            "color: #86efac; font-size: 11px;" if is_ready
+            else "color: #94a3b8; font-size: 11px;"
+        )
+        row.addWidget(status_lbl)
+
+        btn = QPushButton("Downloaded" if is_ready else "Download")
+        btn.setEnabled(not is_ready)
+        btn.setFixedWidth(110)
+        btn.setStyleSheet("""
+            QPushButton {
+                background-color: #1e3a5f;
+                color: #93c5fd;
+                border: 1px solid #3b82f6;
+                border-radius: 5px;
+                padding: 4px 10px;
+                font-size: 11px;
+                font-weight: 600;
+            }
+            QPushButton:hover { background-color: #2563eb; color: #ffffff; }
+            QPushButton:disabled {
+                background-color: #1f2937;
+                color: #4b5563;
+                border-color: #374151;
+            }
+        """)
+
+        def _on_download(checked=False, p=provider, mv=model_value, sl=status_lbl, b=btn):
+            from ui.components.model_download_dialog import ModelDownloadDialog
+            ok = ModelDownloadDialog.ensure(p, mv, parent=self)
+            if ok:
+                sl.setText("✓ Ready")
+                sl.setStyleSheet("color: #86efac; font-size: 11px;")
+                b.setText("Downloaded")
+                b.setEnabled(False)
+
+        btn.clicked.connect(_on_download)
+        row.addWidget(btn)
+        return row
 
     def _build_cache_group(self) -> QGroupBox:
         group = QGroupBox("Cache")
