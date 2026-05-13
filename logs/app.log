@@ -611,3 +611,174 @@
 2026-05-13 23:33:57 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
 2026-05-13 23:34:22 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
 2026-05-13 23:34:22 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-13 23:37:38 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-13 23:37:38 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-13 23:37:38 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-13 23:37:38 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-13 23:37:38 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-13 23:37:39 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-13 23:37:39 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-13 23:37:39 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-13 23:37:39 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-13 23:37:42 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-13 23:37:42 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-13 23:44:32 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-13 23:44:32 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-13 23:44:32 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-13 23:44:32 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-13 23:44:32 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-13 23:44:33 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-13 23:44:33 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-13 23:44:33 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-13 23:44:33 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-13 23:44:48 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-13 23:44:48 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-13 23:45:29 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-13 23:45:29 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-13 23:45:29 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-13 23:45:29 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-13 23:45:29 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-13 23:45:30 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-13 23:45:30 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-13 23:45:30 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-13 23:45:30 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-13 23:46:29 | INFO     | my_app.services.video_download_manager | video_download_manager.py:124 | Enqueued download: 17bc92fa  url=https://www.tiktok.com/@vonleyno/video/7572907055447624978?is_from_webapp=1&sender_device=pc
+2026-05-13 23:46:29 | INFO     | my_app.services.video_download_manager | video_download_manager.py:196 | Starting download job 17bc92fa
+2026-05-13 23:46:31 | INFO     | my_app.services.video_download_service | video_download_service.py:202 | Download complete: /Users/piseth/Downloads/FreeCutAI/Side quest  #adv160modifikasi #adv160philippines #adv160  [7572907055447624978].mp4
+2026-05-13 23:47:24 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-13 23:47:24 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-13 23:54:38 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-13 23:54:38 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-13 23:54:38 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-13 23:54:38 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-13 23:54:38 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-13 23:54:39 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-13 23:54:39 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-13 23:54:39 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-13 23:54:39 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-13 23:55:16 | INFO     | my_app.services.video_download_manager | video_download_manager.py:132 | Enqueued download: 89c2131b  url=https://www.tiktok.com/@vonleyno
+2026-05-13 23:55:16 | INFO     | my_app.services.video_download_manager | video_download_manager.py:204 | Starting download job 89c2131b
+2026-05-13 23:55:45 | ERROR    | my_app.services.video_download_service | video_download_service.py:215 | Download failed for https://www.tiktok.com/@vonleyno
+Traceback (most recent call last):
+  File "/Users/piseth/developer/desktop-app/freecut-ai/services/video_download_service.py", line 189, in download
+    info = ydl.extract_info(url, download=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 1687, in extract_info
+    return self.__extract_info(url, self.get_info_extractor(key), download, extra_info, process)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 1698, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 1854, in __extract_info
+    return self.process_ie_result(ie_result, download, extra_info)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 1983, in process_ie_result
+    return self.__process_playlist(ie_result, download)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 2131, in __process_playlist
+    entry_result = self.__process_iterable_entry(entry, download, collections.ChainMap({
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 1698, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 2163, in __process_iterable_entry
+    return self.process_ie_result(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 1933, in process_ie_result
+    return self.extract_info(
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 1687, in extract_info
+    return self.__extract_info(url, self.get_info_extractor(key), download, extra_info, process)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 1698, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 1854, in __extract_info
+    return self.process_ie_result(ie_result, download, extra_info)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 1913, in process_ie_result
+    ie_result = self.process_video_result(ie_result, download=download)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 3115, in process_video_result
+    raise MaxDownloadsReached
+yt_dlp.utils.MaxDownloadsReached: Maximum number of downloads reached, stopping due to --max-downloads
+2026-05-13 23:59:41 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-13 23:59:41 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-13 23:59:50 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-13 23:59:50 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-13 23:59:50 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-13 23:59:50 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-13 23:59:50 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-13 23:59:51 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-13 23:59:51 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-13 23:59:51 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-13 23:59:51 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 00:00:22 | INFO     | my_app.services.video_download_manager | video_download_manager.py:132 | Enqueued download: 873b7c67  url=https://www.tiktok.com/@vonleyno
+2026-05-14 00:00:22 | INFO     | my_app.services.video_download_manager | video_download_manager.py:204 | Starting download job 873b7c67
+2026-05-14 00:01:37 | ERROR    | my_app.services.video_download_service | video_download_service.py:205 | Download failed for https://www.tiktok.com/@vonleyno
+Traceback (most recent call last):
+  File "/Users/piseth/developer/desktop-app/freecut-ai/services/video_download_service.py", line 190, in download
+    info = ydl.extract_info(url, download=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 1687, in extract_info
+    return self.__extract_info(url, self.get_info_extractor(key), download, extra_info, process)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 1698, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 1854, in __extract_info
+    return self.process_ie_result(ie_result, download, extra_info)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 1983, in process_ie_result
+    return self.__process_playlist(ie_result, download)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 2131, in __process_playlist
+    entry_result = self.__process_iterable_entry(entry, download, collections.ChainMap({
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 1698, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 2163, in __process_iterable_entry
+    return self.process_ie_result(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 1933, in process_ie_result
+    return self.extract_info(
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 1687, in extract_info
+    return self.__extract_info(url, self.get_info_extractor(key), download, extra_info, process)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 1698, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 1854, in __extract_info
+    return self.process_ie_result(ie_result, download, extra_info)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 1913, in process_ie_result
+    ie_result = self.process_video_result(ie_result, download=download)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 3096, in process_video_result
+    self.process_info(new_info)
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 189, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 3544, in process_info
+    success, real_download = self.dl(temp_filename, info_dict)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py", line 3285, in dl
+    return fd.download(name, new_info, subtitle)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/downloader/common.py", line 480, in download
+    ret = self.real_download(filename, info_dict)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/downloader/http.py", line 363, in real_download
+    return download()
+           ^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/downloader/http.py", line 300, in download
+    self._hook_progress({
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/yt_dlp/downloader/common.py", line 495, in _hook_progress
+    ph(status)
+  File "/Users/piseth/developer/desktop-app/freecut-ai/services/video_download_service.py", line 155, in _hook
+    raise yt_dlp.utils.DownloadCancelled()
+yt_dlp.utils.DownloadCancelled: The download was cancelled
+2026-05-14 00:04:33 | INFO     | my_app.services.video_download_manager | video_download_manager.py:132 | Enqueued download: 168f1dda  url=https://www.dailymotion.com/video/xa8rmsm
+2026-05-14 00:04:33 | INFO     | my_app.services.video_download_manager | video_download_manager.py:204 | Starting download job 168f1dda

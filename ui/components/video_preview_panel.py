@@ -133,12 +133,13 @@ class VideoPreviewPanel(QWidget):
             full_width=True,
         )
 
-        cutter = AppButton(
-            text="Video Cutter",
-            icon=app_icon("scissors", fallback="fa6s.scissors", color="#ffffff"),
+        download_video = AppButton(
+            text="Download Video",
+            icon=app_icon("download", fallback="fa6s.download", color="#ffffff"),
             variant="purple",
             button_size="tool",
             full_width=True,
+            on_click=self._open_download_dialog,
         )
 
         license_label = QLabel("License: Lifetime")
@@ -158,8 +159,17 @@ class VideoPreviewPanel(QWidget):
         layout.addWidget(tools_title)
         layout.addWidget(auto_sync)
         layout.addWidget(auto_speed)
-        layout.addWidget(cutter)
+        layout.addWidget(download_video)
         layout.addWidget(license_label)
+
+    def _open_download_dialog(self) -> None:
+        from ui.components.dowalod_video_dialog import DownloadVideoDialog
+        # Keep a single instance so the queue is preserved while panel is live
+        if not hasattr(self, "_download_dialog") or self._download_dialog is None:
+            self._download_dialog = DownloadVideoDialog(parent=self)
+        self._download_dialog.show()
+        self._download_dialog.raise_()
+        self._download_dialog.activateWindow()
 
     def set_video(self, video_path: Path):
         self.video_path = video_path
