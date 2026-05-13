@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any
 
 from app.logger import get_logger
+from app.paths import PROJECTS_CACHE_DIR
 from models.subtitle_segment import SubtitleSegment
 from models.timeline_cache import TimelineCache
 from models.timeline_item import TimelineItem
@@ -16,7 +17,7 @@ logger = get_logger(__name__)
 
 class TimelineCacheService:
     def __init__(self):
-        self.cache_dir = Path.home() / ".freecut-ai" / "cache" / "projects"
+        self.cache_dir = PROJECTS_CACHE_DIR
         self.cache_dir.mkdir(parents=True, exist_ok=True)
 
     def get_cache_path(self, video_path: Path) -> Path:

@@ -16,6 +16,8 @@ from PySide6.QtWidgets import (
     QHBoxLayout,
     QLabel,
     QLineEdit,
+    QMessageBox,
+    QPushButton,
     QScrollArea,
     QSizePolicy,
     QVBoxLayout,
@@ -256,6 +258,7 @@ class SettingsDialog(QDialog):
         body.addWidget(self._build_transcription_group())
         body.addWidget(self._build_translation_group())
         body.addWidget(self._build_api_keys_group())
+        body.addWidget(self._build_cache_group())
         body.addStretch()
 
         scroll.setWidget(body_widget)
@@ -422,6 +425,160 @@ class SettingsDialog(QDialog):
         ))
 
         return group
+
+    def _build_cache_group(self) -> QGroupBox:
+        group = QGroupBox("Cache")
+        vbox = QVBoxLayout(group)
+        vbox.setSpacing(10)
+        vbox.setContentsMargins(8, 16, 8, 8)
+
+        # Compute sizes
+        from app.paths import CACHE_DIR, PROJECTS_CACHE_DIR, STEMS_CACHE_DIR, TTS_CACHE_DIR
+
+        rows = [
+            ("Project timelines", PROJECTS_CACHE_DIR),
+            ("Demucs stems",      STEMS_CACHE_DIR),
+            ("TTS voice clips",   TTS_CACHE_DIR),
+        ]
+        total_bytes = 0
+        for _, d in rows:
+            sz = self._dir_size(d)
+            total_bytes += sz
+
+        # Size breakdown label
+        breakdown_lines = []
+        for label, d in rows:
+            sz = self._dir_size(d)
+            breakdown_lines.append(f"{label}:  {self._fmt_size(sz)}")
+        breakdown_lines.append("")
+        breakdown_lines.append(f"Total:  {self._fmt_size(total_bytes)}")
+
+        breakdown_lbl = QLabel("\n".join(breakdown_lines))
+        breakdown_lbl.setStyleSheet("color: #94a3b8; font-size: 12px; line-height: 1.6;")
+        vbox.addWidget(breakdown_lbl)
+
+        # Cache location hint
+        cache_hint = QLabel(f"Location:  {CACHE_DIR}")
+        cache_hint.setObjectName("hintLabel")
+        cache_hint.setTextInteractionFlags(
+            Qt.TextInteractionFlag.TextSelectableByMouse
+        )
+        vbox.addWidget(cache_hint)
+
+        # Clear button row
+        btn_row = QHBoxLayout()
+        btn_row.addStretch()
+
+        self._clear_cache_btn = QPushButton(
+            f"Clear All Cache  ({self._fmt_size(total_bytes)})"
+        )
+        self._clear_cache_btn.setCursor(Qt.CursorShape.PointingHandCursor)
+        self._clear_cache_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #7f1d1d;
+                color: #fecaca;
+                border: 1px solid #991b1b;
+                border-radius: 6px;
+                padding: 6px 16px;
+                font-size: 12px;
+                font-weight: 600;
+            }
+            QPushButton:hover { background-color: #991b1b; }
+            QPushButton:pressed { background-color: #b91c1c; }
+            QPushButton:disabled {
+                background-color: #374151;
+                color: #6b7280;
+                border-color: #374151;
+            }
+        """)
+        self._clear_cache_btn.setEnabled(total_bytes > 0)
+        self._clear_cache_btn.clicked.connect(
+            lambda: self._on_clear_cache(rows, breakdown_lbl)
+        )
+        btn_row.addWidget(self._clear_cache_btn)
+        vbox.addLayout(btn_row)
+
+        return group
+
+    # ── cache helpers ─────────────────────────────────────────────────────────
+
+    @staticmethod
+    def _dir_size(path: Path) -> int:
+        """Return total bytes of all files under *path* (0 if missing)."""
+        if not path.exists():
+            return 0
+        return sum(f.stat().st_size for f in path.rglob("*") if f.is_file())
+
+    @staticmethod
+    def _fmt_size(n: int) -> str:
+        """Human-readable file size."""
+        for unit in ("B", "KB", "MB", "GB"):
+            if n < 1024:
+                return f"{n:.1f} {unit}" if unit != "B" else f"{n} B"
+            n /= 1024
+        return f"{n:.1f} TB"
+
+    def _on_clear_cache(self, rows, breakdown_lbl) -> None:
+        from app.paths import CACHE_DIR, PROJECTS_CACHE_DIR, STEMS_CACHE_DIR, TTS_CACHE_DIR
+        import shutil
+
+        total = sum(self._dir_size(d) for _, d in rows)
+
+        # Confirmation dialog
+        msg = QMessageBox(self)
+        msg.setWindowTitle("Clear Cache")
+        msg.setIcon(QMessageBox.Icon.Warning)
+        msg.setText(
+            f"<b>Clear {self._fmt_size(total)} of cached data?</b>"
+        )
+
+        detail_lines = ["This will delete:"]
+        for label, d in rows:
+            sz = self._dir_size(d)
+            if sz > 0:
+                detail_lines.append(f"  • {label}  ({self._fmt_size(sz)})")
+        detail_lines.append("")
+        detail_lines.append(
+            "Demucs stems, TTS clips, and project timelines will need to be\n"
+            "regenerated on the next run.  SRT files next to your videos are NOT affected."
+        )
+        msg.setInformativeText("\n".join(detail_lines))
+        msg.setStandardButtons(
+            QMessageBox.StandardButton.Ok | QMessageBox.StandardButton.Cancel
+        )
+        msg.button(QMessageBox.StandardButton.Ok).setText("Clear")
+        msg.setDefaultButton(QMessageBox.StandardButton.Cancel)
+
+        if msg.exec() != QMessageBox.StandardButton.Ok:
+            return
+
+        # Delete cache subdirectories (keep the root CACHE_DIR itself)
+        deleted = 0
+        errors = []
+        for _, d in rows:
+            if d.exists():
+                try:
+                    shutil.rmtree(d)
+                    deleted += 1
+                except Exception as exc:
+                    errors.append(str(exc))
+
+        # Refresh size labels
+        new_lines = []
+        for label, d in rows:
+            new_lines.append(f"{label}:  {self._fmt_size(self._dir_size(d))}")
+        new_lines.append("")
+        new_lines.append(f"Total:  {self._fmt_size(0)}")
+        breakdown_lbl.setText("\n".join(new_lines))
+
+        self._clear_cache_btn.setText("Clear All Cache  (0 B)")
+        self._clear_cache_btn.setEnabled(False)
+
+        if errors:
+            QMessageBox.warning(
+                self, "Partial Clear",
+                f"Some files could not be deleted:\n" + "\n".join(errors),
+            )
 
     # ── helpers ───────────────────────────────────────────────────────────────
 

@@ -165,22 +165,10 @@ class EditorLayout(QWidget):
 
         cached = self.timeline_cache_service.load(project.video_path)
 
-        should_rebuild = False
-
-        # Required item IDs that must always be present in a valid cache.
         _REQUIRED_ITEM_IDS = {"item_video", "item_raw_audio", "item_background", "item_vocal"}
-
-        if cached is None:
-            should_rebuild = True
-        else:
-            cached_ids = {item.id for item in cached.items}
-            missing    = _REQUIRED_ITEM_IDS - cached_ids
-
-            if missing:
-                logger.warning(
-                    "Timeline cache is missing items %s – rebuilding.", missing
-                )
-                should_rebuild = True
+        should_rebuild = cached is None or bool(
+            _REQUIRED_ITEM_IDS - {item.id for item in cached.items}
+        )
 
         if should_rebuild:
             duration_seconds = self.audio_service.get_duration_seconds(project.video_path)
@@ -191,7 +179,6 @@ class EditorLayout(QWidget):
                 duration_ms=duration_ms,
                 fps=30.0,
             )
-
             self.timeline_cache_service.save(self.current_timeline_cache)
         else:
             self.current_timeline_cache = cached
@@ -204,11 +191,94 @@ class EditorLayout(QWidget):
         )
 
         self.timeline_store.load_cache(self.current_timeline_cache)
-
         self.timeline_editor.set_timeline_store(
             self.timeline_store,
             self.current_timeline_cache.duration_ms,
         )
+
+        # Offer to restore expensive AI results from a previous session.
+        if not should_rebuild:
+            self._maybe_offer_restore(self.current_timeline_cache)
+
+    def _maybe_offer_restore(self, cache) -> None:
+        """Show the restore dialog if any cached AI step has valid data."""
+        from ui.components.restore_cache_dialog import CacheStatus, RestoreCacheDialog, inspect_cache
+
+        status = inspect_cache(cache)
+        has_anything = any([
+            status.has_demucs,
+            status.has_transcript,
+            status.has_translation,
+            status.has_tts,
+        ])
+        if not has_anything:
+            return
+
+        dialog = RestoreCacheDialog(cache=cache, status=status, parent=self)
+        dialog.exec()
+
+        if dialog.should_restore():
+            self._restore_from_cache(cache, status)
+        else:
+            # User chose "Start Fresh" — clear AI data from cache but keep layout.
+            cache.segments = []
+            cache.vocals_path = None
+            cache.background_path = None
+            cache.raw_audio_path = None
+            self.timeline_cache_service.save(cache)
+            logger.info("Cache cleared by user (Start Fresh).")
+
+    def _restore_from_cache(self, cache, status) -> None:
+        """Rebuild in-memory state from the persisted cache."""
+        from services.srt_service import SrtService  # noqa: F401 (unused here)
+
+        segs = list(cache.segments) if cache.segments else []
+
+        # ── Restore transcript / translation ──────────────────────────────────
+        if status.has_translation:
+            self.state.set_translation(segs)
+            self.transcript_table.set_segments(segs)
+            self.transcript_table.show()
+            logger.info("Restored %d translated segment(s) from cache.", len(segs))
+        elif status.has_transcript:
+            self.state.set_transcript(segs)
+            self.transcript_table.set_segments(segs)
+            self.transcript_table.show()
+            logger.info("Restored %d transcript segment(s) from cache.", len(segs))
+
+        # ── Restore Demucs stem players ───────────────────────────────────────
+        if status.has_demucs:
+            from services.demucs_service import DemucsResult
+            demucs_result = DemucsResult(
+                vocals_path=Path(cache.vocals_path),
+                background_path=Path(cache.background_path),
+                raw_audio_path=Path(cache.raw_audio_path) if cache.raw_audio_path else Path(cache.vocals_path).parent / "raw.wav",
+                model_used="htdemucs",
+            )
+            self._setup_stem_players(demucs_result)
+            logger.info("Restored Demucs stem players from cache.")
+
+        # ── Restore TTS dubbed voice player ───────────────────────────────────
+        if status.has_tts:
+            self._build_dubbed_player(segs)
+            logger.info("Restored dubbed voice player (%d clips).", status.tts_count)
+
+        # ── Rebuild timeline with tts segments ────────────────────────────────
+        if status.has_tts and segs:
+            self.timeline_builder_service.attach_tts_segments(cache, segs)
+            self.timeline_cache_service.save(cache)
+            self.timeline_store.load_cache(cache)
+            self.timeline_editor.set_timeline_store(
+                self.timeline_store, cache.duration_ms
+            )
+
+        # Status summary
+        parts = []
+        if status.has_demucs:    parts.append("Demucs ✓")
+        if status.has_transcript: parts.append("Transcript ✓")
+        if status.has_translation: parts.append("Translation ✓")
+        if status.has_tts:        parts.append(f"TTS {status.tts_count}/{status.tts_total} ✓")
+        self.status_bar.set_progress(100, "Restored: " + "  ".join(parts))
 
     # ── Timeline signal handlers ─────────────────────────────────────────
 
@@ -485,10 +555,15 @@ class EditorLayout(QWidget):
         logger.info("Starting TTS for %d segments.", len(segments))
         self.status_bar.set_progress(0, "Starting voice generation…")
 
+        from app.paths import TTS_CACHE_DIR
+        tts_dir = TTS_CACHE_DIR / video_path.stem
+        tts_dir.mkdir(parents=True, exist_ok=True)
+
         thread = QThread(self)
         worker = TtsWorker(
             segments=list(segments),
             video_stem=video_path.stem,
+            output_dir=tts_dir,
         )
 
         worker.moveToThread(thread)
@@ -702,6 +777,14 @@ class EditorLayout(QWidget):
             output_path,
             bg_path,
         )
+
+        # Pause playback so positionChanged stops firing during the export.
+        # This prevents re-entrant paint events on the timeline while the
+        # worker thread is being set up and started.
+        self.video_preview.player.pause()
+        for _player, _audio in self._stem_players.values():
+            _player.pause()
+
         self.status_bar.set_progress(0, "Starting dubbed video export…")
 
         thread = QThread(self)
@@ -1048,11 +1131,13 @@ class EditorLayout(QWidget):
                 pass
         self.running_threads.clear()
 
-        # Delete all saved timeline cache files so the next launch is clean.
+        # Persist current cache so the next session can restore cached steps.
         try:
-            self.timeline_cache_service.delete_all()
+            if self.current_timeline_cache:
+                self.timeline_cache_service.save(self.current_timeline_cache)
+                logger.info("Timeline cache saved on close.")
         except Exception:
-            logger.exception("Failed to delete timeline caches.")
+            logger.exception("Failed to save timeline cache on close.")
 
         # Reset in-memory state.
         self.current_timeline_cache = None

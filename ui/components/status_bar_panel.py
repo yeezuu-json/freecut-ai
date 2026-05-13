@@ -16,7 +16,7 @@ class StatusBarPanel(QWidget):
         layout.setContentsMargins(0, 4, 0, 0)
         layout.setSpacing(8)
 
-        timing_group = self.build_timing_group()
+        # timing_group = self.build_timing_group()
         export_group = self.build_export_group()
         self.progress_bar = QProgressBar()
         self.progress_bar.setObjectName("statusProgress")
@@ -31,7 +31,7 @@ class StatusBarPanel(QWidget):
         self.status.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.status.setFont(get_google_sans(size=10, weight="Bold"))
 
-        layout.addWidget(timing_group)
+        # layout.addWidget(timing_group)
         layout.addStretch()
         layout.addWidget(self.status)
         layout.addWidget(self.progress_bar)
@@ -89,15 +89,6 @@ class StatusBarPanel(QWidget):
         layout.setContentsMargins(0, 0, 0, 0)
         layout.setSpacing(8)
 
-        remove_vocal = self.create_button(
-            text="Remove Original Vocal",
-            icon_name="microphone-off",
-            fallback="fa6s.microphone-slash",
-            variant="ghost",
-            size="sm",
-            icon_color="#111827",
-        )
-
         export_mp3 = self.create_button(
             text="Export MP3",
             icon_name="music",
@@ -122,7 +113,6 @@ class StatusBarPanel(QWidget):
             size="md",
         )
 
-        layout.addWidget(remove_vocal)
         layout.addWidget(export_mp3)
         layout.addWidget(export_video)
         layout.addWidget(export_capcut)

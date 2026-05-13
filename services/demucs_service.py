@@ -1,10 +1,11 @@
 import logging
 import subprocess
 import sys
-import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable
+
+from app.paths import STEMS_CACHE_DIR
 
 logger = logging.getLogger(__name__)
 
@@ -40,7 +41,7 @@ class DemucsService:
         self.validate_runtime()
 
         if output_dir is None:
-            output_dir = Path(tempfile.gettempdir()) / "freecut_ai" / "stems"
+            output_dir = STEMS_CACHE_DIR / video_path.stem
         output_dir.mkdir(parents=True, exist_ok=True)
 
         # ── Step 1: extract stereo WAV from video ──────────────────────────

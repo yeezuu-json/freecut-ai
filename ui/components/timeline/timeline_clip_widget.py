@@ -50,6 +50,12 @@ class TimelineClipWidget(QWidget):
 
     def paintEvent(self, _event):
         painter = QPainter(self)
+        try:
+            self._do_paint(painter)
+        finally:
+            painter.end()
+
+    def _do_paint(self, painter: QPainter):
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
 
         r      = self.rect().adjusted(0, 0, -1, -1)

@@ -113,27 +113,6 @@ class TimelineEditor(QWidget):
 
         divider_1 = self._divider()
 
-        # ── Window Size ──────────────────────────────────────────────────
-        window_label = IconLabel(
-            text="Window Size",
-            icon_name="alert-triangle",
-            fallback="fa6s.triangle-exclamation",
-            color="#ef4444",
-        )
-
-        size_select = self._combo(
-            ["Large (1400x900)", "Medium (1280x720)", "Small (960x540)"], 175
-        )
-
-        apply = AppButton(
-            text="Apply",
-            icon=app_icon("check", fallback="fa6s.check", color="#ffffff"),
-            variant="danger",
-            button_size="sm",
-        )
-
-        divider_2 = self._divider()
-
         # ── Echo ─────────────────────────────────────────────────────────
         echo_label = IconLabel(
             text="Echo",
@@ -171,12 +150,6 @@ class TimelineEditor(QWidget):
         controls.addWidget(apply_all)
 
         controls.addWidget(divider_1)
-
-        controls.addWidget(window_label)
-        controls.addWidget(size_select)
-        controls.addWidget(apply)
-
-        controls.addWidget(divider_2)
 
         controls.addWidget(echo_label)
         controls.addWidget(echo_slider)

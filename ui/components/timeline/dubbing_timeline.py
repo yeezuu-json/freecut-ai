@@ -62,6 +62,12 @@ class TimelineRuler(QWidget):
 
     def paintEvent(self, _event):
         painter = QPainter(self)
+        try:
+            self._do_paint(painter)
+        finally:
+            painter.end()
+
+    def _do_paint(self, painter: QPainter):
         painter.setRenderHint(QPainter.RenderHint.Antialiasing, False)
 
         w, h = self.width(), self.height()
