@@ -27,6 +27,9 @@ from services.audio_service import AudioService
 from services.timeline_builder_service import TimelineBuilderService
 from services.timeline_cache_service import TimelineCacheService
 from stores.timeline_store import TimelineStore
+from workers.capcut_export_worker import CapCutExportWorker
+from services.capcut_app_service import CapCutAppService
+from services.capcut_export_service import CapCutExportService
 
 logger = get_logger(__name__)
 
@@ -46,6 +49,8 @@ class EditorLayout(QWidget):
         self.timeline_store = TimelineStore()
         self.current_timeline_cache = None
         self.audio_service = AudioService()
+        self.capcut_app_service = CapCutAppService()
+        self.capcut_export_service = CapCutExportService()
 
         # Stem audio players created after Demucs extraction.
         # Keyed by track_id → (QMediaPlayer, QAudioOutput)
@@ -120,6 +125,8 @@ class EditorLayout(QWidget):
         self.state.translation_changed.connect(self.on_translation_segments_loaded)
 
         self.transcript_table.segments_edited.connect(self.on_table_segments_edited)
+
+        self.status_bar.export_capcut_requested.connect(self.export_to_capcut)
 
         # ── Timeline ↔ Video player bidirectional sync ──────────────────
         self.video_preview.player.positionChanged.connect(
@@ -1268,5 +1275,89 @@ class EditorLayout(QWidget):
         QMessageBox.critical(
             self,
             "Translation Failed",
+            message,
+        )
+
+    ## Export to CapCut handler
+    def export_to_capcut(self):
+        if self.current_timeline_cache is None:
+            QMessageBox.warning(
+                self,
+                "No Timeline",
+                "Please load a video first.",
+            )
+            return
+
+        self.status_bar.set_progress(0, "Starting CapCut export...")
+
+        thread = QThread(self)
+        worker = CapCutExportWorker(
+            cache=self.current_timeline_cache,
+        )
+
+        worker.moveToThread(thread)
+
+        thread.worker = worker
+        self.running_threads.append(thread)
+
+        thread.started.connect(worker.run)
+
+        worker.progress_changed.connect(self.on_capcut_export_progress)
+        worker.finished.connect(self.on_capcut_export_finished)
+        worker.failed.connect(self.on_capcut_export_failed)
+
+        worker.finished.connect(thread.quit)
+        worker.failed.connect(thread.quit)
+
+        worker.finished.connect(worker.deleteLater)
+        worker.failed.connect(worker.deleteLater)
+
+        thread.finished.connect(lambda: self.cleanup_thread(thread))
+        thread.finished.connect(thread.deleteLater)
+
+        thread.start()
+
+    @Slot(int, str)
+    def on_capcut_export_progress(self, value: int, message: str):
+        self.status_bar.set_progress(value, message)
+
+
+    @Slot(object)
+    def on_capcut_export_finished(self, project_dir):
+        project_dir = Path(project_dir)
+
+        self.status_bar.set_progress(100, "CapCut project ready")
+
+        capcut_opened = self.capcut_app_service.open_capcut()
+
+        if capcut_opened:
+            QMessageBox.information(
+                self,
+                "Exported to CapCut",
+                "Your timeline has been exported as a CapCut project.\n\n"
+                "CapCut is opening — your project will appear in the project list.\n\n"
+                "If you don't see it immediately, close and reopen CapCut.",
+            )
+        else:
+            self.capcut_app_service.open_folder(project_dir)
+            QMessageBox.warning(
+                self,
+                "Exported to CapCut",
+                "CapCut project created but CapCut was not found on this machine.\n\n"
+                f"Project folder:\n{project_dir}\n\n"
+                "Open CapCut manually — the project will appear in its project list.",
+            )
+
+
+    @Slot(str)
+    def on_capcut_export_failed(self, message: str):
+        logger.error("CapCut export failed: %s", message)
+
+        self.status_bar.clear_progress()
+        self.status_bar.set_status("CapCut export failed")
+
+        QMessageBox.critical(
+            self,
+            "CapCut Export Failed",
             message,
         )

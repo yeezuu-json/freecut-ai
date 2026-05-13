@@ -1,4 +1,4 @@
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, Signal
 from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QWidget, QProgressBar
 
 from ui.components.app_button import AppButton
@@ -7,6 +7,8 @@ from utils.font_manager import get_google_sans
 
 
 class StatusBarPanel(QWidget):
+    export_capcut_requested = Signal()
+    
     def __init__(self):
         super().__init__()
 
@@ -112,6 +114,8 @@ class StatusBarPanel(QWidget):
             variant="purple",
             size="md",
         )
+        
+        export_capcut.clicked.connect(self.export_capcut_requested.emit)
 
         layout.addWidget(export_mp3)
         layout.addWidget(export_video)

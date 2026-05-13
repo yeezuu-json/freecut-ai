@@ -249,3 +249,236 @@
 2026-05-13 17:55:56 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:264 | Restored dubbed voice player (42 clips).
 2026-05-13 17:55:56 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
 2026-05-13 17:55:59 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:774 | Exporting dubbed video: /Users/piseth/Desktop/Movie/ep1.mp4 → /Users/piseth/Desktop/Movie/ep1_dubbed.mp4 (background=/var/folders/y9/wg10dhg15tg1xh4pmfsr2xz40000gn/T/freecut_ai/stems/demucs_out/htdemucs/ep1_raw/no_vocals.wav)
+2026-05-13 20:10:33 | INFO     | my_app.app.bootstrap | bootstrap.py:31 | Application bootstrap started.
+2026-05-13 20:10:34 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-13 20:10:34 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-13 20:10:34 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-13 20:10:34 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-13 20:10:34 | INFO     | my_app.app.bootstrap | bootstrap.py:103 | Whisper model status: ModelCheckResult(provider='local', model='small', is_ready=True, message='Whisper model is downloaded.')
+2026-05-13 20:10:34 | INFO     | my_app.app.bootstrap | bootstrap.py:138 | Transcription provider: local
+2026-05-13 20:10:34 | INFO     | my_app.app.bootstrap | bootstrap.py:139 | Translation provider: gemini
+2026-05-13 20:10:34 | INFO     | my_app.app.bootstrap | bootstrap.py:53 | Application bootstrap finished.
+2026-05-13 20:10:34 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-13 20:10:34 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-13 20:10:34 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-13 20:10:40 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:164 | Selected video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-13 20:10:40 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:169 | Current project video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-13 20:10:40 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:81 | Timeline cache loaded: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 20:10:40 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:192 | Using existing timeline cache.
+2026-05-13 20:10:40 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:194 | Timeline cache loaded: tracks=5 items=46
+2026-05-13 20:10:42 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1163 | Khmer translation ready with 42 segment(s).
+2026-05-13 20:10:42 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:249 | Restored 42 translated segment(s) from cache.
+2026-05-13 20:10:42 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:418 | Stem players set up for ['track_raw_audio', 'track_background', 'track_vocal']
+2026-05-13 20:10:42 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:266 | Restored Demucs stem players from cache.
+2026-05-13 20:10:42 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:665 | Dubbed voice player ready: 42 segments, muted=False.
+2026-05-13 20:10:42 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:271 | Restored dubbed voice player (42 clips).
+2026-05-13 20:10:42 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 20:10:45 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:49 | Creating CapCut temp package: /var/folders/y9/wg10dhg15tg1xh4pmfsr2xz40000gn/T/freecut_ai/capcut_exports/ep1_capcut_package
+2026-05-13 20:10:45 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:76 | CapCut temp package exported: /var/folders/y9/wg10dhg15tg1xh4pmfsr2xz40000gn/T/freecut_ai/capcut_exports/ep1_capcut_package
+2026-05-13 20:10:45 | INFO     | my_app.services.capcut_app_service | capcut_app_service.py:81 | Opened folder: /var/folders/y9/wg10dhg15tg1xh4pmfsr2xz40000gn/T/freecut_ai/capcut_exports/ep1_capcut_package
+2026-05-13 20:10:45 | INFO     | my_app.services.capcut_app_service | capcut_app_service.py:65 | Opened CapCut: /Applications/CapCut.app
+2026-05-13 20:10:45 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1102 | Transcription thread cleaned up.
+2026-05-13 20:27:24 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1106 | EditorLayout cleanup started.
+2026-05-13 20:27:24 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 20:27:24 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1145 | Timeline cache saved on close.
+2026-05-13 20:27:24 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1153 | EditorLayout cleanup complete.
+2026-05-13 20:27:32 | INFO     | my_app.app.bootstrap | bootstrap.py:31 | Application bootstrap started.
+2026-05-13 20:27:33 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-13 20:27:33 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-13 20:27:33 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-13 20:27:33 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-13 20:27:33 | INFO     | my_app.app.bootstrap | bootstrap.py:103 | Whisper model status: ModelCheckResult(provider='local', model='small', is_ready=True, message='Whisper model is downloaded.')
+2026-05-13 20:27:33 | INFO     | my_app.app.bootstrap | bootstrap.py:138 | Transcription provider: local
+2026-05-13 20:27:33 | INFO     | my_app.app.bootstrap | bootstrap.py:139 | Translation provider: gemini
+2026-05-13 20:27:33 | INFO     | my_app.app.bootstrap | bootstrap.py:53 | Application bootstrap finished.
+2026-05-13 20:27:33 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-13 20:27:33 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-13 20:27:33 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-13 20:27:40 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:164 | Selected video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-13 20:27:40 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:169 | Current project video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-13 20:27:40 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:81 | Timeline cache loaded: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 20:27:40 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:192 | Using existing timeline cache.
+2026-05-13 20:27:40 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:194 | Timeline cache loaded: tracks=5 items=46
+2026-05-13 20:27:42 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1163 | Khmer translation ready with 42 segment(s).
+2026-05-13 20:27:42 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:249 | Restored 42 translated segment(s) from cache.
+2026-05-13 20:27:42 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:418 | Stem players set up for ['track_raw_audio', 'track_background', 'track_vocal']
+2026-05-13 20:27:42 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:266 | Restored Demucs stem players from cache.
+2026-05-13 20:27:42 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:665 | Dubbed voice player ready: 42 segments, muted=False.
+2026-05-13 20:27:42 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:271 | Restored dubbed voice player (42 clips).
+2026-05-13 20:27:42 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 20:27:45 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:93 | Creating CapCut project 'ep1' → /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/C483302A-AA93-4119-AB23-3C1FB2FB10E6
+2026-05-13 20:27:45 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:124 | CapCut project written: /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/C483302A-AA93-4119-AB23-3C1FB2FB10E6
+2026-05-13 20:27:45 | INFO     | my_app.services.capcut_app_service | capcut_app_service.py:65 | Opened CapCut: /Applications/CapCut.app
+2026-05-13 20:27:45 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1102 | Transcription thread cleaned up.
+2026-05-13 20:29:53 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1106 | EditorLayout cleanup started.
+2026-05-13 20:29:53 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 20:29:53 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1145 | Timeline cache saved on close.
+2026-05-13 20:29:53 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1153 | EditorLayout cleanup complete.
+2026-05-13 20:36:13 | INFO     | my_app.app.bootstrap | bootstrap.py:31 | Application bootstrap started.
+2026-05-13 20:36:13 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-13 20:36:13 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-13 20:36:13 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-13 20:36:13 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-13 20:36:13 | INFO     | my_app.app.bootstrap | bootstrap.py:103 | Whisper model status: ModelCheckResult(provider='local', model='small', is_ready=True, message='Whisper model is downloaded.')
+2026-05-13 20:36:13 | INFO     | my_app.app.bootstrap | bootstrap.py:138 | Transcription provider: local
+2026-05-13 20:36:13 | INFO     | my_app.app.bootstrap | bootstrap.py:139 | Translation provider: gemini
+2026-05-13 20:36:14 | INFO     | my_app.app.bootstrap | bootstrap.py:53 | Application bootstrap finished.
+2026-05-13 20:36:14 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-13 20:36:14 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-13 20:36:14 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-13 20:36:19 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:164 | Selected video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-13 20:36:19 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:169 | Current project video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-13 20:36:19 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:81 | Timeline cache loaded: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 20:36:19 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:192 | Using existing timeline cache.
+2026-05-13 20:36:19 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:194 | Timeline cache loaded: tracks=5 items=46
+2026-05-13 20:36:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1163 | Khmer translation ready with 42 segment(s).
+2026-05-13 20:36:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:249 | Restored 42 translated segment(s) from cache.
+2026-05-13 20:36:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:418 | Stem players set up for ['track_raw_audio', 'track_background', 'track_vocal']
+2026-05-13 20:36:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:266 | Restored Demucs stem players from cache.
+2026-05-13 20:36:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:665 | Dubbed voice player ready: 42 segments, muted=False.
+2026-05-13 20:36:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:271 | Restored dubbed voice player (42 clips).
+2026-05-13 20:36:21 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 20:36:23 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:97 | Creating CapCut project 'ep1' → /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0513_1
+2026-05-13 20:36:23 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:513 | Registered project in root_meta_info.json
+2026-05-13 20:36:23 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:138 | CapCut project written: /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0513_1
+2026-05-13 20:36:23 | INFO     | my_app.services.capcut_app_service | capcut_app_service.py:65 | Opened CapCut: /Applications/CapCut.app
+2026-05-13 20:36:23 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1102 | Transcription thread cleaned up.
+2026-05-13 20:36:43 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1106 | EditorLayout cleanup started.
+2026-05-13 20:36:43 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 20:36:43 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1145 | Timeline cache saved on close.
+2026-05-13 20:36:43 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1153 | EditorLayout cleanup complete.
+2026-05-13 20:47:02 | INFO     | my_app.app.bootstrap | bootstrap.py:31 | Application bootstrap started.
+2026-05-13 20:47:02 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-13 20:47:02 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-13 20:47:02 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-13 20:47:02 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-13 20:47:02 | INFO     | my_app.app.bootstrap | bootstrap.py:103 | Whisper model status: ModelCheckResult(provider='local', model='small', is_ready=True, message='Whisper model is downloaded.')
+2026-05-13 20:47:03 | INFO     | my_app.app.bootstrap | bootstrap.py:138 | Transcription provider: local
+2026-05-13 20:47:03 | INFO     | my_app.app.bootstrap | bootstrap.py:139 | Translation provider: gemini
+2026-05-13 20:47:03 | INFO     | my_app.app.bootstrap | bootstrap.py:53 | Application bootstrap finished.
+2026-05-13 20:47:03 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-13 20:47:03 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-13 20:47:03 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-13 20:47:09 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:164 | Selected video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-13 20:47:09 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:169 | Current project video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-13 20:47:09 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:81 | Timeline cache loaded: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 20:47:09 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:192 | Using existing timeline cache.
+2026-05-13 20:47:09 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:194 | Timeline cache loaded: tracks=5 items=46
+2026-05-13 20:47:10 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1163 | Khmer translation ready with 42 segment(s).
+2026-05-13 20:47:10 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:249 | Restored 42 translated segment(s) from cache.
+2026-05-13 20:47:10 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:418 | Stem players set up for ['track_raw_audio', 'track_background', 'track_vocal']
+2026-05-13 20:47:10 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:266 | Restored Demucs stem players from cache.
+2026-05-13 20:47:10 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:665 | Dubbed voice player ready: 42 segments, muted=False.
+2026-05-13 20:47:10 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:271 | Restored dubbed voice player (42 clips).
+2026-05-13 20:47:10 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 20:47:15 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:123 | Creating CapCut project 'ep1' → /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0513 (1)
+2026-05-13 20:47:15 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:770 | Registered project 'ep1' in root_meta_info.json
+2026-05-13 20:47:15 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:158 | CapCut project written: /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0513 (1)
+2026-05-13 20:47:15 | INFO     | my_app.services.capcut_app_service | capcut_app_service.py:65 | Opened CapCut: /Applications/CapCut.app
+2026-05-13 20:47:15 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1102 | Transcription thread cleaned up.
+2026-05-13 20:48:25 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1106 | EditorLayout cleanup started.
+2026-05-13 20:48:25 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 20:48:25 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1145 | Timeline cache saved on close.
+2026-05-13 20:48:25 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1153 | EditorLayout cleanup complete.
+2026-05-13 20:54:48 | INFO     | my_app.app.bootstrap | bootstrap.py:31 | Application bootstrap started.
+2026-05-13 20:54:48 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-13 20:54:48 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-13 20:54:48 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-13 20:54:48 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-13 20:54:48 | INFO     | my_app.app.bootstrap | bootstrap.py:103 | Whisper model status: ModelCheckResult(provider='local', model='small', is_ready=True, message='Whisper model is downloaded.')
+2026-05-13 20:54:48 | INFO     | my_app.app.bootstrap | bootstrap.py:138 | Transcription provider: local
+2026-05-13 20:54:48 | INFO     | my_app.app.bootstrap | bootstrap.py:139 | Translation provider: gemini
+2026-05-13 20:54:49 | INFO     | my_app.app.bootstrap | bootstrap.py:53 | Application bootstrap finished.
+2026-05-13 20:54:49 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-13 20:54:49 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-13 20:54:49 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-13 20:54:56 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:164 | Selected video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-13 20:54:56 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:169 | Current project video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-13 20:54:56 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:81 | Timeline cache loaded: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 20:54:56 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:192 | Using existing timeline cache.
+2026-05-13 20:54:56 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:194 | Timeline cache loaded: tracks=5 items=46
+2026-05-13 20:54:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1163 | Khmer translation ready with 42 segment(s).
+2026-05-13 20:54:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:249 | Restored 42 translated segment(s) from cache.
+2026-05-13 20:54:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:418 | Stem players set up for ['track_raw_audio', 'track_background', 'track_vocal']
+2026-05-13 20:54:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:266 | Restored Demucs stem players from cache.
+2026-05-13 20:54:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:665 | Dubbed voice player ready: 42 segments, muted=False.
+2026-05-13 20:54:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:271 | Restored dubbed voice player (42 clips).
+2026-05-13 20:54:58 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 20:55:00 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:124 | Creating CapCut project 'ep1' → /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0513 (1)
+2026-05-13 20:55:00 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:809 | Registered project 'ep1' in root_meta_info.json
+2026-05-13 20:55:00 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:159 | CapCut project written: /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0513 (1)
+2026-05-13 20:55:00 | INFO     | my_app.services.capcut_app_service | capcut_app_service.py:65 | Opened CapCut: /Applications/CapCut.app
+2026-05-13 20:55:01 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1102 | Transcription thread cleaned up.
+2026-05-13 20:55:32 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:124 | Creating CapCut project 'ep1' → /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0513 (1)
+2026-05-13 20:55:32 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:809 | Registered project 'ep1' in root_meta_info.json
+2026-05-13 20:55:32 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:159 | CapCut project written: /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0513 (1)
+2026-05-13 20:55:32 | INFO     | my_app.services.capcut_app_service | capcut_app_service.py:65 | Opened CapCut: /Applications/CapCut.app
+2026-05-13 20:55:32 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1102 | Transcription thread cleaned up.
+2026-05-13 21:11:12 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1106 | EditorLayout cleanup started.
+2026-05-13 21:11:12 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 21:11:12 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1145 | Timeline cache saved on close.
+2026-05-13 21:11:12 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1153 | EditorLayout cleanup complete.
+2026-05-13 21:11:21 | INFO     | my_app.app.bootstrap | bootstrap.py:31 | Application bootstrap started.
+2026-05-13 21:11:22 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-13 21:11:22 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-13 21:11:22 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-13 21:11:22 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-13 21:11:22 | INFO     | my_app.app.bootstrap | bootstrap.py:103 | Whisper model status: ModelCheckResult(provider='local', model='small', is_ready=True, message='Whisper model is downloaded.')
+2026-05-13 21:11:22 | INFO     | my_app.app.bootstrap | bootstrap.py:138 | Transcription provider: local
+2026-05-13 21:11:22 | INFO     | my_app.app.bootstrap | bootstrap.py:139 | Translation provider: gemini
+2026-05-13 21:11:22 | INFO     | my_app.app.bootstrap | bootstrap.py:53 | Application bootstrap finished.
+2026-05-13 21:11:22 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-13 21:11:22 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-13 21:11:22 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-13 21:11:28 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:164 | Selected video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-13 21:11:28 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:169 | Current project video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-13 21:11:28 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:81 | Timeline cache loaded: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 21:11:28 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:192 | Using existing timeline cache.
+2026-05-13 21:11:28 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:194 | Timeline cache loaded: tracks=5 items=46
+2026-05-13 21:11:29 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1163 | Khmer translation ready with 42 segment(s).
+2026-05-13 21:11:29 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:249 | Restored 42 translated segment(s) from cache.
+2026-05-13 21:11:29 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:418 | Stem players set up for ['track_raw_audio', 'track_background', 'track_vocal']
+2026-05-13 21:11:29 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:266 | Restored Demucs stem players from cache.
+2026-05-13 21:11:29 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:665 | Dubbed voice player ready: 42 segments, muted=False.
+2026-05-13 21:11:29 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:271 | Restored dubbed voice player (42 clips).
+2026-05-13 21:11:29 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 21:11:32 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:126 | Creating CapCut project 'ep1' → /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0513 (2)
+2026-05-13 21:11:32 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:131 | Using template project: /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0513
+2026-05-13 21:11:32 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:1091 | Registered project 'ep1' in root_meta_info.json
+2026-05-13 21:11:32 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:213 | CapCut project written: /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0513 (2)
+2026-05-13 21:11:32 | INFO     | my_app.services.capcut_app_service | capcut_app_service.py:65 | Opened CapCut: /Applications/CapCut.app
+2026-05-13 21:11:32 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1102 | Transcription thread cleaned up.
+2026-05-13 21:16:25 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1106 | EditorLayout cleanup started.
+2026-05-13 21:16:25 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 21:16:25 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1145 | Timeline cache saved on close.
+2026-05-13 21:16:25 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1153 | EditorLayout cleanup complete.
+2026-05-13 21:16:33 | INFO     | my_app.app.bootstrap | bootstrap.py:31 | Application bootstrap started.
+2026-05-13 21:16:34 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-13 21:16:34 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-13 21:16:34 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-13 21:16:34 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-13 21:16:34 | INFO     | my_app.app.bootstrap | bootstrap.py:103 | Whisper model status: ModelCheckResult(provider='local', model='small', is_ready=True, message='Whisper model is downloaded.')
+2026-05-13 21:16:34 | INFO     | my_app.app.bootstrap | bootstrap.py:138 | Transcription provider: local
+2026-05-13 21:16:34 | INFO     | my_app.app.bootstrap | bootstrap.py:139 | Translation provider: gemini
+2026-05-13 21:16:34 | INFO     | my_app.app.bootstrap | bootstrap.py:53 | Application bootstrap finished.
+2026-05-13 21:16:34 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-13 21:16:34 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-13 21:16:34 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-13 21:16:41 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:164 | Selected video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-13 21:16:41 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:169 | Current project video: /Users/piseth/Desktop/Movie/ep1.mp4
+2026-05-13 21:16:41 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:81 | Timeline cache loaded: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 21:16:41 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:192 | Using existing timeline cache.
+2026-05-13 21:16:41 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:194 | Timeline cache loaded: tracks=5 items=46
+2026-05-13 21:16:43 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1163 | Khmer translation ready with 42 segment(s).
+2026-05-13 21:16:43 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:249 | Restored 42 translated segment(s) from cache.
+2026-05-13 21:16:43 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:418 | Stem players set up for ['track_raw_audio', 'track_background', 'track_vocal']
+2026-05-13 21:16:43 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:266 | Restored Demucs stem players from cache.
+2026-05-13 21:16:43 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:665 | Dubbed voice player ready: 42 segments, muted=False.
+2026-05-13 21:16:43 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:271 | Restored dubbed voice player (42 clips).
+2026-05-13 21:16:43 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 21:16:55 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:126 | Creating CapCut project 'ep1' → /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0513 (2)
+2026-05-13 21:16:55 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:131 | Using template project: /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0513
+2026-05-13 21:16:56 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:1120 | Registered project 'ep1' in root_meta_info.json
+2026-05-13 21:16:56 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:219 | CapCut project written: /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0513 (2)
+2026-05-13 21:16:56 | INFO     | my_app.services.capcut_app_service | capcut_app_service.py:65 | Opened CapCut: /Applications/CapCut.app
+2026-05-13 21:16:56 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1102 | Transcription thread cleaned up.

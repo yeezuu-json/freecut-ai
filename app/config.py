@@ -25,6 +25,7 @@ class AppConfig:
     theme_path: Path
     fonts_path: Path
     log_level: str
+    capcut_app_path: str
 
     deepinfra_api_key: str
     gemini_api_key: str
@@ -48,6 +49,7 @@ DEFAULT_CONFIG = {
     "theme_path": "assets/styles/theme.qss",
     "fonts_path": "assets/fonts",
     "log_level": "DEBUG",
+    "capcut_app_path": "",
 
     "deepinfra_api_key": "",
     "gemini_api_key": "",
@@ -177,6 +179,7 @@ def load_config() -> AppConfig:
         theme_path=BASE_DIR / data.get("theme_path", DEFAULT_CONFIG["theme_path"]),
         fonts_path=BASE_DIR / data.get("fonts_path", DEFAULT_CONFIG["fonts_path"]),
         log_level=data.get("log_level", DEFAULT_CONFIG["log_level"]),
+        capcut_app_path=data.get("capcut_app_path", DEFAULT_CONFIG["capcut_app_path"]),
         deepinfra_api_key=api_key,
         gemini_api_key=gemini_api_key,
         transcription_provider=data.get("transcription_provider", DEFAULT_CONFIG["transcription_provider"]),
