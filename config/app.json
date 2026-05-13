@@ -6,12 +6,10 @@
   "fonts_path": "assets/fonts",
   "log_level": "DEBUG",
   "capcut_app_path": "",
-
   "deepinfra_api_key": "HprQb9QGU1nwDT3sDXDxyV0HB7pruHSh",
   "transcription_provider": "local",
   "transcription_model": "small",
   "transcription_language": "zh",
-
   "transcription_models": [
     {
       "label": "Local Tiny - Free",
@@ -44,12 +42,10 @@
       "value": "openai/whisper-large-v3"
     }
   ],
-
   "translation_provider": "gemini",
   "translation_model": "gemini-2.5-flash",
   "translation_source_language": "Chinese",
   "translation_target_language": "Khmer",
-
   "translation_models": [
     {
       "label": "Gemini 2.5 Flash - Best",

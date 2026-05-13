@@ -430,6 +430,8 @@ class SettingsDialog(QDialog):
 
     def _build_local_models_group(self) -> QGroupBox:
         """Panel that shows each local model with its download status + button."""
+        from services.model_download_manager import ModelDownloadManager
+
         group = QGroupBox("Local AI Models")
         vbox = QVBoxLayout(group)
         vbox.setSpacing(10)
@@ -443,7 +445,8 @@ class SettingsDialog(QDialog):
         hint.setWordWrap(True)
         vbox.addWidget(hint)
 
-        manager = ModelManager()
+        file_manager = ModelManager()
+        dl_manager   = ModelDownloadManager.instance()
 
         whisper_models = [
             ("tiny",      "local",     "Whisper Tiny",       "~75 MB"),
@@ -461,24 +464,25 @@ class SettingsDialog(QDialog):
         sep.setStyleSheet("color: #64748b; font-size: 11px; font-weight: 600;")
         vbox.addWidget(sep)
         for m in whisper_models:
-            vbox.addLayout(self._model_row(manager, *m))
+            vbox.addLayout(self._model_row(file_manager, dl_manager, *m))
 
         sep2 = QLabel("NLLB  (offline translation)")
         sep2.setStyleSheet("color: #64748b; font-size: 11px; font-weight: 600; margin-top: 4px;")
         vbox.addWidget(sep2)
         for m in nllb_models:
-            vbox.addLayout(self._model_row(manager, *m))
+            vbox.addLayout(self._model_row(file_manager, dl_manager, *m))
 
         return group
 
     def _model_row(
         self,
-        manager: ModelManager,
+        file_manager: ModelManager,
+        dl_manager,
         model_value: str,
         provider: str,
         label: str,
         size_hint: str,
-    ) -> QHBoxLayout:
+    ) -> "QHBoxLayout":
         """One row: [label + size]  [status badge]  [Download / Ready button]"""
         row = QHBoxLayout()
         row.setSpacing(8)
@@ -488,21 +492,33 @@ class SettingsDialog(QDialog):
         row.addWidget(name_lbl, 1)
 
         if provider == "local":
-            is_ready = manager.check_local_whisper_model(model_value).is_ready
+            is_ready = file_manager.check_local_whisper_model(model_value).is_ready
         else:
-            is_ready = manager.check_nllb_model(model_value).is_ready
+            is_ready = file_manager.check_nllb_model(model_value).is_ready
 
-        status_lbl = QLabel("✓ Ready" if is_ready else "Not downloaded")
-        status_lbl.setStyleSheet(
-            "color: #86efac; font-size: 11px;" if is_ready
-            else "color: #94a3b8; font-size: 11px;"
-        )
+        is_active = dl_manager.is_downloading(provider, model_value)
+
+        if is_ready:
+            initial_status_text  = "✓ Ready"
+            initial_status_style = "color: #86efac; font-size: 11px;"
+            initial_btn_text     = "Downloaded"
+            btn_enabled          = False
+        elif is_active:
+            initial_status_text  = "⟳ Downloading…"
+            initial_status_style = "color: #fbbf24; font-size: 11px;"
+            initial_btn_text     = "Downloading…"
+            btn_enabled          = False
+        else:
+            initial_status_text  = "Not downloaded"
+            initial_status_style = "color: #94a3b8; font-size: 11px;"
+            initial_btn_text     = "Download"
+            btn_enabled          = True
+
+        status_lbl = QLabel(initial_status_text)
+        status_lbl.setStyleSheet(initial_status_style)
         row.addWidget(status_lbl)
 
-        btn = QPushButton("Downloaded" if is_ready else "Download")
-        btn.setEnabled(not is_ready)
-        btn.setFixedWidth(110)
-        btn.setStyleSheet("""
+        _btn_qss = """
             QPushButton {
                 background-color: #1e3a5f;
                 color: #93c5fd;
@@ -518,7 +534,40 @@ class SettingsDialog(QDialog):
                 color: #4b5563;
                 border-color: #374151;
             }
-        """)
+        """
+        btn = QPushButton(initial_btn_text)
+        btn.setEnabled(btn_enabled)
+        btn.setFixedWidth(110)
+        btn.setStyleSheet(_btn_qss)
+
+        # ── live updates from the manager ─────────────────────────────────────
+
+        def _on_mgr_progress(p, m, pct, msg, sl=status_lbl, b=btn):
+            if p != provider or m != model_value:
+                return
+            sl.setText(f"⟳ {pct}%")
+            sl.setStyleSheet("color: #fbbf24; font-size: 11px;")
+            b.setText("Downloading…")
+            b.setEnabled(False)
+
+        def _on_mgr_finished(p, m, success, sl=status_lbl, b=btn):
+            if p != provider or m != model_value:
+                return
+            if success:
+                sl.setText("✓ Ready")
+                sl.setStyleSheet("color: #86efac; font-size: 11px;")
+                b.setText("Downloaded")
+                b.setEnabled(False)
+            else:
+                sl.setText("Failed — retry?")
+                sl.setStyleSheet("color: #fca5a5; font-size: 11px;")
+                b.setText("Retry")
+                b.setEnabled(True)
+
+        dl_manager.download_progress.connect(_on_mgr_progress)
+        dl_manager.download_finished.connect(_on_mgr_finished)
+
+        # ── button click ──────────────────────────────────────────────────────
 
         def _on_download(checked=False, p=provider, mv=model_value, sl=status_lbl, b=btn):
             from ui.components.model_download_dialog import ModelDownloadDialog
@@ -527,6 +576,11 @@ class SettingsDialog(QDialog):
                 sl.setText("✓ Ready")
                 sl.setStyleSheet("color: #86efac; font-size: 11px;")
                 b.setText("Downloaded")
+                b.setEnabled(False)
+            elif dl_manager.is_downloading(p, mv):
+                sl.setText("⟳ Downloading…")
+                sl.setStyleSheet("color: #fbbf24; font-size: 11px;")
+                b.setText("Downloading…")
                 b.setEnabled(False)
 
         btn.clicked.connect(_on_download)

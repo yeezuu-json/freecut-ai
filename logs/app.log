@@ -581,3 +581,33 @@
 2026-05-13 23:23:10 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
 2026-05-13 23:24:24 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
 2026-05-13 23:24:24 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-13 23:30:52 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-13 23:30:52 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-13 23:30:52 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-13 23:30:52 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-13 23:30:52 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-13 23:30:53 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-13 23:30:53 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-13 23:30:53 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-13 23:30:53 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-13 23:31:09 | INFO     | my_app.services.model_download_manager | model_download_manager.py:116 | Starting background download: local:tiny
+2026-05-13 23:31:09 | INFO     | my_app.services.model_download_service | model_download_service.py:58 | Downloading Whisper model: tiny
+2026-05-13 23:31:21 | INFO     | my_app.ui.components.settings_dialog | settings_dialog.py:871 | Settings saved to /Users/piseth/developer/desktop-app/freecut-ai/config/app.json
+2026-05-13 23:31:22 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:929 | Settings applied — transcription: local/small  translation: gemini/gemini-2.5-flash
+2026-05-13 23:32:18 | INFO     | my_app.services.model_download_service | model_download_service.py:82 | Whisper model downloaded: tiny
+2026-05-13 23:32:18 | INFO     | my_app.services.model_download_manager | model_download_manager.py:136 | Download finished: local/tiny  ready=True
+2026-05-13 23:32:25 | INFO     | my_app.ui.components.settings_dialog | settings_dialog.py:871 | Settings saved to /Users/piseth/developer/desktop-app/freecut-ai/config/app.json
+2026-05-13 23:32:25 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:929 | Settings applied — transcription: local/small  translation: gemini/gemini-2.5-flash
+2026-05-13 23:32:28 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-13 23:32:28 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-13 23:33:56 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-13 23:33:57 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-13 23:33:57 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-13 23:33:57 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-13 23:33:57 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-13 23:33:57 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-13 23:33:57 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-13 23:33:57 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-13 23:33:57 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-13 23:34:22 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-13 23:34:22 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
