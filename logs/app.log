@@ -566,3 +566,7 @@
 2026-05-13 21:32:45 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:219 | CapCut project written: /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0513 (3)
 2026-05-13 21:32:45 | INFO     | my_app.services.capcut_app_service | capcut_app_service.py:65 | Opened CapCut: /Applications/CapCut.app
 2026-05-13 21:32:45 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1102 | Transcription thread cleaned up.
+2026-05-13 22:45:03 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1106 | EditorLayout cleanup started.
+2026-05-13 22:45:03 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-13 22:45:03 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1145 | Timeline cache saved on close.
+2026-05-13 22:45:03 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1153 | EditorLayout cleanup complete.
