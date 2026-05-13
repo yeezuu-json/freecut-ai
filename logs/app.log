@@ -782,3 +782,6 @@ Traceback (most recent call last):
 yt_dlp.utils.DownloadCancelled: The download was cancelled
 2026-05-14 00:04:33 | INFO     | my_app.services.video_download_manager | video_download_manager.py:132 | Enqueued download: 168f1dda  url=https://www.dailymotion.com/video/xa8rmsm
 2026-05-14 00:04:33 | INFO     | my_app.services.video_download_manager | video_download_manager.py:204 | Starting download job 168f1dda
+2026-05-14 00:18:30 | INFO     | my_app.services.video_download_service | video_download_service.py:229 | Download complete: /Users/piseth/Downloads/FreeCutAI/Don't panic your boss just married dad [xa8rmsm].mp4
+2026-05-14 00:21:24 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-14 00:21:24 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.

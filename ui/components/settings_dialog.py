@@ -5,7 +5,7 @@ import json
 import os
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
@@ -219,7 +219,7 @@ class SettingsDialog(QDialog):
         # Connections to the global ModelDownloadManager singleton that must be
         # explicitly disconnected when the dialog closes, because the singleton
         # outlives this dialog and would otherwise hold stale widget references.
-        self._mgr_connections: list[tuple] = []
+        self._mgr_connections: list[tuple[Any, callable]] = []
 
         self.setWindowTitle("Settings")
         self.setMinimumWidth(560)
@@ -235,10 +235,10 @@ class SettingsDialog(QDialog):
     # ── lifecycle ─────────────────────────────────────────────────────────────
 
     def closeEvent(self, event) -> None:
-        for manager, signal_name, slot in self._mgr_connections:
+        for signal, slot in self._mgr_connections:
             try:
-                getattr(manager, signal_name).disconnect(slot)
-            except RuntimeError:
+                signal.disconnect(slot)
+            except (RuntimeError, TypeError):
                 pass
         self._mgr_connections.clear()
         super().closeEvent(event)
@@ -581,8 +581,13 @@ class SettingsDialog(QDialog):
 
         dl_manager.download_progress.connect(_on_mgr_progress)
         dl_manager.download_finished.connect(_on_mgr_finished)
-        self._mgr_connections.append((dl_manager, "download_progress", _on_mgr_progress))
-        self._mgr_connections.append((dl_manager, "download_finished", _on_mgr_finished))
+
+        self._mgr_connections.append(
+            (dl_manager.download_progress, _on_mgr_progress)
+        )
+        self._mgr_connections.append(
+            (dl_manager.download_finished, _on_mgr_finished)
+        )
 
         # ── button click ──────────────────────────────────────────────────────
 
