@@ -44,12 +44,22 @@
     }
   ],
 
-  "translation_provider": "local_nllb",
-  "translation_model": "facebook/nllb-200-distilled-600M",
-  "translation_source_language": "zho_Hans",
-  "translation_target_language": "khm_Khmr",
+  "translation_provider": "gemini",
+  "translation_model": "gemini-2.5-flash",
+  "translation_source_language": "Chinese",
+  "translation_target_language": "Khmer",
 
   "translation_models": [
+    {
+      "label": "Gemini 2.5 Flash - Best",
+      "provider": "gemini",
+      "value": "gemini-2.5-flash"
+    },
+    {
+      "label": "Gemini 2.0 Flash - Fast",
+      "provider": "gemini",
+      "value": "gemini-2.0-flash"
+    },
     {
       "label": "Local NLLB 600M - Free",
       "provider": "local_nllb",

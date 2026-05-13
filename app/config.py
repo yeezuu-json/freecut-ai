@@ -27,6 +27,7 @@ class AppConfig:
     log_level: str
 
     deepinfra_api_key: str
+    gemini_api_key: str
     transcription_provider: str
     transcription_model: str
     transcription_language: str
@@ -49,6 +50,7 @@ DEFAULT_CONFIG = {
     "log_level": "DEBUG",
 
     "deepinfra_api_key": "",
+    "gemini_api_key": "",
     "transcription_provider": "local",
     "transcription_model": "small",
     "transcription_language": "zh",
@@ -85,11 +87,21 @@ DEFAULT_CONFIG = {
         }
     ],
 
-    "translation_provider": "local_nllb",
-    "translation_model": "facebook/nllb-200-distilled-600M",
-    "translation_source_language": "zho_Hans",
-    "translation_target_language": "khm_Khmr",
+    "translation_provider": "gemini",
+    "translation_model": "gemini-2.5-flash",
+    "translation_source_language": "Chinese",
+    "translation_target_language": "Khmer",
     "translation_models": [
+        {
+            "label": "Gemini 2.5 Flash - Best",
+            "provider": "gemini",
+            "value": "gemini-2.5-flash",
+        },
+        {
+            "label": "Gemini 2.0 Flash - Fast",
+            "provider": "gemini",
+            "value": "gemini-2.0-flash",
+        },
         {
             "label": "Local NLLB 600M - Free",
             "provider": "local_nllb",
@@ -121,6 +133,11 @@ def load_config() -> AppConfig:
     api_key = (
         os.getenv("DEEPINFRA_API_KEY")
         or data.get("deepinfra_api_key", DEFAULT_CONFIG["deepinfra_api_key"])
+    )
+
+    gemini_api_key = (
+        os.getenv("GEMINI_API_KEY")
+        or data.get("gemini_api_key", DEFAULT_CONFIG["gemini_api_key"])
     )
 
     raw_models = data.get(
@@ -161,6 +178,7 @@ def load_config() -> AppConfig:
         fonts_path=BASE_DIR / data.get("fonts_path", DEFAULT_CONFIG["fonts_path"]),
         log_level=data.get("log_level", DEFAULT_CONFIG["log_level"]),
         deepinfra_api_key=api_key,
+        gemini_api_key=gemini_api_key,
         transcription_provider=data.get("transcription_provider", DEFAULT_CONFIG["transcription_provider"]),
         transcription_model=data.get("transcription_model", DEFAULT_CONFIG["transcription_model"]),
         transcription_language=data.get("transcription_language", DEFAULT_CONFIG["transcription_language"]),

@@ -34,6 +34,9 @@ class AppState(QObject):
 
         return self.current_project.video_path
 
+    def get_transcript(self) -> list[SubtitleSegment]:
+        return self.segments
+
     def set_transcript(self, segments: list[SubtitleSegment]):
         self.segments = segments
         self.has_transcript = True

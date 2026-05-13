@@ -26,7 +26,7 @@ class MainWindow(QMainWindow):
             result = QMessageBox.question(
                 self,
                 "Process Running",
-                "Transcription is still running. Do you want to close anyway?",
+                "A background process is still running. Close anyway?",
                 QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
             )
 
@@ -34,4 +34,5 @@ class MainWindow(QMainWindow):
                 event.ignore()
                 return
 
+        self.editor_layout.cleanup()
         event.accept()

@@ -1,4 +1,4 @@
-from PySide6.QtCore import Qt, QSize
+from PySide6.QtCore import Qt, QSize, Signal
 from PySide6.QtWidgets import (
     QFrame,
     QHBoxLayout,
@@ -11,6 +11,8 @@ from PySide6.QtWidgets import (
 from ui.components.app_select import AppSelect
 from ui.components.app_button import AppButton
 from ui.components.icons import app_icon
+from stores.timeline_store import TimelineStore
+from ui.components.timeline.dubbing_timeline import DubbingTimeline
 from utils.font_manager import get_google_sans
 
 
@@ -31,12 +33,8 @@ class IconLabel(QWidget):
 
         icon = QLabel()
         icon.setPixmap(
-            app_icon(
-                icon_name,
-                fallback=fallback,
-                color=color,
-                size=icon_size,
-            ).pixmap(QSize(icon_size, icon_size))
+            app_icon(icon_name, fallback=fallback, color=color, size=icon_size)
+            .pixmap(QSize(icon_size, icon_size))
         )
 
         label = QLabel(text)
@@ -48,6 +46,12 @@ class IconLabel(QWidget):
 
 
 class TimelineEditor(QWidget):
+    # Forwarded signals from DubbingTimeline
+    seek_requested = Signal(int)          # frame number
+    clip_clicked   = Signal(object, int)  # TimelineItem, frame_at_click
+    drag_adjusted  = Signal(str, int)
+    mute_toggled   = Signal(str, bool)
+
     def __init__(self):
         super().__init__()
 
@@ -57,7 +61,7 @@ class TimelineEditor(QWidget):
         layout.setContentsMargins(0, 0, 0, 0)
         layout.setSpacing(8)
 
-        title = QLabel("Timeline Editor - Fine Timing")
+        title = QLabel("Timeline Editor — Fine Timing")
         title.setObjectName("sectionTitle")
         title.setFont(get_google_sans(size=10, weight="Bold"))
 
@@ -68,6 +72,7 @@ class TimelineEditor(QWidget):
         controls.setContentsMargins(10, 8, 10, 8)
         controls.setSpacing(10)
 
+        # ── Zoom ────────────────────────────────────────────────────────
         zoom_label = IconLabel(
             text="Zoom",
             icon_name="zoom-in",
@@ -75,11 +80,21 @@ class TimelineEditor(QWidget):
             color="#374151",
         )
 
-        zoom_slider = QSlider(Qt.Orientation.Horizontal)
-        zoom_slider.setObjectName("compactSlider")
-        zoom_slider.setFixedWidth(80)
-        zoom_slider.setValue(20)
+        self.zoom_slider = QSlider(Qt.Orientation.Horizontal)
+        self.zoom_slider.setObjectName("compactSlider")
+        self.zoom_slider.setFixedWidth(100)
+        self.zoom_slider.setRange(6, 120)
+        self.zoom_slider.setValue(18)
+        self.zoom_slider.setToolTip("Timeline zoom (pixels per second)")
 
+        self.zoom_value_label = QLabel("1×")
+        self.zoom_value_label.setObjectName("controlLabel")
+        self.zoom_value_label.setFont(get_google_sans(size=9, weight="Bold"))
+        self.zoom_value_label.setFixedWidth(28)
+
+        self.zoom_slider.valueChanged.connect(self._on_zoom_changed)
+
+        # ── Voice ────────────────────────────────────────────────────────
         voice_label = IconLabel(
             text="Voice",
             icon_name="microphone",
@@ -87,7 +102,7 @@ class TimelineEditor(QWidget):
             color="#374151",
         )
 
-        voice_select = self.create_combo_box(["Srey Mom", "Male Khmer", "Female Khmer"], 150)
+        voice_select = self._combo(["Srey Mom", "Male Khmer", "Female Khmer"], 150)
 
         apply_all = AppButton(
             text="Apply to All",
@@ -96,8 +111,9 @@ class TimelineEditor(QWidget):
             button_size="sm",
         )
 
-        divider_1 = self.create_divider()
+        divider_1 = self._divider()
 
+        # ── Window Size ──────────────────────────────────────────────────
         window_label = IconLabel(
             text="Window Size",
             icon_name="alert-triangle",
@@ -105,11 +121,9 @@ class TimelineEditor(QWidget):
             color="#ef4444",
         )
 
-        size_select = self.create_combo_box([
-            "Large (1400x900)",
-            "Medium (1280x720)",
-            "Small (960x540)"
-        ], 170)
+        size_select = self._combo(
+            ["Large (1400x900)", "Medium (1280x720)", "Small (960x540)"], 175
+        )
 
         apply = AppButton(
             text="Apply",
@@ -118,8 +132,9 @@ class TimelineEditor(QWidget):
             button_size="sm",
         )
 
-        divider_2 = self.create_divider()
+        divider_2 = self._divider()
 
+        # ── Echo ─────────────────────────────────────────────────────────
         echo_label = IconLabel(
             text="Echo",
             icon_name="volume",
@@ -130,12 +145,14 @@ class TimelineEditor(QWidget):
         echo_slider = QSlider(Qt.Orientation.Horizontal)
         echo_slider.setObjectName("compactSlider")
         echo_slider.setFixedWidth(120)
+        echo_slider.setRange(0, 100)
         echo_slider.setValue(50)
 
-        echo_percent = QLabel("50%")
-        echo_percent.setObjectName("purpleText")
-        echo_percent.setFont(get_google_sans(size=10, weight="Bold"))
-        echo_percent.setFixedWidth(36)
+        self.echo_pct = QLabel("50%")
+        self.echo_pct.setObjectName("purpleText")
+        self.echo_pct.setFont(get_google_sans(size=10, weight="Bold"))
+        self.echo_pct.setFixedWidth(36)
+        echo_slider.valueChanged.connect(lambda v: self.echo_pct.setText(f"{v}%"))
 
         echo_all = AppButton(
             text="Echo All Row",
@@ -144,8 +161,10 @@ class TimelineEditor(QWidget):
             button_size="sm",
         )
 
+        # ── Assemble controls ─────────────────────────────────────────────
         controls.addWidget(zoom_label)
-        controls.addWidget(zoom_slider)
+        controls.addWidget(self.zoom_slider)
+        controls.addWidget(self.zoom_value_label)
 
         controls.addWidget(voice_label)
         controls.addWidget(voice_select)
@@ -161,26 +180,50 @@ class TimelineEditor(QWidget):
 
         controls.addWidget(echo_label)
         controls.addWidget(echo_slider)
-        controls.addWidget(echo_percent)
+        controls.addWidget(self.echo_pct)
         controls.addWidget(echo_all)
 
         controls.addStretch()
 
-        timeline_area = QFrame()
-        timeline_area.setObjectName("timelineArea")
-        timeline_area.setMinimumHeight(170)
+        # ── Timeline widget ───────────────────────────────────────────────
+        self.timeline = DubbingTimeline()
+        self.timeline.setMinimumHeight(220)
+
+        # Forward timeline signals upward
+        self.timeline.seek_requested.connect(self.seek_requested)
+        self.timeline.clip_clicked.connect(self.clip_clicked)
+        self.timeline.drag_adjusted.connect(self.drag_adjusted)
+        self.timeline.mute_toggled.connect(self.mute_toggled)
 
         layout.addWidget(title)
         layout.addWidget(controls_frame)
-        layout.addWidget(timeline_area, 1)
+        layout.addWidget(self.timeline, 1)
 
-    def create_divider(self):
-        divider = QFrame()
-        divider.setObjectName("verticalDivider")
-        divider.setFrameShape(QFrame.Shape.VLine)
-        divider.setFixedHeight(28)
-        return divider
-    
-    def create_combo_box(self, items: list[str], width: int):
-        combo_box = AppSelect(items, width=width)
-        return combo_box
+    # ---------------------------------------------------------------- zoom
+
+    def _on_zoom_changed(self, value: int):
+        ratio = round(value / 18.0, 1)
+        self.zoom_value_label.setText(f"{ratio}×")
+        self.timeline.set_zoom(float(value))
+
+    # --------------------------------------------------------------- public
+
+    def set_timeline_store(self, store: TimelineStore, duration_ms: int):
+        self.timeline.set_store(store, duration_ms)
+
+    def set_playhead(self, position_ms: int):
+        self.timeline.set_playhead(position_ms)
+
+    # ------------------------------------------------------------ helpers
+
+    @staticmethod
+    def _divider() -> QFrame:
+        d = QFrame()
+        d.setObjectName("verticalDivider")
+        d.setFrameShape(QFrame.Shape.VLine)
+        d.setFixedHeight(28)
+        return d
+
+    @staticmethod
+    def _combo(items: list[str], width: int) -> AppSelect:
+        return AppSelect(items, width=width)

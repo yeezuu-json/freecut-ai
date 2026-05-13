@@ -39,7 +39,17 @@ class TranslationService:
                 target_language=target_language,
                 progress_callback=progress_callback,
             )
+            return service.translate_texts(texts)
 
+        if provider == "gemini":
+            from services.gemini_translation_service import GeminiTranslationService
+            service = GeminiTranslationService(
+                model_name=model,
+                source_language=source_language,
+                target_language=target_language,
+                api_key=self.config.gemini_api_key,
+                progress_callback=progress_callback,
+            )
             return service.translate_texts(texts)
 
         raise ValueError(f"Unsupported translation provider: {provider}")

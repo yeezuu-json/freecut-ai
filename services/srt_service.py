@@ -52,7 +52,7 @@ class SrtService:
         for segment in segments:
             lines.append(str(segment.index))
             lines.append(f"{segment.start_time} --> {segment.end_time}")
-            lines.append(segment.text)
+            lines.append(segment.display_text)
             lines.append("")
 
         file_path.write_text("\n".join(lines), encoding="utf-8")

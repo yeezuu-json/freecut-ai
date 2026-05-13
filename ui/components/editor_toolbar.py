@@ -12,9 +12,10 @@ class EditorToolbar(QWidget):
     load_video_requested = Signal()
     auto_transcribe_requested = Signal()
     translate_requested = Signal()
+    generate_voice_requested = Signal()
+    video_mp3_requested = Signal()
     export_video_requested = Signal()
-    settings_requested = Signal()
-    # update_requested = Signal()
+    extract_audio_requested = Signal()
 
     def __init__(self, config: AppConfig):
         super().__init__()
@@ -63,20 +64,20 @@ class EditorToolbar(QWidget):
             on_click=self.auto_transcribe_requested.emit,
         )
 
-        export_srt_button = AppButton(
-            text="Export SRT",
-            icon=app_icon("file-export", "fa6s.file-export", color="#ffffff"),
-            variant="teal",
-            button_size="sm",
-            on_click=self.export_video_requested.emit,
-        )
-
         video_mp3_button = AppButton(
             text="Video → MP3",
             icon=app_icon("music", "fa6s.music", color="#ffffff"),
             variant="purple",
             button_size="sm",
-            on_click=self.export_video_requested.emit,
+            on_click=self.video_mp3_requested.emit,
+        )
+
+        extract_audio_button = AppButton(
+            text="Extract Audio",
+            icon=app_icon("waveform", "fa6s.wave-square", color="#ffffff"),
+            variant="teal",
+            button_size="sm",
+            on_click=self.extract_audio_requested.emit,
         )
 
         detect_gender_button = AppButton(
@@ -94,6 +95,22 @@ class EditorToolbar(QWidget):
             on_click=self.translate_requested.emit,
         )
 
+        generate_voice_button = AppButton(
+            text="Generate Voice",
+            icon=app_icon("speakerphone", "fa6s.volume-high", color="#ffffff"),
+            variant="success",
+            button_size="sm",
+            on_click=self.generate_voice_requested.emit,
+        )
+
+        export_srt_button = AppButton(
+            text="Export SRT",
+            icon=app_icon("file-export", "fa6s.file-export", color="#ffffff"),
+            variant="teal",
+            button_size="sm",
+            on_click=self.export_video_requested.emit,
+        )
+
         translation_model_select = AppSelect(
             items=[model.label for model in config.translation_models],
             value=self.get_translation_model_label(config.translation_model),
@@ -101,32 +118,16 @@ class EditorToolbar(QWidget):
             on_change=self.on_translation_model_changed,
         )
 
-        settings_button = AppButton(
-            text="Settings",
-            icon=app_icon("settings", "fa6s.gear", color="#ffffff"),
-            variant="dark",
-            button_size="sm",
-            on_click=self.settings_requested.emit,
-        )
-
-        # update_button = AppButton(
-        #     text="Update",
-        #     icon=app_icon("upload", "fa6s.upload", color="#ffffff"),
-        #     variant="teal",
-        #     button_size="sm",
-        #     on_click=self.update_requested.emit,
-        # )
-
         button_row.addWidget(load_video_button)
         button_row.addWidget(self.model_select)
         button_row.addWidget(auto_transcribe_button)
-        button_row.addWidget(export_srt_button)
         button_row.addWidget(video_mp3_button)
+        button_row.addWidget(extract_audio_button)
         button_row.addWidget(detect_gender_button)
         button_row.addWidget(translation_model_select)
         button_row.addWidget(translate_button)
-        button_row.addWidget(settings_button)
-        # button_row.addWidget(update_button)
+        button_row.addWidget(generate_voice_button)
+        button_row.addWidget(export_srt_button)
         button_row.addStretch()
 
         root.addWidget(title)

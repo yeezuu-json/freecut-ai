@@ -23,6 +23,7 @@ class TranscriptionWorker(QObject):
         provider: str,
         model: str,
         language: str | None = "zh",
+        vocals_path: Path | None = None,
     ):
         super().__init__()
 
@@ -31,6 +32,7 @@ class TranscriptionWorker(QObject):
         self.provider = provider
         self.model = model
         self.language = language
+        self.vocals_path = vocals_path  # preferred source; falls back to video
 
         self.audio_service = AudioService()
         self.transcription_service = TranscriptionService(config)
@@ -41,10 +43,17 @@ class TranscriptionWorker(QObject):
             self.progress_changed.emit(5, "Checking video duration...")
             duration_seconds = self.audio_service.get_duration_seconds(self.video_path)
 
-            self.progress_changed.emit(10, "Extracting audio...")
-            audio_path = self.audio_service.extract_audio_for_transcription(self.video_path)
-
-            self.progress_changed.emit(15, "Audio extracted")
+            if self.vocals_path and self.vocals_path.exists():
+                self.progress_changed.emit(10, "Preparing vocals stem for transcription...")
+                # Convert the Demucs vocals WAV to 16 kHz mono for Whisper.
+                audio_path = self.audio_service.extract_audio_for_transcription(
+                    self.vocals_path
+                )
+                self.progress_changed.emit(15, "Vocals stem ready (background noise removed)")
+            else:
+                self.progress_changed.emit(10, "Extracting audio from video...")
+                audio_path = self.audio_service.extract_audio_for_transcription(self.video_path)
+                self.progress_changed.emit(15, "Audio extracted")
 
             segments = self.transcription_service.transcribe_audio(
                 audio_path=audio_path,

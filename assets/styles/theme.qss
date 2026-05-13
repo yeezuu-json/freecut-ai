@@ -452,3 +452,126 @@ QHeaderView::section {
     border-radius: 9px;
     background-color: #2563eb;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DARK PROFESSIONAL TIMELINE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+#dubbingTimeline {
+    background-color: transparent;
+}
+
+#timelineDurationLabel {
+    color: #6b7280;
+}
+
+/* ── Scroll container ─────────────────────────────────────────────────── */
+
+#timelineScroll {
+    background-color: #13151e;
+    border: 1px solid #2d3147;
+    border-radius: 8px;
+}
+
+/* Keep direct children of the scroll viewport transparent so the canvas
+   background shows through track rows.  Do NOT use a broad descendant rule
+   here — it would override specific widget backgrounds (playhead, labels). */
+
+/* ── Canvas (content widget inside scroll) ────────────────────────────── */
+
+#timelineCanvas {
+    background-color: #1a1d2e;
+}
+
+/* ── Ruler (painted manually — this just sets cursor area background) ─── */
+
+#timelineRuler {
+    background-color: #13151e;
+}
+
+/* ── Track rows ───────────────────────────────────────────────────────── */
+
+#timelineTrack {
+    background-color: transparent;
+}
+
+#timelineTrackLabel {
+    background-color: #1e2235;
+    border-right: 1px solid #2d3147;
+}
+
+#timelineTrackName {
+    color: #d1d5db;
+    background-color: transparent;
+}
+
+#timelineLane {
+    background-color: #1c1f30;
+    border-bottom: 1px solid #252840;
+}
+
+/* Subtle alternating row shading — applied via odd/even track order */
+#timelineTrack[kind="video"] #timelineLane   { background-color: #1c1f30; }
+#timelineTrack[kind="audio"] #timelineLane   { background-color: #1a1e2d; }
+#timelineTrack[kind="voice"] #timelineLane   { background-color: #1c1f30; }
+
+/* ── Playhead ─────────────────────────────────────────────────────────── */
+
+#playheadLine {
+    background-color: #ef4444;
+}
+
+#playheadHandle {
+    background-color: #ef4444;
+    border-radius: 2px;
+}
+
+/* ── Mute button ─────────────────────────────────────────────────────── */
+
+#muteButton {
+    background-color: transparent;
+    border: none;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+#muteButton:hover {
+    background-color: #2d3147;
+}
+
+#muteButton:checked {
+    background-color: #3f1515;
+}
+
+#muteButton:checked:hover {
+    background-color: #5c1c1c;
+}
+
+/* ── Scrollbar styling inside timeline ───────────────────────────────── */
+
+#timelineScroll QScrollBar:horizontal {
+    background-color: #13151e;
+    height: 8px;
+    border-radius: 4px;
+    margin: 0;
+}
+
+#timelineScroll QScrollBar::handle:horizontal {
+    background-color: #374151;
+    border-radius: 4px;
+    min-width: 30px;
+}
+
+#timelineScroll QScrollBar::handle:horizontal:hover {
+    background-color: #4b5563;
+}
+
+#timelineScroll QScrollBar::add-line:horizontal,
+#timelineScroll QScrollBar::sub-line:horizontal {
+    width: 0px;
+}
+
+#timelineScroll QScrollBar::add-page:horizontal,
+#timelineScroll QScrollBar::sub-page:horizontal {
+    background: none;
+}
