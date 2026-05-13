@@ -91,15 +91,14 @@ class EditorLayout(QWidget):
 
         self.toolbar = EditorToolbar(self.config)
         self.transcript_table = TranscriptTableView()
-        self.transcript_table.hide()
         self.timeline_editor = TimelineEditor()
-        self.effects_panel = VideoEffectsPanel()
+        # self.effects_panel = VideoEffectsPanel()
         self.status_bar = StatusBarPanel()
 
         layout.addWidget(self.toolbar)
         layout.addWidget(self.transcript_table, 2)
         layout.addWidget(self.timeline_editor, 2)
-        layout.addWidget(self.effects_panel)
+        # layout.addWidget(self.effects_panel)
         layout.addWidget(self.status_bar)
 
         return panel
@@ -111,14 +110,16 @@ class EditorLayout(QWidget):
         self.toolbar.extract_audio_requested.connect(self.extract_audio)
         self.toolbar.generate_voice_requested.connect(self.generate_voice)
         self.toolbar.video_mp3_requested.connect(self.export_video_to_mp3)
+        self.toolbar.export_dubbed_video_requested.connect(self.export_dubbed_video)
+        self.toolbar.import_khmer_srt_requested.connect(self.import_khmer_srt)
+        self.toolbar.export_video_requested.connect(self.export_srt)
+        self.toolbar.settings_requested.connect(self.show_settings)
 
         self.state.video_changed.connect(self.on_video_changed)
         self.state.transcript_changed.connect(self.on_transcript_changed)
-        self.state.translation_changed.connect(self.on_segments_edited)
+        self.state.translation_changed.connect(self.on_translation_segments_loaded)
 
-        self.transcript_table.segments_edited.connect(self.on_segments_edited)
-
-        self.toolbar.translate_requested.connect(self.translate_to_khmer)
+        self.transcript_table.segments_edited.connect(self.on_table_segments_edited)
 
         # ── Timeline ↔ Video player bidirectional sync ──────────────────
         self.video_preview.player.positionChanged.connect(
@@ -342,37 +343,6 @@ class EditorLayout(QWidget):
     @Slot(str, int)
     def _on_clip_drag_adjusted(self, item_id: str, delta_frames: int):
         logger.info("Clip drag: item=%s delta=%d frames", item_id, delta_frames)
-
-    # def import_srt(self):
-    #     file_path, _ = QFileDialog.getOpenFileName(
-    #         self,
-    #         "Import SRT Subtitle",
-    #         str(Path.home() / "Desktop"),
-    #         "Subtitle Files (*.srt);;All Files (*)",
-    #     )
-
-    #     if not file_path:
-    #         logger.info("SRT import cancelled.")
-    #         return
-
-    #     srt_path = Path(file_path)
-
-    #     if not srt_path.exists():
-    #         logger.warning("Selected SRT does not exist: %s", srt_path)
-    #         return
-
-    #     try:
-    #         segments = self.srt_service.parse(srt_path)
-    #         print("SRT SEGMENTS:", len(segments))
-    #         for segment in segments[:3]:
-    #             print(segment)
-    #     except Exception:
-    #         logger.exception("Failed to parse SRT: %s", srt_path)
-    #         return
-
-    #     logger.info("Imported SRT: %s | segments=%s", srt_path, len(segments))
-
-    #     self.state.set_subtitles(segments)
 
     # ── Audio extraction (Demucs) ────────────────────────────────────────────
 
@@ -687,6 +657,195 @@ class EditorLayout(QWidget):
         self.status_bar.set_progress(0, "MP3 export failed")
         QMessageBox.critical(self, "MP3 Export Failed", error)
 
+    # ── Export Dubbed Video ───────────────────────────────────────────────────
+
+    def export_dubbed_video(self) -> None:
+        """Mix TTS voice + optional background stem with the video and save an MP4."""
+        from workers.export_worker import ExportWorker
+
+        video_path = self.state.get_video_path()
+        if video_path is None:
+            QMessageBox.warning(self, "No Video", "Please load a video first.")
+            return
+
+        segments = self.state.get_transcript()
+        dubbed = [s for s in segments if s.audio_path]
+        if not dubbed:
+            QMessageBox.warning(
+                self,
+                "No Dubbed Voice",
+                "Generate Voice first before exporting the dubbed video.",
+            )
+            return
+
+        default_name = video_path.stem + "_dubbed.mp4"
+        output_path, _ = QFileDialog.getSaveFileName(
+            self,
+            "Export Dubbed Video",
+            str(video_path.parent / default_name),
+            "MP4 Video (*.mp4);;All Files (*)",
+        )
+        if not output_path:
+            return
+
+        output_path = Path(output_path)
+
+        bg_path = None
+        if self.current_timeline_cache and self.current_timeline_cache.background_path:
+            bg_path = Path(self.current_timeline_cache.background_path)
+            if not bg_path.exists():
+                bg_path = None
+
+        logger.info(
+            "Exporting dubbed video: %s → %s (background=%s)",
+            video_path,
+            output_path,
+            bg_path,
+        )
+        self.status_bar.set_progress(0, "Starting dubbed video export…")
+
+        thread = QThread(self)
+        worker = ExportWorker(
+            video_path=video_path,
+            segments=dubbed,
+            output_path=output_path,
+            background_path=bg_path,
+        )
+
+        worker.moveToThread(thread)
+        thread.worker = worker
+        self.running_threads.append(thread)
+
+        thread.started.connect(worker.run)
+        worker.progress_changed.connect(
+            lambda p, m: self.status_bar.set_progress(p, m)
+        )
+        worker.finished.connect(self._on_export_finished)
+        worker.failed.connect(self._on_export_failed)
+
+        worker.finished.connect(thread.quit)
+        worker.failed.connect(thread.quit)
+        worker.finished.connect(worker.deleteLater)
+        worker.failed.connect(worker.deleteLater)
+
+        thread.finished.connect(lambda: self.cleanup_thread(thread))
+        thread.finished.connect(thread.deleteLater)
+
+        thread.start()
+
+    @Slot(str)
+    def _on_export_finished(self, output_path: str) -> None:
+        self.status_bar.set_progress(100, f"Dubbed video saved: {output_path}")
+        QMessageBox.information(
+            self,
+            "Export Complete",
+            f"Dubbed video saved to:\n{output_path}",
+        )
+
+    @Slot(str)
+    def _on_export_failed(self, error: str) -> None:
+        logger.error("Dubbed video export failed: %s", error)
+        self.status_bar.set_progress(0, "Export failed")
+        QMessageBox.critical(self, "Export Failed", error)
+
+    # ── Import Khmer SRT ──────────────────────────────────────────────────────
+
+    def import_khmer_srt(self) -> None:
+        """Let the user pick an existing Khmer SRT and load it as translation."""
+        from services.srt_service import SrtService
+
+        srt_path, _ = QFileDialog.getOpenFileName(
+            self,
+            "Import Khmer SRT",
+            "",
+            "SRT Files (*.srt);;All Files (*)",
+        )
+        if not srt_path:
+            return
+
+        try:
+            segments = SrtService().parse(Path(srt_path))
+        except Exception as exc:
+            logger.exception("Failed to parse Khmer SRT.")
+            QMessageBox.critical(self, "Import Failed", str(exc))
+            return
+
+        # If we already have an original transcript, copy text into khmer_text.
+        existing = self.state.get_transcript()
+        if existing and len(existing) == len(segments):
+            for orig, imported in zip(existing, segments):
+                orig.khmer_text = imported.original_text or imported.khmer_text
+            segments = existing
+        else:
+            for seg in segments:
+                if not seg.khmer_text:
+                    seg.khmer_text = seg.original_text
+
+        self.state.set_translation(segments)
+        self.transcript_table.set_segments(segments)
+
+        self.status_bar.set_progress(
+            100,
+            f"Khmer SRT imported: {len(segments)} segments",
+        )
+        QMessageBox.information(
+            self,
+            "SRT Imported",
+            f"Loaded {len(segments)} segments from:\n{srt_path}\n\n"
+            "You can now click Generate Voice.",
+        )
+
+    # ── Settings ──────────────────────────────────────────────────────────────
+
+    def show_settings(self) -> None:
+        """Open the Settings dialog and apply any changes that were saved."""
+        from ui.components.settings_dialog import SettingsDialog
+
+        dialog = SettingsDialog(config=self.config, parent=self)
+        if dialog.exec() != SettingsDialog.DialogCode.Accepted:
+            return
+
+        result = dialog.get_result()
+        if result is None:
+            return
+
+        # Push new model selections into the toolbar so subsequent actions
+        # (Auto Transcribe, Translate …) pick up the new choices immediately.
+        self.toolbar.apply_settings(
+            transcription_provider=result.transcription_provider,
+            transcription_model=result.transcription_model,
+            translation_provider=result.translation_provider,
+            translation_model=result.translation_model,
+        )
+
+        # Update the live config reference for fields that are read directly
+        # by services (language codes, API keys).  We replace the frozen
+        # dataclass with a new one so all existing references stay valid.
+        from app.config import AppConfig
+        import dataclasses
+        self.config = dataclasses.replace(
+            self.config,
+            transcription_model=result.transcription_model,
+            transcription_provider=result.transcription_provider,
+            transcription_language=result.transcription_language,
+            translation_model=result.translation_model,
+            translation_provider=result.translation_provider,
+            translation_source_language=result.translation_source_language,
+            translation_target_language=result.translation_target_language,
+            deepinfra_api_key=result.deepinfra_api_key or self.config.deepinfra_api_key,
+            gemini_api_key=result.gemini_api_key or self.config.gemini_api_key,
+        )
+
+        logger.info(
+            "Settings applied — transcription: %s/%s  translation: %s/%s",
+            result.transcription_provider,
+            result.transcription_model,
+            result.translation_provider,
+            result.translation_model,
+        )
+
+        self.status_bar.set_progress(100, "Settings saved.")
+
     ## Auto transcribe handler
     def auto_transcribe(self):
         video_path = self.state.get_video_path()
@@ -760,7 +919,6 @@ class EditorLayout(QWidget):
 
         # Show the transcript table immediately.
         self.transcript_table.set_segments(segments)
-        self.transcript_table.show()
 
         # Auto-save SRT next to the source video.
         srt_path = self._auto_save_srt(segments, suffix="")
@@ -908,8 +1066,8 @@ class EditorLayout(QWidget):
         # Keep table hidden until Khmer translation is ready.
         self.transcript_table.hide()
 
-    ## Translating to Khmer handler
-    def on_segments_edited(self, segments):
+    def on_translation_segments_loaded(self, segments):
+        """Called when a new translation arrives from state — refreshes the table."""
         logger.info("Khmer translation ready with %s segment(s).", len(segments))
 
         self.transcript_table.set_segments(segments)
@@ -919,6 +1077,15 @@ class EditorLayout(QWidget):
             100,
             f"Khmer translation ready: {len(segments)} segments.",
         )
+
+    def on_table_segments_edited(self, segments):
+        """Called when the user edits a cell in the transcript table.
+
+        Persists changes (pitch / speed / vol / text) back to app state so
+        the TTS worker picks them up when Generate Voice is triggered later.
+        """
+        self.state.update_segments_from_table(segments)
+        logger.debug("Table edits saved to state (%d segments).", len(segments))
 
 
     ## Translating to Khmer handler
