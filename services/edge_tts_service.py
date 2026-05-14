@@ -1,11 +1,13 @@
 import asyncio
 import subprocess
+import sys
 import tempfile
 import threading
 from pathlib import Path
 from typing import Callable
 
 from app.logger import get_logger
+from app.paths import find_ffmpeg
 
 
 logger = get_logger(__name__)
@@ -45,6 +47,11 @@ class EdgeTtsService:
         segments,           # list[SubtitleSegment]
         video_stem: str,
     ) -> list:              # returns the same list with audio_path filled in
+        # On Windows Python 3.8+, the default event loop policy is Proactor.
+        # edge-tts / aiohttp works best with the Selector policy on Windows.
+        if sys.platform == "win32":
+            asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
         # Create ONE event loop for the entire session and run it on a
         # dedicated thread so it never conflicts with Qt's event loop.
         loop = asyncio.new_event_loop()
@@ -172,14 +179,15 @@ class EdgeTtsService:
             f"areverse"
         )
         cmd = [
-            "ffmpeg", "-loglevel", "error", "-y",
+            find_ffmpeg(), "-loglevel", "error", "-y",
             "-i", str(path),
             "-af", silence_filter,
             "-c:a", "libmp3lame", "-q:a", "4",
             str(tmp),
         ]
         try:
-            subprocess.run(cmd, capture_output=True, check=True)
+            subprocess.run(cmd, capture_output=True, check=True,
+                           encoding="utf-8", errors="replace")
             if tmp.exists() and tmp.stat().st_size > 0:
                 tmp.replace(path)
             else:

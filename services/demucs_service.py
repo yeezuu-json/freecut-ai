@@ -4,8 +4,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable
 
-from app.paths import STEMS_CACHE_DIR
 from app.logger import get_logger
+from app.paths import STEMS_CACHE_DIR, find_ffmpeg
 
 logger = get_logger(__name__)
 
@@ -93,7 +93,7 @@ class DemucsService:
 
         subprocess.run(
             [
-                "ffmpeg", "-y", "-i", str(video_path),
+                find_ffmpeg(), "-y", "-i", str(video_path),
                 "-vn", "-ar", "44100", "-ac", "2",
                 str(audio_path),
             ],
@@ -138,10 +138,15 @@ class DemucsService:
         cmd.append(str(audio_path))
 
         logger.info("Demucs command: %s", " ".join(cmd))
+
+        # Merge stderr → stdout to avoid the classic Windows pipe deadlock:
+        # Demucs writes tqdm progress to stderr; if we only read stdout the
+        # stderr OS buffer fills up, the child blocks writing, and we block
+        # waiting on stdout — permanent hang at 15%.
         process = subprocess.Popen(
             cmd,
             stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
+            stderr=subprocess.STDOUT,   # merge stderr into stdout
             text=True,
             encoding="utf-8",
             errors="replace",
@@ -152,14 +157,16 @@ class DemucsService:
         if progress_callback:
             progress_callback(0.0, f"Running Demucs ({model})…")
 
-        # Read stdout for progress lines; stderr is read after the process exits.
-        stdout_lines: list[str] = []
+        # Read the merged stream line by line.
+        # tqdm uses \r on Windows; Python's universal-newline mode (text=True)
+        # translates \r → \n so readline() works correctly on all platforms.
+        all_lines: list[str] = []
         for raw_line in iter(process.stdout.readline, ""):
             line = raw_line.strip()
             if not line:
                 continue
-            stdout_lines.append(line)
-            logger.debug("demucs stdout: %s", line)
+            all_lines.append(line)
+            logger.debug("demucs: %s", line)
 
             if progress_callback:
                 lower = line.lower()
@@ -177,22 +184,12 @@ class DemucsService:
                             f"Separating audio… {int(pct)}%",
                         )
 
-        stderr_output = process.stderr.read()
         process.wait()
 
-        if stderr_output:
-            for line in stderr_output.splitlines():
-                logger.debug("demucs stderr: %s", line)
-
         if process.returncode != 0:
-            combined = "\n".join(
-                filter(None, [
-                    "\n".join(stdout_lines[-30:]),  # last 30 stdout lines
-                    stderr_output.strip(),
-                ])
-            )
             raise RuntimeError(
-                f"Demucs exited with code {process.returncode}.\n\n{combined}"
+                f"Demucs exited with code {process.returncode}.\n\n"
+                + "\n".join(all_lines[-40:])
             )
 
     @staticmethod
@@ -256,6 +253,8 @@ class DemucsService:
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True,
+                encoding="utf-8",
+                errors="replace",
             )
             
             if result.returncode != 0:

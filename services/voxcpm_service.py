@@ -57,7 +57,8 @@ class VoxCpmService:
                 import subprocess
                 result = subprocess.run(
                     ["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"],
-                    capture_output=True, text=True, timeout=5
+                    capture_output=True, text=True, timeout=5,
+                    encoding="utf-8", errors="replace",
                 )
                 if result.returncode == 0 and result.stdout.strip():
                     gpu_name = result.stdout.strip().splitlines()[0]
@@ -111,6 +112,7 @@ class VoxCpmService:
                         ["nvidia-smi", "--query-gpu=name,memory.total",
                          "--format=csv,noheader"],
                         capture_output=True, text=True, timeout=5,
+                        encoding="utf-8", errors="replace",
                     )
                     if r.returncode == 0 and r.stdout.strip():
                         parts = r.stdout.strip().splitlines()[0].split(",")

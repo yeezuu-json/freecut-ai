@@ -2,6 +2,7 @@ import json
 import subprocess
 from pathlib import Path
 
+from app.paths import find_ffprobe
 from models.subtitle_segment import SubtitleSegment
 from models.timeline_cache import TimelineCache
 from models.timeline_item import TimelineItem
@@ -217,12 +218,13 @@ class TimelineBuilderService:
         try:
             result = subprocess.run(
                 [
-                    "ffprobe", "-v", "error",
+                    find_ffprobe(), "-v", "error",
                     "-show_entries", "format=duration",
                     "-of", "json",
                     audio_path,
                 ],
                 capture_output=True, text=True, check=True,
+                encoding="utf-8", errors="replace",
             )
             data = json.loads(result.stdout)
             return int(float(data["format"]["duration"]) * 1000)

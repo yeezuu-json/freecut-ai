@@ -1502,3 +1502,380 @@ Traceback (most recent call last):
 google.genai.errors.ClientError: 403 PERMISSION_DENIED. {'error': {'code': 403, 'message': 'Your API key was reported as leaked. Please use another API key.', 'status': 'PERMISSION_DENIED'}}
 2026-05-14 15:25:18 | ERROR    | my_app.ui.layouts.editor_layout | editor_layout.py:1295 | Translation failed: 403 PERMISSION_DENIED. {'error': {'code': 403, 'message': 'Your API key was reported as leaked. Please use another API key.', 'status': 'PERMISSION_DENIED'}}
 2026-05-14 15:25:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1120 | Transcription thread cleaned up.
+2026-05-14 15:45:01 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1124 | EditorLayout cleanup started.
+2026-05-14 15:45:01 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ep1_1e8973340b.timeline.json
+2026-05-14 15:45:01 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1163 | Timeline cache saved on close.
+2026-05-14 15:45:01 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1171 | EditorLayout cleanup complete.
+2026-05-14 15:45:14 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 15:45:14 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 15:45:14 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 15:45:14 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 15:45:14 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 15:45:15 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 15:45:15 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 15:45:15 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 15:45:15 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 15:45:54 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:165 | Selected video: /Users/piseth/Desktop/Movie/Film drama china - Terjebak pesona brondong (Episode 4).mp4
+2026-05-14 15:45:54 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:170 | Current project video: /Users/piseth/Desktop/Movie/Film drama china - Terjebak pesona brondong (Episode 4).mp4
+2026-05-14 15:45:54 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/Film_drama_china_-_Terjebak_pesona_brondong_(Episode_4)_01122d9145.timeline.json
+2026-05-14 15:45:54 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:195 | Timeline cache loaded: tracks=5 items=4
+2026-05-14 15:45:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:443 | Starting Demucs audio extraction for: /Users/piseth/Desktop/Movie/Film drama china - Terjebak pesona brondong (Episode 4).mp4
+2026-05-14 15:45:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:472 | Extraction 0%: Initialising audio extraction…
+2026-05-14 15:45:57 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:472 | Extraction 5%: Extracting audio from video…
+2026-05-14 15:45:58 | INFO     | my_app.services.demucs_service | demucs_service.py:140 | Demucs command: /Users/piseth/developer/desktop-app/freecut-ai/.venv/bin/python3 -m demucs --two-stems vocals -n htdemucs -o /Users/piseth/.freecut-ai/cache/stems/Film drama china - Terjebak pesona brondong (Episode 4)/demucs_out /Users/piseth/.freecut-ai/cache/stems/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_raw.wav
+2026-05-14 15:45:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:472 | Extraction 15%: Starting Demucs separation (htdemucs)…
+2026-05-14 15:45:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:472 | Extraction 15%: Running Demucs (htdemucs)…
+2026-05-14 15:46:18 | INFO     | my_app.ui.components.settings_dialog | settings_dialog.py:903 | Settings saved to /Users/piseth/developer/desktop-app/freecut-ai/config/app.json
+2026-05-14 15:46:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:940 | Settings applied — transcription: local/small  translation: gemini/gemini-2.5-flash
+2026-05-14 15:46:34 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:443 | Starting Demucs audio extraction for: /Users/piseth/Desktop/Movie/Film drama china - Terjebak pesona brondong (Episode 4).mp4
+2026-05-14 15:46:34 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:472 | Extraction 0%: Initialising audio extraction…
+2026-05-14 15:46:36 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:472 | Extraction 5%: Extracting audio from video…
+2026-05-14 15:46:37 | INFO     | my_app.services.demucs_service | demucs_service.py:140 | Demucs command: /Users/piseth/developer/desktop-app/freecut-ai/.venv/bin/python3 -m demucs --two-stems vocals -n htdemucs -o /Users/piseth/.freecut-ai/cache/stems/Film drama china - Terjebak pesona brondong (Episode 4)/demucs_out /Users/piseth/.freecut-ai/cache/stems/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_raw.wav
+2026-05-14 15:46:37 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:472 | Extraction 15%: Starting Demucs separation (htdemucs)…
+2026-05-14 15:46:37 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:472 | Extraction 15%: Running Demucs (htdemucs)…
+2026-05-14 15:46:51 | DEBUG    | my_app.services.demucs_service | demucs_service.py:162 | demucs stdout: Selected model is a bag of 1 models. You will see that many progress bars per track.
+2026-05-14 15:46:51 | DEBUG    | my_app.services.demucs_service | demucs_service.py:162 | demucs stdout: Separated tracks will be stored in /Users/piseth/.freecut-ai/cache/stems/Film drama china - Terjebak pesona brondong (Episode 4)/demucs_out/htdemucs
+2026-05-14 15:46:51 | DEBUG    | my_app.services.demucs_service | demucs_service.py:162 | demucs stdout: Separating track /Users/piseth/.freecut-ai/cache/stems/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_raw.wav
+2026-05-14 15:46:51 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:472 | Extraction 89%: Stems separated, writing files…
+2026-05-14 15:46:51 | DEBUG    | my_app.services.demucs_service | demucs_service.py:185 | demucs stderr: /Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/torchaudio/__init__.py:178: UserWarning: The 'encoding' parameter is not fully supported by TorchCodec AudioEncoder.
+2026-05-14 15:46:51 | DEBUG    | my_app.services.demucs_service | demucs_service.py:185 | demucs stderr:   return save_with_torchcodec(
+2026-05-14 15:46:51 | DEBUG    | my_app.services.demucs_service | demucs_service.py:185 | demucs stderr: /Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/torchaudio/__init__.py:178: UserWarning: The 'bits_per_sample' parameter is not directly supported by TorchCodec AudioEncoder.
+2026-05-14 15:46:51 | DEBUG    | my_app.services.demucs_service | demucs_service.py:185 | demucs stderr:   return save_with_torchcodec(
+2026-05-14 15:46:51 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:472 | Extraction 94%: Locating output files…
+2026-05-14 15:46:51 | INFO     | my_app.workers.audio_extraction_worker | audio_extraction_worker.py:49 | Audio extraction finished. vocals=/Users/piseth/.freecut-ai/cache/stems/Film drama china - Terjebak pesona brondong (Episode 4)/demucs_out/htdemucs/Film drama china - Terjebak pesona brondong (Episode 4)_raw/vocals.wav background=/Users/piseth/.freecut-ai/cache/stems/Film drama china - Terjebak pesona brondong (Episode 4)/demucs_out/htdemucs/Film drama china - Terjebak pesona brondong (Episode 4)_raw/no_vocals.wav
+2026-05-14 15:46:51 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:472 | Extraction 100%: Audio separation complete
+2026-05-14 15:46:51 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:477 | Extraction finished — vocals=/Users/piseth/.freecut-ai/cache/stems/Film drama china - Terjebak pesona brondong (Episode 4)/demucs_out/htdemucs/Film drama china - Terjebak pesona brondong (Episode 4)_raw/vocals.wav background=/Users/piseth/.freecut-ai/cache/stems/Film drama china - Terjebak pesona brondong (Episode 4)/demucs_out/htdemucs/Film drama china - Terjebak pesona brondong (Episode 4)_raw/no_vocals.wav
+2026-05-14 15:46:51 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/Film_drama_china_-_Terjebak_pesona_brondong_(Episode_4)_01122d9145.timeline.json
+2026-05-14 15:46:51 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:419 | Stem players set up for ['track_raw_audio', 'track_background', 'track_vocal']
+2026-05-14 15:46:51 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1124 | Transcription thread cleaned up.
+2026-05-14 15:47:05 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:310 | Track mute toggled: track=track_vocal muted=False
+2026-05-14 15:47:08 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:310 | Track mute toggled: track=track_vocal muted=True
+2026-05-14 15:47:09 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:310 | Track mute toggled: track=track_raw_audio muted=False
+2026-05-14 15:47:11 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:310 | Track mute toggled: track=track_raw_audio muted=True
+2026-05-14 15:47:12 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:310 | Track mute toggled: track=track_background muted=True
+2026-05-14 15:47:13 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:310 | Track mute toggled: track=track_vocal muted=False
+2026-05-14 15:47:15 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:310 | Track mute toggled: track=track_background muted=False
+2026-05-14 15:47:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:961 | Starting transcription for video=/Users/piseth/Desktop/Movie/Film drama china - Terjebak pesona brondong (Episode 4).mp4 model=small
+2026-05-14 15:47:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:973 | Using vocals stem for transcription: /Users/piseth/.freecut-ai/cache/stems/Film drama china - Terjebak pesona brondong (Episode 4)/demucs_out/htdemucs/Film drama china - Terjebak pesona brondong (Episode 4)_raw/vocals.wav
+2026-05-14 15:47:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 5%: Checking video duration...
+2026-05-14 15:47:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 10%: Preparing vocals stem for transcription...
+2026-05-14 15:47:18 | INFO     | my_app.services.audio_service | audio_service.py:269 | FFmpeg: ffmpeg -loglevel error -y -i /Users/piseth/.freecut-ai/cache/stems/Film drama china - Terjebak pesona brondong (Episode 4)/demucs_out/htdemucs/Film drama china - Terjebak pesona brondong (Episode 4)_raw/vocals.wav -vn -ac 1 -ar 16000 -f wav /var/folders/y9/wg10dhg15tg1xh4pmfsr2xz40000gn/T/freecut_ai/vocals_transcribe.wav
+2026-05-14 15:47:19 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 15%: Vocals stem ready (background noise removed)
+2026-05-14 15:47:19 | INFO     | my_app.services.transcription_service | transcription_service.py:29 | Transcription request provider=local model=small language=zh
+2026-05-14 15:47:19 | INFO     | my_app.services.local_whisper_service | local_whisper_service.py:29 | Loading local Whisper model=small device=cpu compute_type=int8
+2026-05-14 15:47:19 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 18%: Loading local Whisper model: small
+2026-05-14 15:47:27 | DEBUG    | my_app.services.demucs_service | demucs_service.py:162 | demucs stdout: Selected model is a bag of 1 models. You will see that many progress bars per track.
+2026-05-14 15:47:27 | DEBUG    | my_app.services.demucs_service | demucs_service.py:162 | demucs stdout: Separated tracks will be stored in /Users/piseth/.freecut-ai/cache/stems/Film drama china - Terjebak pesona brondong (Episode 4)/demucs_out/htdemucs
+2026-05-14 15:47:27 | DEBUG    | my_app.services.demucs_service | demucs_service.py:162 | demucs stdout: Separating track /Users/piseth/.freecut-ai/cache/stems/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_raw.wav
+2026-05-14 15:47:27 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:472 | Extraction 89%: Stems separated, writing files…
+2026-05-14 15:47:28 | DEBUG    | my_app.services.demucs_service | demucs_service.py:185 | demucs stderr: /Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/torchaudio/__init__.py:178: UserWarning: The 'encoding' parameter is not fully supported by TorchCodec AudioEncoder.
+2026-05-14 15:47:28 | DEBUG    | my_app.services.demucs_service | demucs_service.py:185 | demucs stderr:   return save_with_torchcodec(
+2026-05-14 15:47:28 | DEBUG    | my_app.services.demucs_service | demucs_service.py:185 | demucs stderr: /Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/torchaudio/__init__.py:178: UserWarning: The 'bits_per_sample' parameter is not directly supported by TorchCodec AudioEncoder.
+2026-05-14 15:47:28 | DEBUG    | my_app.services.demucs_service | demucs_service.py:185 | demucs stderr:   return save_with_torchcodec(
+2026-05-14 15:47:28 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:472 | Extraction 94%: Locating output files…
+2026-05-14 15:47:28 | INFO     | my_app.workers.audio_extraction_worker | audio_extraction_worker.py:49 | Audio extraction finished. vocals=/Users/piseth/.freecut-ai/cache/stems/Film drama china - Terjebak pesona brondong (Episode 4)/demucs_out/htdemucs/Film drama china - Terjebak pesona brondong (Episode 4)_raw/vocals.wav background=/Users/piseth/.freecut-ai/cache/stems/Film drama china - Terjebak pesona brondong (Episode 4)/demucs_out/htdemucs/Film drama china - Terjebak pesona brondong (Episode 4)_raw/no_vocals.wav
+2026-05-14 15:47:28 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:472 | Extraction 100%: Audio separation complete
+2026-05-14 15:47:28 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:477 | Extraction finished — vocals=/Users/piseth/.freecut-ai/cache/stems/Film drama china - Terjebak pesona brondong (Episode 4)/demucs_out/htdemucs/Film drama china - Terjebak pesona brondong (Episode 4)_raw/vocals.wav background=/Users/piseth/.freecut-ai/cache/stems/Film drama china - Terjebak pesona brondong (Episode 4)/demucs_out/htdemucs/Film drama china - Terjebak pesona brondong (Episode 4)_raw/no_vocals.wav
+2026-05-14 15:47:28 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/Film_drama_china_-_Terjebak_pesona_brondong_(Episode_4)_01122d9145.timeline.json
+2026-05-14 15:47:28 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:419 | Stem players set up for ['track_raw_audio', 'track_background', 'track_vocal']
+2026-05-14 15:47:28 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1124 | Transcription thread cleaned up.
+2026-05-14 15:47:41 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:961 | Starting transcription for video=/Users/piseth/Desktop/Movie/Film drama china - Terjebak pesona brondong (Episode 4).mp4 model=small
+2026-05-14 15:47:41 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:973 | Using vocals stem for transcription: /Users/piseth/.freecut-ai/cache/stems/Film drama china - Terjebak pesona brondong (Episode 4)/demucs_out/htdemucs/Film drama china - Terjebak pesona brondong (Episode 4)_raw/vocals.wav
+2026-05-14 15:47:41 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 5%: Checking video duration...
+2026-05-14 15:47:41 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 10%: Preparing vocals stem for transcription...
+2026-05-14 15:47:41 | INFO     | my_app.services.audio_service | audio_service.py:269 | FFmpeg: ffmpeg -loglevel error -y -i /Users/piseth/.freecut-ai/cache/stems/Film drama china - Terjebak pesona brondong (Episode 4)/demucs_out/htdemucs/Film drama china - Terjebak pesona brondong (Episode 4)_raw/vocals.wav -vn -ac 1 -ar 16000 -f wav /var/folders/y9/wg10dhg15tg1xh4pmfsr2xz40000gn/T/freecut_ai/vocals_transcribe.wav
+2026-05-14 15:47:41 | INFO     | my_app.services.transcription_service | transcription_service.py:29 | Transcription request provider=local model=small language=zh
+2026-05-14 15:47:41 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 15%: Vocals stem ready (background noise removed)
+2026-05-14 15:47:41 | INFO     | my_app.services.local_whisper_service | local_whisper_service.py:29 | Loading local Whisper model=small device=cpu compute_type=int8
+2026-05-14 15:47:41 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 18%: Loading local Whisper model: small
+2026-05-14 15:47:52 | INFO     | my_app.services.local_whisper_service | local_whisper_service.py:55 | Local transcription started: /var/folders/y9/wg10dhg15tg1xh4pmfsr2xz40000gn/T/freecut_ai/vocals_transcribe.wav
+2026-05-14 15:47:52 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 35%: Transcribing audio...
+2026-05-14 15:47:52 | INFO     | my_app.services.local_whisper_service | local_whisper_service.py:66 | Detected language=zh probability=1.00
+2026-05-14 15:47:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 38%: Transcribing... 38%
+2026-05-14 15:47:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 39%: Transcribing... 39%
+2026-05-14 15:47:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 40%: Transcribing... 40%
+2026-05-14 15:47:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 40%: Transcribing... 40%
+2026-05-14 15:47:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 42%: Transcribing... 42%
+2026-05-14 15:47:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 43%: Transcribing... 43%
+2026-05-14 15:47:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 43%: Transcribing... 43%
+2026-05-14 15:47:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 44%: Transcribing... 44%
+2026-05-14 15:47:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 45%: Transcribing... 45%
+2026-05-14 15:47:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 45%: Transcribing... 45%
+2026-05-14 15:47:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 46%: Transcribing... 46%
+2026-05-14 15:47:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 47%: Transcribing... 47%
+2026-05-14 15:47:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 48%: Transcribing... 48%
+2026-05-14 15:47:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 48%: Transcribing... 48%
+2026-05-14 15:47:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 49%: Transcribing... 49%
+2026-05-14 15:47:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 50%: Transcribing... 50%
+2026-05-14 15:47:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 50%: Transcribing... 50%
+2026-05-14 15:47:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 51%: Transcribing... 51%
+2026-05-14 15:47:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 52%: Transcribing... 52%
+2026-05-14 15:47:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 54%: Transcribing... 54%
+2026-05-14 15:47:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 55%: Transcribing... 55%
+2026-05-14 15:47:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 57%: Transcribing... 57%
+2026-05-14 15:47:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 57%: Transcribing... 57%
+2026-05-14 15:47:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 60%: Transcribing... 60%
+2026-05-14 15:47:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 61%: Transcribing... 61%
+2026-05-14 15:47:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 61%: Transcribing... 61%
+2026-05-14 15:47:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 62%: Transcribing... 62%
+2026-05-14 15:47:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 63%: Transcribing... 63%
+2026-05-14 15:47:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 64%: Transcribing... 64%
+2026-05-14 15:47:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 67%: Transcribing... 67%
+2026-05-14 15:47:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 68%: Transcribing... 68%
+2026-05-14 15:47:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 70%: Transcribing... 70%
+2026-05-14 15:47:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 71%: Transcribing... 71%
+2026-05-14 15:47:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 72%: Transcribing... 72%
+2026-05-14 15:47:58 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 74%: Transcribing... 74%
+2026-05-14 15:48:00 | INFO     | my_app.services.local_whisper_service | local_whisper_service.py:96 | Local transcription finished. segments=41
+2026-05-14 15:48:00 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 75%: Transcribing... 75%
+2026-05-14 15:48:00 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 75%: Transcribing... 75%
+2026-05-14 15:48:00 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 76%: Transcribing... 76%
+2026-05-14 15:48:00 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 77%: Transcribing... 77%
+2026-05-14 15:48:00 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 77%: Transcribing... 77%
+2026-05-14 15:48:00 | INFO     | my_app.workers.transcription_worker | transcription_worker.py:69 | Transcription finished. provider=local model=small segments=41
+2026-05-14 15:48:00 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 78%: Transcribing... 78%
+2026-05-14 15:48:00 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 100%: Transcription complete
+2026-05-14 15:48:00 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 100%: Transcription complete
+2026-05-14 15:48:00 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1024 | Transcription completed: 41 segment(s)
+2026-05-14 15:48:00 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1178 | Transcript stored with 41 segment(s).
+2026-05-14 15:48:00 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1071 | SRT auto-saved: /Users/piseth/Desktop/Movie/Film drama china - Terjebak pesona brondong (Episode 4).srt
+2026-05-14 15:48:00 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1124 | Transcription thread cleaned up.
+2026-05-14 15:48:04 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1218 | Starting Khmer translation provider=gemini model=gemini-2.5-flash segments=41
+2026-05-14 15:48:04 | INFO     | my_app.services.translation_service | translation_service.py:26 | Translation request provider=gemini model=gemini-2.5-flash source=Chinese target=Khmer count=41
+2026-05-14 15:48:04 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1268 | Translation progress 5%: Preparing translation...
+2026-05-14 15:48:05 | DEBUG    | my_app.services.gemini_translation_service | gemini_translation_service.py:98 | Gemini translate attempt 1/4 model=gemini-2.5-flash texts=20
+2026-05-14 15:48:05 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1268 | Translation progress 0%: Translating batch 1/3…
+2026-05-14 15:48:05 | DEBUG    | my_app.services.gemini_translation_service | gemini_translation_service.py:145 | Gemini prompt model=gemini-2.5-flash (20 texts)
+2026-05-14 15:48:14 | INFO     | my_app.services.local_whisper_service | local_whisper_service.py:55 | Local transcription started: /var/folders/y9/wg10dhg15tg1xh4pmfsr2xz40000gn/T/freecut_ai/vocals_transcribe.wav
+2026-05-14 15:48:14 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 35%: Transcribing audio...
+2026-05-14 15:48:15 | INFO     | my_app.services.local_whisper_service | local_whisper_service.py:66 | Detected language=zh probability=1.00
+2026-05-14 15:48:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 38%: Transcribing... 38%
+2026-05-14 15:48:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 39%: Transcribing... 39%
+2026-05-14 15:48:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 40%: Transcribing... 40%
+2026-05-14 15:48:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 40%: Transcribing... 40%
+2026-05-14 15:48:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 42%: Transcribing... 42%
+2026-05-14 15:48:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 43%: Transcribing... 43%
+2026-05-14 15:48:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 43%: Transcribing... 43%
+2026-05-14 15:48:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 44%: Transcribing... 44%
+2026-05-14 15:48:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 45%: Transcribing... 45%
+2026-05-14 15:48:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 45%: Transcribing... 45%
+2026-05-14 15:48:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 46%: Transcribing... 46%
+2026-05-14 15:48:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 47%: Transcribing... 47%
+2026-05-14 15:48:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 48%: Transcribing... 48%
+2026-05-14 15:48:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 48%: Transcribing... 48%
+2026-05-14 15:48:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 49%: Transcribing... 49%
+2026-05-14 15:48:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 50%: Transcribing... 50%
+2026-05-14 15:48:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 50%: Transcribing... 50%
+2026-05-14 15:48:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 51%: Transcribing... 51%
+2026-05-14 15:48:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 52%: Transcribing... 52%
+2026-05-14 15:48:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 54%: Transcribing... 54%
+2026-05-14 15:48:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 55%: Transcribing... 55%
+2026-05-14 15:48:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 57%: Transcribing... 57%
+2026-05-14 15:48:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 57%: Transcribing... 57%
+2026-05-14 15:48:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 60%: Transcribing... 60%
+2026-05-14 15:48:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 61%: Transcribing... 61%
+2026-05-14 15:48:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 61%: Transcribing... 61%
+2026-05-14 15:48:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 62%: Transcribing... 62%
+2026-05-14 15:48:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 63%: Transcribing... 63%
+2026-05-14 15:48:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 64%: Transcribing... 64%
+2026-05-14 15:48:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 67%: Transcribing... 67%
+2026-05-14 15:48:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 68%: Transcribing... 68%
+2026-05-14 15:48:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 70%: Transcribing... 70%
+2026-05-14 15:48:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 71%: Transcribing... 71%
+2026-05-14 15:48:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 72%: Transcribing... 72%
+2026-05-14 15:48:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 74%: Transcribing... 74%
+2026-05-14 15:48:22 | INFO     | my_app.services.local_whisper_service | local_whisper_service.py:96 | Local transcription finished. segments=41
+2026-05-14 15:48:22 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 75%: Transcribing... 75%
+2026-05-14 15:48:22 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 75%: Transcribing... 75%
+2026-05-14 15:48:22 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 76%: Transcribing... 76%
+2026-05-14 15:48:22 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 77%: Transcribing... 77%
+2026-05-14 15:48:22 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 77%: Transcribing... 77%
+2026-05-14 15:48:22 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 78%: Transcribing... 78%
+2026-05-14 15:48:22 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 100%: Transcription complete
+2026-05-14 15:48:22 | INFO     | my_app.workers.transcription_worker | transcription_worker.py:69 | Transcription finished. provider=local model=small segments=41
+2026-05-14 15:48:22 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1018 | Transcription progress 100%: Transcription complete
+2026-05-14 15:48:22 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1024 | Transcription completed: 41 segment(s)
+2026-05-14 15:48:22 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1178 | Transcript stored with 41 segment(s).
+2026-05-14 15:48:22 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1071 | SRT auto-saved: /Users/piseth/Desktop/Movie/Film drama china - Terjebak pesona brondong (Episode 4).srt
+2026-05-14 15:48:22 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1124 | Transcription thread cleaned up.
+2026-05-14 15:48:37 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1218 | Starting Khmer translation provider=gemini model=gemini-2.5-flash segments=41
+2026-05-14 15:48:37 | INFO     | my_app.services.translation_service | translation_service.py:26 | Translation request provider=gemini model=gemini-2.5-flash source=Chinese target=Khmer count=41
+2026-05-14 15:48:37 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1268 | Translation progress 5%: Preparing translation...
+2026-05-14 15:48:37 | DEBUG    | my_app.services.gemini_translation_service | gemini_translation_service.py:98 | Gemini translate attempt 1/4 model=gemini-2.5-flash texts=20
+2026-05-14 15:48:37 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1268 | Translation progress 0%: Translating batch 1/3…
+2026-05-14 15:48:37 | DEBUG    | my_app.services.gemini_translation_service | gemini_translation_service.py:145 | Gemini prompt model=gemini-2.5-flash (20 texts)
+2026-05-14 15:48:39 | DEBUG    | my_app.services.gemini_translation_service | gemini_translation_service.py:153 | Gemini raw response:
+1. ខ្ញុំចាំទូរស័ព្ទ។
+2. អាឡូប្ដី!
+3. ប្រពន្ធ!
+4. អូនលឺហើយមែនទេ?
+5. ថ្មីៗនេះ សង្កាត់យើងមានករណីប្លន់ជាច្រើន។
+6. អូនត្រូវប្រយ័ត្នផង។
+7. ប្លន់អ្ហ៎?
+8. ចុះប្ដី...
+9. បងនឹងត្រឡប់មកវិញពេលណា?
+10. នៅមិនទាន់ដឹងទេ។
+11. អូនគួរតែរកមិត្តភក្ដិមកនៅផ្ទះជាមួយ។
+12. យប់ជ្រៅហើយ។
+13. អូនទៅរកនៅឯណាទៅ?
+14. ទុកកៅហ្វៃនៅហ្នឹងទៅ។
+15. ក្មេងហ្នឹងមើលទៅគួរឲ្យទុកចិត្ត។
+16. បានហើយ។
+17. ឈប់និយាយហើយ។
+18. បងត្រូវធ្វើការថែមម៉ោងទៀត។
+19.
+2026-05-14 15:48:39 | DEBUG    | my_app.services.gemini_translation_service | gemini_translation_service.py:98 | Gemini translate attempt 1/4 model=gemini-2.5-flash texts=20
+2026-05-14 15:48:39 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1268 | Translation progress 30%: Translating batch 2/3…
+2026-05-14 15:48:39 | DEBUG    | my_app.services.gemini_translation_service | gemini_translation_service.py:145 | Gemini prompt model=gemini-2.5-flash (20 texts)
+2026-05-14 15:48:55 | DEBUG    | my_app.services.gemini_translation_service | gemini_translation_service.py:153 | Gemini raw response:
+1. ថ្ងៃនេះ
+2. ឯងអាចទេថ្ងៃនេះ?
+3. ខ្ញុំអាច។
+4. អរគុណ។
+5. ខ្ញុំនឹងឲ្យលុយថែម។
+6. មិនបាច់ទេ។
+7. ពីមុនខ្ញុំក៏ធ្លាប់នៅហាងដែរ។
+8. តែឥឡូវត្រូវគេបណ្ដេញហើយ។
+9. ក៏គ្មានកន្លែងទៅណាដែរ។
+10. បើឲ្យខ្ញុំនៅផ្ទះ ការពារបងណា។
+11. គឺជាអាទិភាពរបស់ខ្ញុំ។
+12. កុំនិយាយអញ្ចឹង។
+13. បងណា។
+14. ម៉េច?
+15. មិនអីទេ។
+16. ខ្ញុំគ្រាន់តែចង់សួរថា។
+17. ខ្ញុំនៅបន្ទប់មួយណា?
+18. អូ។
+19. ស្ទើរតែភ្លេចបាត់។
+20. ទៅ។
+2026-05-14 15:48:55 | DEBUG    | my_app.services.gemini_translation_service | gemini_translation_service.py:98 | Gemini translate attempt 1/4 model=gemini-2.5-flash texts=1
+2026-05-14 15:48:55 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1268 | Translation progress 60%: Translating batch 3/3…
+2026-05-14 15:48:55 | DEBUG    | my_app.services.gemini_translation_service | gemini_translation_service.py:145 | Gemini prompt model=gemini-2.5-flash (1 texts)
+2026-05-14 15:48:59 | DEBUG    | my_app.services.gemini_translation_service | gemini_translation_service.py:153 | Gemini raw response:
+1. ខ្ញុំនាំអ្នកទៅបន្ទប់ភ្ញៀវ
+2026-05-14 15:48:59 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1268 | Translation progress 100%: Translation complete
+2026-05-14 15:48:59 | INFO     | my_app.workers.translation_worker | translation_worker.py:57 | Translation finished. segments=41
+2026-05-14 15:48:59 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1268 | Translation progress 100%: Translation complete
+2026-05-14 15:48:59 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1274 | Khmer translation completed: 41 segment(s)
+2026-05-14 15:48:59 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1185 | Khmer translation ready with 41 segment(s).
+2026-05-14 15:48:59 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1071 | SRT auto-saved: /Users/piseth/Desktop/Movie/Film drama china - Terjebak pesona brondong (Episode 4)_khmer.srt
+2026-05-14 15:48:59 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1124 | Transcription thread cleaned up.
+2026-05-14 15:49:08 | DEBUG    | my_app.services.gemini_translation_service | gemini_translation_service.py:153 | Gemini raw response:
+1. ខ្ញុំចាំទូរស័ព្ទ។
+2. អាឡូ បង!
+3. អូន!
+4. អូនឮហើយមែនទេ?
+5. កន្លែងយើងថ្មីៗនេះ មានករណីលួចប្លន់ច្រើនណាស់។
+6. អូនត្រូវប្រយ័ត្នផង។
+7. លួចប្លន់?
+8. ចុះបង...
+9. ពេលណាទើបបងមកវិញ?
+10. មិនទាន់ដឹងទេ
+11. អូនគួររកមិត្តភក្តិណាម្នាក់មកនៅផ្ទះជាមួយ។
+12. វាងងឹតណាស់ទៅហើយ។
+13. ខ្ញុំទៅរកឯណាបាន?
+14. ទុកកៅហ្វេយនៅទៅ។
+15. ក្មេងនេះមើលទៅគួរទុកចិត្តណាស់។
+16. បានហើយ។
+17. ខ្ញុំមិននិយាយទៀតទេ។
+18. ខ្ញុំត្រូវធ្វើការថែមម៉ោងទៀត។
+
+2026-05-14 15:49:08 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1268 | Translation progress 30%: Translating batch 2/3…
+2026-05-14 15:49:08 | DEBUG    | my_app.services.gemini_translation_service | gemini_translation_service.py:98 | Gemini translate attempt 1/4 model=gemini-2.5-flash texts=20
+2026-05-14 15:49:08 | DEBUG    | my_app.services.gemini_translation_service | gemini_translation_service.py:145 | Gemini prompt model=gemini-2.5-flash (20 texts)
+2026-05-14 15:49:17 | DEBUG    | my_app.services.gemini_translation_service | gemini_translation_service.py:153 | Gemini raw response:
+1. អ្នកថ្ងៃនេះ
+2. តើអ្នកថ្ងៃនេះអាច
+3. ខ្ញុំអាច
+4. អរគុណ
+5. ខ្ញុំនឹងឱ្យលុយអ្នកបន្ថែម
+6. មិនបាច់ទេ
+7. ខ្ញុំពីមុនក៏ធ្លាប់នៅហាងដែរ
+8. ឥឡូវខ្ញុំត្រូវគេបណ្ដេញចេញហើយ
+9. ក៏គ្មានកន្លែងទៅដែរ
+10. បើឱ្យខ្ញុំនៅផ្ទះការពារបងណា
+11. គឺជាអាទិភាពខ្ញុំ
+12. កុំនិយាយបែបនេះ
+13. បងណា
+14. មានការអី?
+15. អត់អីទេ
+16. ខ្ញុំគ្រាន់តែចង់សួរថា
+17. ខ្ញុំនៅបន្ទប់ណា?
+18. អូ!
+19. ស្ទើរតែភ្លេចបាត់
+20. ទៅ!
+2026-05-14 15:49:18 | DEBUG    | my_app.services.gemini_translation_service | gemini_translation_service.py:98 | Gemini translate attempt 1/4 model=gemini-2.5-flash texts=1
+2026-05-14 15:49:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1268 | Translation progress 60%: Translating batch 3/3…
+2026-05-14 15:49:18 | DEBUG    | my_app.services.gemini_translation_service | gemini_translation_service.py:145 | Gemini prompt model=gemini-2.5-flash (1 texts)
+2026-05-14 15:49:19 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:77 | Using Apple MPS device
+2026-05-14 15:49:21 | DEBUG    | my_app.services.gemini_translation_service | gemini_translation_service.py:153 | Gemini raw response:
+1. ខ្ញុំនាំអ្នកទៅបន្ទប់ភ្ញៀវ
+2026-05-14 15:49:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1268 | Translation progress 100%: Translation complete
+2026-05-14 15:49:21 | INFO     | my_app.workers.translation_worker | translation_worker.py:57 | Translation finished. segments=41
+2026-05-14 15:49:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1268 | Translation progress 100%: Translation complete
+2026-05-14 15:49:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1274 | Khmer translation completed: 41 segment(s)
+2026-05-14 15:49:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1185 | Khmer translation ready with 41 segment(s).
+2026-05-14 15:49:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1071 | SRT auto-saved: /Users/piseth/Desktop/Movie/Film drama china - Terjebak pesona brondong (Episode 4)_khmer.srt
+2026-05-14 15:49:21 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1124 | Transcription thread cleaned up.
+2026-05-14 15:52:25 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1185 | Khmer translation ready with 41 segment(s).
+2026-05-14 15:52:25 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:563 | Starting TTS for 41 segments.
+2026-05-14 15:52:26 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=1 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0001.mp3
+2026-05-14 15:52:27 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=2 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0002.mp3
+2026-05-14 15:52:29 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=3 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0003.mp3
+2026-05-14 15:52:30 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=4 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0004.mp3
+2026-05-14 15:52:31 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=5 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0005.mp3
+2026-05-14 15:52:33 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=6 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0006.mp3
+2026-05-14 15:52:34 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=7 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0007.mp3
+2026-05-14 15:52:35 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=8 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0008.mp3
+2026-05-14 15:52:37 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=9 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0009.mp3
+2026-05-14 15:52:38 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=10 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0010.mp3
+2026-05-14 15:52:39 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=11 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0011.mp3
+2026-05-14 15:52:41 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=12 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0012.mp3
+2026-05-14 15:52:42 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=13 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0013.mp3
+2026-05-14 15:52:43 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=14 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0014.mp3
+2026-05-14 15:52:45 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=15 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0015.mp3
+2026-05-14 15:52:46 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=16 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0016.mp3
+2026-05-14 15:52:47 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=17 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0017.mp3
+2026-05-14 15:52:49 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=18 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0018.mp3
+2026-05-14 15:52:50 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=19 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0019.mp3
+2026-05-14 15:52:52 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=20 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0020.mp3
+2026-05-14 15:52:53 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=21 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0021.mp3
+2026-05-14 15:52:54 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=22 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0022.mp3
+2026-05-14 15:52:55 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=23 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0023.mp3
+2026-05-14 15:52:56 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=24 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0024.mp3
+2026-05-14 15:52:57 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=25 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0025.mp3
+2026-05-14 15:52:59 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=26 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0026.mp3
+2026-05-14 15:53:00 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=27 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0027.mp3
+2026-05-14 15:53:01 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=28 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0028.mp3
+2026-05-14 15:53:03 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=29 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0029.mp3
+2026-05-14 15:53:04 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=30 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0030.mp3
+2026-05-14 15:53:05 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=31 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0031.mp3
+2026-05-14 15:53:06 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=32 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0032.mp3
+2026-05-14 15:53:07 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=33 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0033.mp3
+2026-05-14 15:53:09 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=34 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0034.mp3
+2026-05-14 15:53:10 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=35 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0035.mp3
+2026-05-14 15:53:11 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=36 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0036.mp3
+2026-05-14 15:53:12 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=37 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0037.mp3
+2026-05-14 15:53:13 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=38 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0038.mp3
+2026-05-14 15:53:15 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=39 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0039.mp3
+2026-05-14 15:53:16 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=40 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0040.mp3
+2026-05-14 15:53:17 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:85 | TTS ok: seg=41 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0041.mp3
+2026-05-14 15:53:17 | INFO     | my_app.workers.tts_worker | tts_worker.py:56 | TTS finished. 41/41 segments have audio.
+2026-05-14 15:53:17 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:603 | TTS finished: 41/41 segments have audio.
+2026-05-14 15:53:17 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1185 | Khmer translation ready with 41 segment(s).
+2026-05-14 15:53:18 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/Film_drama_china_-_Terjebak_pesona_brondong_(Episode_4)_01122d9145.timeline.json
+2026-05-14 15:53:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:666 | Dubbed voice player ready: 41 segments, muted=False.
+2026-05-14 15:53:19 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1124 | Transcription thread cleaned up.
+2026-05-14 15:53:30 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:310 | Track mute toggled: track=track_vocal muted=True
+2026-05-14 15:53:53 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:126 | Creating CapCut project 'Film drama china - Terjebak pesona brondong (Episode 4)' → /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0514
+2026-05-14 15:53:53 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:131 | Using template project: /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0513 (3)
+2026-05-14 15:53:55 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:1129 | Registered project 'Film drama china - Terjebak pesona brondong (Episode 4)' in root_meta_info.json
+2026-05-14 15:53:55 | INFO     | my_app.services.capcut_export_service | capcut_export_service.py:219 | CapCut project written: /Users/piseth/Movies/CapCut/User Data/Projects/com.lveditor.draft/0514
+2026-05-14 15:53:56 | INFO     | my_app.services.capcut_app_service | capcut_app_service.py:65 | Opened CapCut: /Applications/CapCut.app
+2026-05-14 15:53:57 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1124 | Transcription thread cleaned up.
+2026-05-14 15:56:28 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:77 | Using Apple MPS device
+2026-05-14 15:56:54 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:940 | VoxCPM progress: 5% - Loading VoxCPM2 model...
+2026-05-14 15:56:54 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:77 | Using Apple MPS device
+2026-05-14 15:56:54 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:144 | Loading VoxCPM2 model on device: mps
+2026-05-14 16:09:14 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:162 | VoxCPM2 model loaded successfully on mps
+2026-05-14 16:09:15 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:940 | VoxCPM progress: 35% - Generating voice...

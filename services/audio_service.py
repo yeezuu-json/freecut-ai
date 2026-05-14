@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Optional
 
 from app.logger import get_logger
+from app.paths import find_ffmpeg, find_ffprobe
 
 _log = get_logger(__name__)
 
@@ -17,7 +18,7 @@ class AudioService:
         output_path = temp_dir / f"{video_path.stem}_transcribe.wav"
 
         command = [
-            "ffmpeg",
+            find_ffmpeg(),
             "-y",
             "-i",
             str(video_path),
@@ -45,7 +46,7 @@ class AudioService:
             progress_callback(10, "Converting to MP3…")
 
         command = [
-            "ffmpeg",
+            find_ffmpeg(),
             "-y",
             "-i", str(video_path),
             "-vn",
@@ -103,7 +104,7 @@ class AudioService:
         # We keep everything mono inside the filter graph; -ac 2 at the output
         # upmixes to stereo so the final WAV can be fed to the combine step.
         cmd = [
-            "ffmpeg", "-y",
+            find_ffmpeg(), "-y",
             "-f", "lavfi",
             "-i", f"anullsrc=r=44100:cl=mono:d={total_s}",
         ]
@@ -186,7 +187,7 @@ class AudioService:
             progress_callback(50, "Encoding final video…")
 
         # Build FFmpeg command
-        cmd = ["ffmpeg", "-y", "-i", str(video_path)]
+        cmd = [find_ffmpeg(), "-y", "-i", str(video_path)]
         has_bg = background_path and background_path.exists()
 
         if has_bg:
@@ -235,7 +236,7 @@ class AudioService:
 
     def get_duration_seconds(self, media_path: Path) -> float:
         command = [
-            "ffprobe",
+            find_ffprobe(),
             "-v", "error",
             "-show_entries", "format=duration",
             "-of", "json",
@@ -247,6 +248,8 @@ class AudioService:
             stderr=subprocess.PIPE,
             check=True,
             text=True,
+            encoding="utf-8",
+            errors="replace",
         )
         data = json.loads(result.stdout)
         return float(data["format"]["duration"])

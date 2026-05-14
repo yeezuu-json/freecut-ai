@@ -3,7 +3,7 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
-from app.paths import CONFIG_FILE, CONFIG_DIR, BASE_DIR
+from app.paths import BASE_DIR, BUNDLED_CONFIG_FILE, CONFIG_DIR, CONFIG_FILE
 
 @dataclass(frozen=True)
 class TranscriptionModelConfig:
@@ -126,8 +126,26 @@ def create_default_config() -> None:
 
 
 def load_config() -> AppConfig:
+    CONFIG_DIR.mkdir(parents=True, exist_ok=True)
+
     if not CONFIG_FILE.exists():
-        create_default_config()
+        # Seed user config from the bundled defaults (strips any API keys
+        # that may have been accidentally left in the shipped config).
+        if BUNDLED_CONFIG_FILE.exists() and BUNDLED_CONFIG_FILE != CONFIG_FILE:
+            import shutil
+            shutil.copy2(BUNDLED_CONFIG_FILE, CONFIG_FILE)
+            # Strip any accidentally-shipped API keys from the seeded copy.
+            try:
+                with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+                    seed = json.load(f)
+                seed["gemini_api_key"] = ""
+                seed["deepinfra_api_key"] = ""
+                with open(CONFIG_FILE, "w", encoding="utf-8") as f:
+                    json.dump(seed, f, indent=2, ensure_ascii=False)
+            except Exception:
+                pass
+        else:
+            create_default_config()
 
     with open(CONFIG_FILE, "r", encoding="utf-8") as file:
         data = json.load(file)

@@ -6,7 +6,7 @@
   "fonts_path": "assets/fonts",
   "log_level": "DEBUG",
   "capcut_app_path": "",
-  "deepinfra_api_key": "HprQb9QGU1nwDT3sDXDxyV0HB7pruHSh",
+  "deepinfra_api_key": "",
   "transcription_provider": "local",
   "transcription_model": "small",
   "transcription_language": "zh",
@@ -68,5 +68,5 @@
       "value": "facebook/nllb-200-distilled-1.3B"
     }
   ],
-  "gemini_api_key": "AIzaSyDgDe7sSHO4VDK9_4ecKbbcA490UZ-8o98"
+  "gemini_api_key": ""
 }

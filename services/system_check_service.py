@@ -1,25 +1,26 @@
-import shutil
 import subprocess
 
 from app.logger import get_logger
-
+from app.paths import find_ffmpeg, find_ffprobe
 
 logger = get_logger(__name__)
 
 
 class SystemCheckService:
     def check_ffmpeg(self) -> tuple[bool, str]:
-        ffmpeg_path = shutil.which("ffmpeg")
-
-        if ffmpeg_path is None:
+        try:
+            ffmpeg_path = find_ffmpeg()
+        except FileNotFoundError:
             return False, "FFmpeg not found"
 
         try:
             result = subprocess.run(
-                ["ffmpeg", "-version"],
+                [ffmpeg_path, "-version"],
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True,
+                encoding="utf-8",
+                errors="replace",
                 timeout=5,
             )
 
@@ -27,9 +28,7 @@ class SystemCheckService:
                 return False, "FFmpeg installed but not working"
 
             first_line = result.stdout.splitlines()[0] if result.stdout else "FFmpeg found"
-
             logger.info("FFmpeg check passed: %s", first_line)
-
             return True, "Installed"
 
         except Exception:
@@ -37,9 +36,8 @@ class SystemCheckService:
             return False, "FFmpeg check failed"
 
     def check_ffprobe(self) -> tuple[bool, str]:
-        ffprobe_path = shutil.which("ffprobe")
-
-        if ffprobe_path is None:
+        try:
+            find_ffprobe()
+            return True, "Installed"
+        except FileNotFoundError:
             return False, "FFprobe not found"
-
-        return True, "Installed"
