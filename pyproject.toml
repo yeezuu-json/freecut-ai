@@ -16,9 +16,11 @@ dependencies = [
     "python-dotenv>=1.2.2",
     "qtawesome>=1.4.2",
     "sentencepiece>=0.2.1",
+    "soundfile>=0.13.1",
     "torch>=2.11.0",
     "torchcodec>=0.11.1",
     "transformers>=5.8.0",
+    "voxcpm>=2.0.3",
     "yt-dlp>=2026.3.17",
 ]
 

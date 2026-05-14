@@ -11,6 +11,7 @@ from typing import Callable
 
 from app.logger import get_logger
 from services.model_manager import ModelManager, ModelCheckResult
+from services.voxcpm_service import VoxCpmService
 
 logger = get_logger(__name__)
 
@@ -131,6 +132,44 @@ class ModelDownloadService:
         logger.info("NLLB model downloaded: %s", model_name)
         return self._manager.check_nllb_model(model_name)
 
+    # download voxcpm model
+    def download_voxcpm(
+        self,
+        on_progress: ProgressCallback | None = None,
+    ) -> ModelCheckResult:
+        self._cancelled.clear()
+        _p = on_progress or (lambda *_: None)
+
+        from services.voxcpm_service import VoxCpmService
+
+        service = VoxCpmService()
+
+        try:
+            _p(5, "Preparing VoxCPM2...")
+            _p(20, "Connecting to Hugging Face...")
+            _p(45, "Downloading/loading VoxCPM2 model...")
+
+            service.load_model(service.cache_dir)
+
+            _p(100, "VoxCPM2 model ready.")
+
+            return ModelCheckResult(
+                provider="local_voxcpm",
+                model="openbmb/VoxCPM2",
+                is_ready=True,
+                message="VoxCPM2 model ready.",
+            )
+
+        except Exception as exc:
+            logger.exception("VoxCPM2 download failed.")
+
+            return ModelCheckResult(
+                provider="local_voxcpm",
+                model="openbmb/VoxCPM2",
+                is_ready=False,
+                message=str(exc),
+            )
+            
     # ── convenience: dispatch by provider ────────────────────────────────────
 
     def download(
@@ -143,4 +182,6 @@ class ModelDownloadService:
             return self.download_whisper(model_name, on_progress)
         if provider == "local_nllb":
             return self.download_nllb(model_name, on_progress)
+        if provider == "local_voxcpm":
+            return self.download_voxcpm(on_progress)
         raise ValueError(f"Unknown local provider: {provider!r}")

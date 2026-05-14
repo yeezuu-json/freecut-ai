@@ -102,6 +102,43 @@ class ModelManager:
             is_ready=False,
             message="Translation model is not downloaded yet.",
         )
+    
+    def check_voxcpm_model(
+        self,
+        model_name: str = "openbmb/VoxCPM2",
+    ) -> ModelCheckResult:
+        """
+        Checks VoxCPM2 model from Hugging Face cache.
+
+        Example:
+        openbmb/VoxCPM2
+        """
+
+        if not self.hf_cache_dir.exists():
+            return ModelCheckResult(
+                provider="local_voxcpm",
+                model=model_name,
+                is_ready=False,
+                message="Hugging Face cache not found.",
+            )
+
+        cache_name = "models--" + model_name.replace("/", "--")
+        cache_path = self.hf_cache_dir / cache_name
+
+        if self.is_valid_hf_model_cache(cache_path):
+            return ModelCheckResult(
+                provider="local_voxcpm",
+                model=model_name,
+                is_ready=True,
+                message="VoxCPM2 model is downloaded.",
+            )
+
+        return ModelCheckResult(
+            provider="local_voxcpm",
+            model=model_name,
+            is_ready=False,
+            message="VoxCPM2 model is not downloaded yet.",
+        )
 
     def is_valid_hf_model_cache(self, cache_path: Path) -> bool:
         """

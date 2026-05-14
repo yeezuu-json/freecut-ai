@@ -69,6 +69,8 @@ class ModelDownloadManager(QObject):
             return self._manager.check_local_whisper_model(model).is_ready
         if provider == "local_nllb":
             return self._manager.check_nllb_model(model).is_ready
+        if provider == "local_voxcpm":
+            return self._manager.check_voxcpm_model(model).is_ready
         return False
 
     def progress(self, provider: str, model: str) -> tuple[int, str] | None:

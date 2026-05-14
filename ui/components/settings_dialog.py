@@ -463,6 +463,10 @@ class SettingsDialog(QDialog):
         file_manager = ModelManager()
         dl_manager   = ModelDownloadManager.instance()
 
+        voxcpm_models = [
+            ("openbmb/VoxCPM2", "local_voxcpm", "VoxCPM2", "~4.9 GB"),
+        ]
+
         whisper_models = [
             ("tiny",      "local",     "Whisper Tiny",       "~75 MB"),
             ("base",      "local",     "Whisper Base",       "~145 MB"),
@@ -485,6 +489,12 @@ class SettingsDialog(QDialog):
         sep2.setStyleSheet("color: #64748b; font-size: 11px; font-weight: 600; margin-top: 4px;")
         vbox.addWidget(sep2)
         for m in nllb_models:
+            vbox.addLayout(self._model_row(file_manager, dl_manager, *m))
+
+        sep3 = QLabel("VoxCPM2  (offline voice clone / TTS)")
+        sep3.setStyleSheet("color: #64748b; font-size: 11px; font-weight: 600; margin-top: 4px;")
+        vbox.addWidget(sep3)
+        for m in voxcpm_models:
             vbox.addLayout(self._model_row(file_manager, dl_manager, *m))
 
         return group

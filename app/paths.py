@@ -15,9 +15,13 @@ LOGS_DIR    = BASE_DIR / "logs"
 LOG_FILE    = LOGS_DIR / "app.log"
 STORAGE_DIR = BASE_DIR / "storage"
 
+VOICE_LIBRARY_DIR = BASE_DIR / "voice_library"
+VOICE_LIBRARY_INDEX = VOICE_LIBRARY_DIR / "index.json"
+
 # ── Persistent per-user cache ─────────────────────────────────────────────────
 # These directories survive app restarts so expensive AI steps can be reused.
 CACHE_DIR = Path.home() / ".freecut-ai" / "cache"
 PROJECTS_CACHE_DIR = CACHE_DIR / "projects"   # timeline JSON files
 TTS_CACHE_DIR      = CACHE_DIR / "tts"        # edge-tts MP3 output
 STEMS_CACHE_DIR    = CACHE_DIR / "stems"      # Demucs WAV stems
+MODEL_CACHE_DIR    = CACHE_DIR / "models"     # Model files

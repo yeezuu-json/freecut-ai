@@ -341,6 +341,11 @@ class ModelDownloadDialog(QDialog):
             return True
         if provider == "local_nllb" and manager.check_nllb_model(model_name).is_ready:
             return True
+        if provider == "local_voxcpm":
+            from services.voxcpm_service import VoxCpmService
+
+            if VoxCpmService().is_model_downloaded():
+                return True
 
         dlg = ModelDownloadDialog(provider, model_name, parent)
         dlg.exec()

@@ -785,3 +785,308 @@ yt_dlp.utils.DownloadCancelled: The download was cancelled
 2026-05-14 00:18:30 | INFO     | my_app.services.video_download_service | video_download_service.py:229 | Download complete: /Users/piseth/Downloads/FreeCutAI/Don't panic your boss just married dad [xa8rmsm].mp4
 2026-05-14 00:21:24 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
 2026-05-14 00:21:24 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-14 00:57:44 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 00:57:44 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 00:57:44 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 00:57:44 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 00:57:45 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 00:57:45 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 00:57:45 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 00:57:45 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 00:57:45 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 00:58:51 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 00:58:51 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 00:58:51 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 00:58:51 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 00:58:51 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 00:58:52 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 00:58:52 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 00:58:52 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 00:58:52 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 01:00:02 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 01:00:02 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 01:00:02 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 01:00:02 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 01:00:02 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 01:00:03 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 01:00:03 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 01:00:03 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 01:00:03 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 01:00:16 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-14 01:00:16 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-14 01:01:01 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 01:01:01 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 01:01:01 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 01:01:01 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 01:01:01 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 01:01:02 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 01:01:02 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 01:01:02 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 01:01:02 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 01:01:09 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-14 01:01:09 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-14 01:04:54 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 01:04:54 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 01:04:54 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 01:04:54 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 01:04:55 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 01:04:55 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 01:04:55 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 01:04:55 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 01:04:55 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 01:06:05 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-14 01:06:05 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-14 01:08:49 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 01:08:49 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 01:08:50 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 01:08:50 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 01:08:50 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 01:08:50 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 01:08:50 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 01:08:50 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 01:08:50 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 01:10:10 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-14 01:10:10 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-14 01:10:19 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 01:10:19 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 01:10:19 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 01:10:19 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 01:10:20 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 01:10:20 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 01:10:20 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 01:10:20 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 01:10:20 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 01:13:44 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-14 01:13:44 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-14 01:13:54 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 01:13:54 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 01:13:54 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 01:13:54 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 01:13:54 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 01:13:55 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 01:13:55 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 01:13:55 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 01:13:55 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 01:16:12 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-14 01:16:12 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-14 01:16:22 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 01:16:22 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 01:16:22 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 01:16:22 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 01:16:22 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 01:16:22 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 01:16:22 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 01:16:22 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 01:16:22 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 01:17:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-14 01:17:18 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-14 01:17:29 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 01:17:29 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 01:17:29 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 01:17:29 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 01:17:29 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 01:17:30 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 01:17:30 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 01:17:30 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 01:17:30 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 01:17:50 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-14 01:17:50 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-14 01:19:15 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 01:19:15 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 01:19:15 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 01:19:15 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 01:19:16 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 01:19:16 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 01:19:16 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 01:19:16 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 01:19:16 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 01:19:44 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-14 01:19:44 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-14 01:25:26 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 01:25:26 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 01:25:26 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 01:25:26 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 01:25:26 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 01:25:27 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 01:25:27 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 01:25:27 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 01:25:27 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 01:25:29 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:201 | VoxCPMDialog initialized.
+2026-05-14 01:25:31 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:505 | Generating voice...
+2026-05-14 01:25:33 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:508 | Playing voice...
+2026-05-14 01:25:34 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:511 | Saving voice...
+2026-05-14 01:25:35 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:514 | Copying prompt...
+2026-05-14 01:25:36 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:394 | Closing dialog...
+2026-05-14 01:25:39 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-14 01:25:39 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-14 01:26:46 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 01:26:46 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 01:26:46 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 01:26:46 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 01:26:46 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 01:26:47 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 01:26:47 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 01:26:47 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 01:26:47 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 01:26:49 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:201 | VoxCPMDialog initialized.
+2026-05-14 01:27:30 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:525 | Playing voice...
+2026-05-14 01:27:31 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:528 | Saving voice...
+2026-05-14 01:27:33 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:531 | Copying prompt...
+2026-05-14 01:33:17 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-14 01:33:17 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-14 01:46:39 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 01:46:39 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 01:46:39 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 01:46:39 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 01:46:39 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 01:46:40 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 01:46:40 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 01:46:40 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 01:46:40 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 01:46:52 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:207 | VoxCPMDialog initialized.
+2026-05-14 01:49:12 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-14 01:49:12 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-14 01:49:59 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 01:49:59 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 01:49:59 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 01:49:59 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 01:49:59 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 01:49:59 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 01:49:59 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 01:49:59 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 01:49:59 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 01:50:01 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:207 | VoxCPMDialog initialized.
+2026-05-14 01:50:38 | INFO     | my_app.services.model_download_manager | model_download_manager.py:118 | Starting background download: local_voxcpm:openbmb/VoxCPM2
+2026-05-14 02:24:09 | INFO     | my_app.services.model_download_manager | model_download_manager.py:138 | Download finished: local_voxcpm/openbmb/VoxCPM2  ready=True
+2026-05-14 03:07:02 | ERROR    | my_app.workers.voxcpm_worker | voxcpm_worker.py:53 | VoxCPM generation failed.
+Traceback (most recent call last):
+  File "/Users/piseth/developer/desktop-app/freecut-ai/services/voxcpm_service.py", line 118, in synthesize
+    audio = model.generate(**generate_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/voxcpm/core.py", line 175, in generate
+    return next_and_close(self._generate(*args, streaming=False, **kwargs))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: VoxCPM._generate() got an unexpected keyword argument 'speed'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/piseth/developer/desktop-app/freecut-ai/workers/voxcpm_worker.py", line 40, in run
+    output = self.service.synthesize(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/services/voxcpm_service.py", line 121, in synthesize
+    audio = model.generate(**generate_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/voxcpm/core.py", line 175, in generate
+    return next_and_close(self._generate(*args, streaming=False, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/voxcpm/model/utils.py", line 19, in next_and_close
+    return next(gen)
+           ^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/voxcpm/core.py", line 235, in _generate
+    raise ValueError("prompt_wav_path and prompt_text must both be provided or both be None")
+ValueError: prompt_wav_path and prompt_text must both be provided or both be None
+2026-05-14 03:07:02 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:590 | VoxCPM progress: 5% - Loading VoxCPM2 model...
+2026-05-14 03:07:02 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:590 | VoxCPM progress: 35% - Generating Khmer voice...
+2026-05-14 11:51:40 | ERROR    | my_app.workers.voxcpm_worker | voxcpm_worker.py:53 | VoxCPM generation failed.
+Traceback (most recent call last):
+  File "/Users/piseth/developer/desktop-app/freecut-ai/services/voxcpm_service.py", line 118, in synthesize
+    audio = model.generate(**generate_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/voxcpm/core.py", line 175, in generate
+    return next_and_close(self._generate(*args, streaming=False, **kwargs))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: VoxCPM._generate() got an unexpected keyword argument 'speed'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/piseth/developer/desktop-app/freecut-ai/workers/voxcpm_worker.py", line 40, in run
+    output = self.service.synthesize(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/services/voxcpm_service.py", line 121, in synthesize
+    audio = model.generate(**generate_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/voxcpm/core.py", line 175, in generate
+    return next_and_close(self._generate(*args, streaming=False, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/voxcpm/model/utils.py", line 19, in next_and_close
+    return next(gen)
+           ^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/voxcpm/core.py", line 235, in _generate
+    raise ValueError("prompt_wav_path and prompt_text must both be provided or both be None")
+ValueError: prompt_wav_path and prompt_text must both be provided or both be None
+2026-05-14 11:51:40 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:590 | VoxCPM progress: 5% - Loading VoxCPM2 model...
+2026-05-14 11:51:40 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:590 | VoxCPM progress: 35% - Generating Khmer voice...
+2026-05-14 12:06:41 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 12:06:41 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 12:06:41 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 12:06:41 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 12:06:41 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 12:06:42 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 12:06:42 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 12:06:42 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 12:06:42 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 12:06:56 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-14 12:06:56 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-14 12:07:13 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 12:07:13 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 12:07:13 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 12:07:13 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 12:07:13 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 12:07:14 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 12:07:14 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 12:07:14 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 12:07:14 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 12:07:16 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:208 | VoxCPMDialog initialized.
+2026-05-14 12:07:41 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:604 | VoxCPM progress: 5% - Loading VoxCPM2 model...
+2026-05-14 12:20:47 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:604 | VoxCPM progress: 35% - Generating voice...
+2026-05-14 12:33:13 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-14 12:33:13 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-14 12:33:50 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 12:33:50 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 12:33:50 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 12:33:50 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 12:33:50 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 12:33:51 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 12:33:51 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 12:33:51 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 12:33:51 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 12:33:53 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:214 | VoxCPMDialog initialized.
+2026-05-14 12:34:20 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1113 | EditorLayout cleanup started.
+2026-05-14 12:34:20 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1160 | EditorLayout cleanup complete.
+2026-05-14 12:35:28 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 12:35:28 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 12:35:28 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 12:35:28 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 12:35:28 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 12:35:29 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 12:35:29 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 12:35:29 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 12:35:29 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 12:35:33 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:214 | VoxCPMDialog initialized.
+2026-05-14 12:37:40 | INFO     | my_app.services.video_download_manager | video_download_manager.py:132 | Enqueued download: fe12901f  url=https://www.tiktok.com/@memime42/video/7370344241853107463?q=tvb&t=1778736987180
+2026-05-14 12:37:40 | INFO     | my_app.services.video_download_manager | video_download_manager.py:204 | Starting download job fe12901f
+2026-05-14 12:37:41 | INFO     | my_app.services.video_download_service | video_download_service.py:229 | Download complete: /Users/piseth/Downloads/FreeCutAI/ទោះស្នេហានេះមិនអាចបន្ត....#tvb #cmbodia #drama #foryou  [7370344241853107463].mp4
+2026-05-14 12:38:05 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:164 | Selected video: /Users/piseth/Downloads/FreeCutAI/ទោះស្នេហានេះមិនអាចបន្ត....#tvb #cmbodia #drama #foryou  [7370344241853107463].mp4
+2026-05-14 12:38:05 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:169 | Current project video: /Users/piseth/Downloads/FreeCutAI/ទោះស្នេហានេះមិនអាចបន្ត....#tvb #cmbodia #drama #foryou  [7370344241853107463].mp4
+2026-05-14 12:38:05 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ទោះស្នេហានេះមិនអាចបន្ត....#tvb_#cmbodia_#drama_#foryou__[7370344241853107463]_f66befb506.timeline.json
+2026-05-14 12:38:05 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:194 | Timeline cache loaded: tracks=5 items=4
+2026-05-14 12:38:09 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:442 | Starting Demucs audio extraction for: /Users/piseth/Downloads/FreeCutAI/ទោះស្នេហានេះមិនអាចបន្ត....#tvb #cmbodia #drama #foryou  [7370344241853107463].mp4
+2026-05-14 12:38:09 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:471 | Extraction 0%: Initialising audio extraction…
+2026-05-14 12:38:13 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:471 | Extraction 5%: Extracting audio from video…
+2026-05-14 12:38:13 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:471 | Extraction 15%: Starting Demucs separation (htdemucs)…
+2026-05-14 12:38:13 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:471 | Extraction 15%: Running Demucs (htdemucs)…
+2026-05-14 12:38:23 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:471 | Extraction 89%: Stems separated, writing files…
+2026-05-14 12:38:24 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:471 | Extraction 94%: Locating output files…
+2026-05-14 12:38:24 | INFO     | my_app.workers.audio_extraction_worker | audio_extraction_worker.py:49 | Audio extraction finished. vocals=/Users/piseth/.freecut-ai/cache/stems/ទោះស្នេហានេះមិនអាចបន្ត....#tvb #cmbodia #drama #foryou  [7370344241853107463]/demucs_out/htdemucs/ទោះស្នេហានេះមិនអាចបន្ត....#tvb #cmbodia #drama #foryou  [7370344241853107463]_raw/vocals.wav background=/Users/piseth/.freecut-ai/cache/stems/ទោះស្នេហានេះមិនអាចបន្ត....#tvb #cmbodia #drama #foryou  [7370344241853107463]/demucs_out/htdemucs/ទោះស្នេហានេះមិនអាចបន្ត....#tvb #cmbodia #drama #foryou  [7370344241853107463]_raw/no_vocals.wav
+2026-05-14 12:38:24 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:471 | Extraction 100%: Audio separation complete
+2026-05-14 12:38:24 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:476 | Extraction finished — vocals=/Users/piseth/.freecut-ai/cache/stems/ទោះស្នេហានេះមិនអាចបន្ត....#tvb #cmbodia #drama #foryou  [7370344241853107463]/demucs_out/htdemucs/ទោះស្នេហានេះមិនអាចបន្ត....#tvb #cmbodia #drama #foryou  [7370344241853107463]_raw/vocals.wav background=/Users/piseth/.freecut-ai/cache/stems/ទោះស្នេហានេះមិនអាចបន្ត....#tvb #cmbodia #drama #foryou  [7370344241853107463]/demucs_out/htdemucs/ទោះស្នេហានេះមិនអាចបន្ត....#tvb #cmbodia #drama #foryou  [7370344241853107463]_raw/no_vocals.wav
+2026-05-14 12:38:24 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/ទោះស្នេហានេះមិនអាចបន្ត....#tvb_#cmbodia_#drama_#foryou__[7370344241853107463]_f66befb506.timeline.json
+2026-05-14 12:38:24 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:418 | Stem players set up for ['track_raw_audio', 'track_background', 'track_vocal']
+2026-05-14 12:38:24 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1109 | Transcription thread cleaned up.
+2026-05-14 12:38:30 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:698 | Exporting MP3: /Users/piseth/Downloads/FreeCutAI/ទោះស្នេហានេះមិនអាចបន្ត....#tvb #cmbodia #drama #foryou  [7370344241853107463].mp4 → /Users/piseth/Downloads/FreeCutAI/ទោះស្នេហានេះមិនអាចបន្ត....#tvb #cmbodia #drama #foryou  [7370344241853107463].mp3
+2026-05-14 12:38:30 | INFO     | my_app.services.audio_service | audio_service.py:269 | FFmpeg: ffmpeg -loglevel error -y -i /Users/piseth/Downloads/FreeCutAI/ទោះស្នេហានេះមិនអាចបន្ត....#tvb #cmbodia #drama #foryou  [7370344241853107463].mp4 -vn -ar 44100 -ac 2 -b:a 320k -f mp3 /Users/piseth/Downloads/FreeCutAI/ទោះស្នេហានេះមិនអាចបន្ត....#tvb #cmbodia #drama #foryou  [7370344241853107463].mp3
+2026-05-14 12:38:30 | INFO     | my_app.workers.video_to_mp3_worker | video_to_mp3_worker.py:36 | MP3 export finished: /Users/piseth/Downloads/FreeCutAI/ទោះស្នេហានេះមិនអាចបន្ត....#tvb #cmbodia #drama #foryou  [7370344241853107463].mp3
+2026-05-14 12:38:30 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1109 | Transcription thread cleaned up.
+2026-05-14 12:39:02 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:500 | VoxCPM progress: 5% - Loading VoxCPM2 model...

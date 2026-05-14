@@ -140,6 +140,22 @@ class TimelineEditor(QWidget):
             button_size="sm",
         )
 
+        # ── VoxCPM ────────────────────────────────────────────────────────
+        voxcpm_label = IconLabel(
+            text="Voice Clone",
+            icon_name="robot",
+            fallback="fa6s.robot",
+            color="#374151",
+        )
+
+        voxcpm_button = AppButton(
+            text="AI Voice",
+            icon=app_icon("robot", fallback="fa6s.robot", color="#ffffff"),
+            variant="purple",
+            button_size="sm",
+            on_click=self._open_voxcpm_dialog,
+        )
+
         # ── Assemble controls ─────────────────────────────────────────────
         controls.addWidget(zoom_label)
         controls.addWidget(self.zoom_slider)
@@ -155,6 +171,11 @@ class TimelineEditor(QWidget):
         controls.addWidget(echo_slider)
         controls.addWidget(self.echo_pct)
         controls.addWidget(echo_all)
+
+        controls.addWidget(divider_1)
+
+        controls.addWidget(voxcpm_label)
+        controls.addWidget(voxcpm_button)
 
         controls.addStretch()
 
@@ -200,3 +221,11 @@ class TimelineEditor(QWidget):
     @staticmethod
     def _combo(items: list[str], width: int) -> AppSelect:
         return AppSelect(items, width=width)
+
+    def _open_voxcpm_dialog(self):
+        from ui.components.voxcpm_dialog import VoxCPMDialog
+        if not hasattr(self, "_voxcpm_dialog") or self._voxcpm_dialog is None:
+            self._voxcpm_dialog = VoxCPMDialog()
+        self._voxcpm_dialog.show()
+        self._voxcpm_dialog.raise_()
+        self._voxcpm_dialog.activateWindow()
