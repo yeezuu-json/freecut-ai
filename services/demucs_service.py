@@ -1,4 +1,3 @@
-import logging
 import subprocess
 import sys
 from dataclasses import dataclass
@@ -6,8 +5,9 @@ from pathlib import Path
 from typing import Callable
 
 from app.paths import STEMS_CACHE_DIR
+from app.logger import get_logger
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 
 @dataclass
@@ -90,6 +90,7 @@ class DemucsService:
     def _extract_audio(self, video_path: Path, output_dir: Path) -> Path:
         """Extract a stereo 44.1 kHz WAV from *video_path*."""
         audio_path = output_dir / f"{video_path.stem}_raw.wav"
+
         subprocess.run(
             [
                 "ffmpeg", "-y", "-i", str(video_path),
@@ -98,10 +99,15 @@ class DemucsService:
             ],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            env=self._clean_env(),
             check=True,
         )
-        return audio_path
 
+        return audio_path
+        
     def _run_demucs(
         self,
         audio_path: Path,
@@ -115,16 +121,30 @@ class DemucsService:
             "--two-stems", "vocals",
             "-n", model,
             "-o", str(output_dir),
-            str(audio_path),
         ]
 
-        logger.info("Demucs command: %s", " ".join(cmd))
+        # On Windows (and Linux), add an explicit --device flag so users with a
+        # CUDA GPU get a significant speed-up.  Skip on macOS because Demucs
+        # already handles MPS detection gracefully without the flag.
+        if sys.platform != "darwin":
+            try:
+                import torch
+                device = "cuda" if torch.cuda.is_available() else "cpu"
+                cmd += ["--device", device]
+                logger.info("Demucs device: %s", device)
+            except Exception:
+                pass  # torch not available; let Demucs pick its own default
 
+        cmd.append(str(audio_path))
+
+        logger.info("Demucs command: %s", " ".join(cmd))
         process = subprocess.Popen(
             cmd,
             stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,   # captured separately so we keep full error text
+            stderr=subprocess.PIPE,
             text=True,
+            encoding="utf-8",
+            errors="replace",
             bufsize=1,
             env=self._clean_env(),
         )
@@ -190,13 +210,20 @@ class DemucsService:
 
     @staticmethod
     def _clean_env() -> dict:
-        """Return an env dict with TQDM_DISABLE=0 so we get parseable output."""
+        """Return an env dict that is safe for Demucs on Windows/macOS."""
         import os
+
         env = os.environ.copy()
-        # Disable tqdm's coloring / special chars so the lines are plain ASCII.
+
+        # Force child Python process to use UTF-8 instead of Windows cp1252.
+        env["PYTHONUTF8"] = "1"
+        env["PYTHONIOENCODING"] = "utf-8"
+
+        # Disable tqdm coloring / special chars.
         env["TQDM_DISABLE"] = "0"
         env["FORCE_COLOR"] = "0"
         env["NO_COLOR"] = "1"
+
         return env
 
     def validate_runtime(self) -> None:
@@ -217,10 +244,6 @@ class DemucsService:
                 "torchaudio",
                 "Torchaudio is missing. Install it with: uv add torchaudio",
             ),
-            (
-                "torchcodec",
-                "TorchCodec is missing. Install it with: uv add torchcodec",
-            ),
         ]
 
         for module_name, error_message in checks:
@@ -234,6 +257,8 @@ class DemucsService:
                 stderr=subprocess.PIPE,
                 text=True,
             )
-
+            
             if result.returncode != 0:
-                raise RuntimeError(error_message)
+                    raise RuntimeError(
+                        f"{error_message}\n\nOriginal error:\n{result.stderr.strip()}"
+                    )

@@ -11,6 +11,9 @@ FONTS_DIR = ASSETS_DIR / "fonts"
 STYLES_DIR = ASSETS_DIR / "styles"
 THEME_FILE = STYLES_DIR / "theme.qss"
 
+# Built-in default voice samples for VoxCPM2 (read-only, shipped with the app).
+DEFAULT_VOICES_DIR = ASSETS_DIR / "voices"
+
 LOGS_DIR    = BASE_DIR / "logs"
 LOG_FILE    = LOGS_DIR / "app.log"
 STORAGE_DIR = BASE_DIR / "storage"

@@ -1,0 +1,37 @@
+[
+  {
+    "id": "builtin_01",
+    "name": "Khmer Male 1",
+    "gender": "male",
+    "wav": "voice_01_male_kh.wav",
+    "transcript": "ខ្ញុំឈ្មោះ ពិសិដ្ឋ ។ ខ្ញុំចូលចិត្តនិយាយភាសាខ្មែរ ។"
+  },
+  {
+    "id": "builtin_02",
+    "name": "Khmer Female 1",
+    "gender": "female",
+    "wav": "voice_02_female_kh.wav",
+    "transcript": "ខ្ញុំឈ្មោះ ស្រីមុំ ។ ខ្ញុំសប្បាយចិត្តណាស់ ។"
+  },
+  {
+    "id": "builtin_03",
+    "name": "Khmer Male 2",
+    "gender": "male",
+    "wav": "voice_03_male_kh.wav",
+    "transcript": "ថ្ងៃនេះអាកាសធាតុល្អ ។ ខ្ញុំចង់ទៅដើរលេង ។"
+  },
+  {
+    "id": "builtin_04",
+    "name": "Khmer Female 2",
+    "gender": "female",
+    "wav": "voice_04_female_kh.wav",
+    "transcript": "ខ្ញុំកំពុងរៀនភាសាខ្មែរ ។ វាពិបាកតែគួរឱ្យចាប់អារម្មណ៍ ។"
+  },
+  {
+    "id": "builtin_05",
+    "name": "Khmer Female 3",
+    "gender": "female",
+    "wav": "voice_05_female_kh.wav",
+    "transcript": "ប្រទេសកម្ពុជាមានប្រវត្តិដ៏យូរអង្វែង ។ ខ្ញុំមានមោទនភាព ។"
+  }
+]

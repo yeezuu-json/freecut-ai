@@ -142,6 +142,7 @@ class EditorLayout(QWidget):
         self.timeline_editor.clip_clicked.connect(self._on_clip_clicked)
         self.timeline_editor.mute_toggled.connect(self._on_track_mute_toggled)
         self.timeline_editor.drag_adjusted.connect(self._on_clip_drag_adjusted)
+        self.timeline_editor.voice_library_requested.connect(self._open_voice_library)
 
     def select_video(self):
         file_path, _ = QFileDialog.getOpenFileName(
@@ -884,6 +885,16 @@ class EditorLayout(QWidget):
             f"Loaded {len(segments)} segments from:\n{srt_path}\n\n"
             "You can now click Generate Voice.",
         )
+
+    # ── Voice Library ─────────────────────────────────────────────────────────
+
+    def _open_voice_library(self) -> None:
+        """Open the VoxCPM2 Voice Clone Studio dialog."""
+        from ui.components.voxcpm_dialog import VoxCPMDialog
+        if not hasattr(self, "_voxcpm_dialog") or self._voxcpm_dialog is None:
+            self._voxcpm_dialog = VoxCPMDialog(parent=self)
+        self._voxcpm_dialog.show()
+        self._voxcpm_dialog.raise_()
 
     # ── Settings ──────────────────────────────────────────────────────────────
 

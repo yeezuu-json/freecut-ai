@@ -8,7 +8,6 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from ui.components.app_select import AppSelect
 from ui.components.app_button import AppButton
 from ui.components.icons import app_icon
 from stores.timeline_store import TimelineStore
@@ -52,6 +51,9 @@ class TimelineEditor(QWidget):
     drag_adjusted  = Signal(str, int)
     mute_toggled   = Signal(str, bool)
 
+    # Emitted when the user clicks the Voice Library / AI Voice button
+    voice_library_requested = Signal()
+
     def __init__(self):
         super().__init__()
 
@@ -94,53 +96,7 @@ class TimelineEditor(QWidget):
 
         self.zoom_slider.valueChanged.connect(self._on_zoom_changed)
 
-        # ── Voice ────────────────────────────────────────────────────────
-        voice_label = IconLabel(
-            text="Voice",
-            icon_name="microphone",
-            fallback="fa6s.microphone",
-            color="#374151",
-        )
-
-        voice_select = self._combo(["Srey Mom", "Male Khmer", "Female Khmer"], 150)
-
-        apply_all = AppButton(
-            text="Apply to All",
-            icon=app_icon("check", fallback="fa6s.check", color="#ffffff"),
-            variant="purple",
-            button_size="sm",
-        )
-
-        divider_1 = self._divider()
-
-        # ── Echo ─────────────────────────────────────────────────────────
-        echo_label = IconLabel(
-            text="Echo",
-            icon_name="volume",
-            fallback="fa6s.volume-high",
-            color="#374151",
-        )
-
-        echo_slider = QSlider(Qt.Orientation.Horizontal)
-        echo_slider.setObjectName("compactSlider")
-        echo_slider.setFixedWidth(120)
-        echo_slider.setRange(0, 100)
-        echo_slider.setValue(50)
-
-        self.echo_pct = QLabel("50%")
-        self.echo_pct.setObjectName("purpleText")
-        self.echo_pct.setFont(get_google_sans(size=10, weight="Bold"))
-        self.echo_pct.setFixedWidth(36)
-        echo_slider.valueChanged.connect(lambda v: self.echo_pct.setText(f"{v}%"))
-
-        echo_all = AppButton(
-            text="Echo All Row",
-            icon=app_icon("sparkles", fallback="fa6s.sparkles", color="#ffffff"),
-            variant="purple",
-            button_size="sm",
-        )
-
-        # ── VoxCPM ────────────────────────────────────────────────────────
+        # ── Voice Library button ──────────────────────────────────────────
         voxcpm_label = IconLabel(
             text="Voice Clone",
             icon_name="robot",
@@ -149,11 +105,11 @@ class TimelineEditor(QWidget):
         )
 
         voxcpm_button = AppButton(
-            text="AI Voice",
-            icon=app_icon("robot", fallback="fa6s.robot", color="#ffffff"),
+            text="Voice Library",
+            icon=app_icon("microphone", fallback="fa6s.microphone", color="#ffffff"),
             variant="purple",
             button_size="sm",
-            on_click=self._open_voxcpm_dialog,
+            on_click=lambda: self.voice_library_requested.emit(),
         )
 
         # ── Assemble controls ─────────────────────────────────────────────
@@ -161,18 +117,7 @@ class TimelineEditor(QWidget):
         controls.addWidget(self.zoom_slider)
         controls.addWidget(self.zoom_value_label)
 
-        controls.addWidget(voice_label)
-        controls.addWidget(voice_select)
-        controls.addWidget(apply_all)
-
-        controls.addWidget(divider_1)
-
-        controls.addWidget(echo_label)
-        controls.addWidget(echo_slider)
-        controls.addWidget(self.echo_pct)
-        controls.addWidget(echo_all)
-
-        controls.addWidget(divider_1)
+        controls.addWidget(self._divider())
 
         controls.addWidget(voxcpm_label)
         controls.addWidget(voxcpm_button)
@@ -217,15 +162,3 @@ class TimelineEditor(QWidget):
         d.setFrameShape(QFrame.Shape.VLine)
         d.setFixedHeight(28)
         return d
-
-    @staticmethod
-    def _combo(items: list[str], width: int) -> AppSelect:
-        return AppSelect(items, width=width)
-
-    def _open_voxcpm_dialog(self):
-        from ui.components.voxcpm_dialog import VoxCPMDialog
-        if not hasattr(self, "_voxcpm_dialog") or self._voxcpm_dialog is None:
-            self._voxcpm_dialog = VoxCPMDialog()
-        self._voxcpm_dialog.show()
-        self._voxcpm_dialog.raise_()
-        self._voxcpm_dialog.activateWindow()

@@ -35,6 +35,40 @@ class VoxCpmService:
         timestamp = int(time.time())
         return self.output_dir / f"{prefix}_{timestamp}.wav"
 
+    @staticmethod
+    def _select_device() -> str:
+        """Return the best available torch device string.
+
+        Priority: CUDA (Windows/Linux NVIDIA) → MPS (macOS Apple Silicon) → CPU.
+        """
+        import sys
+        if torch.cuda.is_available():
+            return "cuda"
+        if sys.platform == "darwin":
+            mps = getattr(torch.backends, "mps", None)
+            if mps and mps.is_available():
+                return "mps"
+        return "cpu"
+
+    @classmethod
+    def get_device_info(cls) -> dict:
+        """Return device diagnostics for the Hardware Check UI panel."""
+        device = cls._select_device()
+        info: dict = {
+            "device": device,
+            "gpu_name": "N/A",
+            "vram_gb": 0.0,
+            "cuda_version": "N/A",
+        }
+        if device == "cuda":
+            idx = torch.cuda.current_device()
+            info["gpu_name"] = torch.cuda.get_device_name(idx)
+            info["vram_gb"] = round(
+                torch.cuda.get_device_properties(idx).total_memory / 1e9, 1
+            )
+            info["cuda_version"] = torch.version.cuda or "unknown"
+        return info
+
     @classmethod
     def load_model(cls, cache_dir: Path | None = None):
         if cls._model is not None:
@@ -47,21 +81,17 @@ class VoxCpmService:
 
         from voxcpm import VoxCPM
 
-        kwargs = {}
-
+        kwargs: dict = {"load_denoiser": False}
         if cache_dir is not None:
             kwargs["cache_dir"] = str(cache_dir)
 
         cls._model = VoxCPM.from_pretrained(cls.MODEL_NAME, **kwargs)
 
-        if torch.cuda.is_available():
-            cls._model = cls._model.cuda()
-
-        elif getattr(torch.backends, "mps", None) and torch.backends.mps.is_available():
-            try:
-                cls._model = cls._model.to("mps")
-            except Exception:
-                pass
+        device = cls._select_device()
+        try:
+            cls._model = cls._model.to(device)
+        except Exception:
+            pass
 
         return cls._model
 
@@ -69,13 +99,19 @@ class VoxCpmService:
         self,
         text: str,
         output_path: str | Path | None = None,
+        # ── Ultimate Cloning params ──────────────────────────────────────────
         prompt_wav: str | Path | None = None,
         prompt_text: str | None = None,
+        # ── Voice Design param ───────────────────────────────────────────────
+        # Natural-language voice description, e.g. "A young man, calm and deep".
+        # When provided it is wrapped in parentheses and prepended to text so
+        # VoxCPM2's Voice Design feature creates that voice without needing a
+        # reference audio clip.
+        voice_design: str | None = None,
         speed_percent: int = 10,
         on_progress: Callable[[int, str], None] | None = None,
     ) -> Path:
         text = text.strip()
-
         if not text:
             raise ValueError("Text is empty.")
 
@@ -93,32 +129,43 @@ class VoxCpmService:
         if on_progress:
             on_progress(35, "Generating voice...")
 
-        generate_kwargs = {
-            "text": text,
+        # Apply Voice Design prefix if provided and no reference audio supplied.
+        # VoxCPM2 format: "(description)text to say"
+        effective_text = text
+        if voice_design and voice_design.strip() and not prompt_wav:
+            effective_text = f"({voice_design.strip()}){text}"
+
+        generate_kwargs: dict = {
+            "text": effective_text,
+            "cfg_value": 2.0,
+            "inference_timesteps": 10,
         }
 
         if prompt_wav and prompt_text:
-            generate_kwargs["prompt_wav_path"] = str(prompt_wav)
-            generate_kwargs["prompt_text"] = prompt_text.strip()
+            # Ultimate Cloning — pass the reference clip to both fields for
+            # maximum timbre / rhythm similarity (per VoxCPM2 README).
+            generate_kwargs["prompt_wav_path"]    = str(prompt_wav)
+            generate_kwargs["prompt_text"]        = prompt_text.strip()
+            generate_kwargs["reference_wav_path"] = str(prompt_wav)
 
         elif prompt_wav and not prompt_text:
-            raise ValueError(
-                "Sample transcript is required when sample audio is provided."
-            )
+            # Controllable Cloning — reference only, no transcript needed.
+            generate_kwargs["reference_wav_path"] = str(prompt_wav)
 
         elif prompt_text and not prompt_wav:
-            raise ValueError(
-                "Sample audio is required when sample transcript is provided."
-            )
+            raise ValueError("Sample audio is required when a transcript is provided.")
 
-        # VoxCPM does not support speed in your installed package.
-        # Keep speed_percent for future post-processing only.
         audio = model.generate(**generate_kwargs)
 
         if on_progress:
             on_progress(80, "Saving audio file...")
 
-        sf.write(str(output_path), audio, 24000)
+        # VoxCPM2 outputs at 48 kHz; use the model's own sample_rate so this
+        # stays correct across model versions.
+        sample_rate = getattr(
+            getattr(model, "tts_model", None), "sample_rate", 48000
+        )
+        sf.write(str(output_path), audio, sample_rate)
 
         if on_progress:
             on_progress(100, "Voice generated successfully.")

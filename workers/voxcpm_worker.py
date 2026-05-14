@@ -23,6 +23,7 @@ class VoxCpmWorker(QObject):
         voice_id: str | None = None,
         prompt_wav: str | Path | None = None,
         prompt_text: str | None = None,
+        voice_design: str | None = None,
     ):
         super().__init__()
 
@@ -32,6 +33,7 @@ class VoxCpmWorker(QObject):
         self.voice_id = voice_id
         self.prompt_wav = prompt_wav
         self.prompt_text = prompt_text
+        self.voice_design = voice_design
         self.service = VoxCpmService()
 
     @Slot()
@@ -51,6 +53,7 @@ class VoxCpmWorker(QObject):
                     output_path=self.output_path,
                     prompt_wav=self.prompt_wav,
                     prompt_text=self.prompt_text,
+                    voice_design=self.voice_design,
                     speed_percent=self.speed_percent,
                     on_progress=self.progress_changed.emit,
                 )

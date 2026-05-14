@@ -3,7 +3,7 @@ from pathlib import Path
 from PySide6.QtCore import QObject, Signal, Slot
 
 from app.logger import get_logger
-from services.edge_tts_service import EdgeTtsService
+from services.tts_dispatcher import TtsDispatcher
 
 
 logger = get_logger(__name__)
@@ -11,6 +11,11 @@ logger = get_logger(__name__)
 
 class TtsWorker(QObject):
     """Generates per-segment TTS audio on a background QThread.
+
+    Routes each segment to Edge TTS or VoxCPM2 based on ``seg.voice`` prefix:
+      "edge:<label>"  → Microsoft Edge TTS
+      "clone:<id>"    → VoxCPM2 voice clone
+      anything else   → Edge TTS (legacy / fallback)
 
     Signals:
         progress_changed(int, str)  – 0-100 percentage + status message.
@@ -38,12 +43,12 @@ class TtsWorker(QObject):
         try:
             self.progress_changed.emit(0, "Starting voice generation…")
 
-            service = EdgeTtsService(
+            dispatcher = TtsDispatcher(
                 output_dir=self.output_dir,
                 progress_callback=lambda p, m: self.progress_changed.emit(int(p), m),
             )
 
-            result = service.synthesize_segments(
+            result = dispatcher.synthesize_segments(
                 segments=self.segments,
                 video_stem=self.video_stem,
             )

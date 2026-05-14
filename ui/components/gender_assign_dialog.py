@@ -2,6 +2,16 @@
 
 Shows a mini NLE-style timeline (vocals track + segment clips) and a table where
 the user can preview each segment and assign Male / Female before TTS.
+
+Workflow
+--------
+1. Auto-assign gender (called by caller before opening the dialog).
+2. User reviews / overrides per-row gender toggles.
+3. Voice Assignment section: pick male voice + female voice from Edge TTS
+   defaults or saved VoxCPM2 clones.
+4. "Assign Voices" — bulk-writes ``seg.voice`` on every segment.
+5. "Generate TTS" — validates assignments, checks VoxCPM model if needed,
+   then accepts the dialog so the caller starts TtsWorker.
 """
 
 from __future__ import annotations
@@ -12,12 +22,14 @@ from PySide6.QtGui import (
 )
 from PySide6.QtMultimedia import QAudioOutput, QMediaPlayer
 from PySide6.QtWidgets import (
-    QAbstractItemView, QDialog, QHBoxLayout, QLabel,
-    QPushButton, QScrollArea, QSizePolicy, QTableWidget,
+    QAbstractItemView, QDialog, QFrame, QHBoxLayout, QLabel,
+    QMessageBox, QPushButton, QScrollArea, QSizePolicy, QTableWidget,
     QTableWidgetItem, QVBoxLayout, QWidget,
 )
 
 from models.subtitle_segment import SubtitleSegment
+from services.voice_library_service import VoiceLibraryService
+from ui.components.app_select import AppSelect
 from utils.font_manager import get_google_sans
 
 
@@ -28,6 +40,10 @@ VOICE_FOR_GENDER: dict[str, str] = {
     "female":  "Sreymom (Female)",
     "unknown": "Default",
 }
+
+# Default Edge TTS options shown in the voice dropdowns.
+_EDGE_MALE_OPTIONS: list[str] = ["edge:Piseth (Male)", "edge:Default"]
+_EDGE_FEMALE_OPTIONS: list[str] = ["edge:Sreymom (Female)", "edge:Default"]
 
 GENDER_COLORS: dict[str, str] = {
     "male":    "#3b82f6",   # blue
@@ -237,7 +253,7 @@ class _MiniTimeline(QWidget):
 # ── main dialog ──────────────────────────────────────────────────────────────
 
 class GenderAssignDialog(QDialog):
-    """Assign Male / Female to each subtitle segment before TTS generation."""
+    """Assign Male / Female to each subtitle segment and pick voices before TTS."""
 
     _COL_IDX    = 0
     _COL_START  = 1
@@ -257,9 +273,8 @@ class GenderAssignDialog(QDialog):
         self._segments    = [self._copy_seg(s) for s in segments]
         self._vocals_path = vocals_path
         self._duration_ms = duration_ms
-        self._current_preview: int = -1   # index of segment being previewed
+        self._current_preview: int = -1
 
-        # Audio player for segment preview.
         self._audio_out = QAudioOutput(self)
         self._player    = QMediaPlayer(self)
         self._player.setAudioOutput(self._audio_out)
@@ -281,9 +296,9 @@ class GenderAssignDialog(QDialog):
     # ── UI construction ───────────────────────────────────────────────────────
 
     def _setup_ui(self) -> None:
-        self.setWindowTitle("Gender Assignment")
+        self.setWindowTitle("Voice Assignment & Gender")
         self.setModal(True)
-        self.resize(1100, 620)
+        self.resize(1100, 720)
         self.setStyleSheet("""
             QDialog { background: #1a1d2e; color: #e2e8f0; }
             QLabel  { color: #e2e8f0; }
@@ -382,9 +397,51 @@ class GenderAssignDialog(QDialog):
 
         root.addWidget(self._table, 1)
 
-        # Bottom buttons.
+        # ── Voice Assignment section ──────────────────────────────────────────
+        sep = QFrame()
+        sep.setFrameShape(QFrame.Shape.HLine)
+        sep.setStyleSheet("QFrame { color: #2a2d45; }")
+        root.addWidget(sep)
+
+        va_title = QLabel("Voice Assignment")
+        va_title.setFont(get_google_sans(size=11, weight="Bold"))
+        va_title.setStyleSheet("color: #94a3b8; margin-top: 2px;")
+        root.addWidget(va_title)
+
+        voice_row = QHBoxLayout()
+        voice_row.setSpacing(16)
+
+        # Male voice dropdown
+        male_lbl = QLabel("♂ Male voice:")
+        male_lbl.setStyleSheet("color: #93c5fd; font-size: 12px; font-weight: 600;")
+        self._male_voice_select = self._build_voice_select("male")
+
+        # Female voice dropdown
+        female_lbl = QLabel("♀ Female voice:")
+        female_lbl.setStyleSheet("color: #f9a8d4; font-size: 12px; font-weight: 600;")
+        self._female_voice_select = self._build_voice_select("female")
+
+        open_lib_btn = QPushButton("Open Voice Library…")
+        open_lib_btn.setStyleSheet(self._btn_style("#4b5563", height=30))
+        open_lib_btn.clicked.connect(self._on_open_voice_library)
+
+        voice_row.addWidget(male_lbl)
+        voice_row.addWidget(self._male_voice_select)
+        voice_row.addSpacing(12)
+        voice_row.addWidget(female_lbl)
+        voice_row.addWidget(self._female_voice_select)
+        voice_row.addSpacing(12)
+        voice_row.addWidget(open_lib_btn)
+        voice_row.addStretch()
+        root.addLayout(voice_row)
+
+        # Assignment status label
+        self._assign_status = QLabel("")
+        self._assign_status.setStyleSheet("color: #22c55e; font-size: 11px;")
+        root.addWidget(self._assign_status)
+
+        # ── Bottom buttons ────────────────────────────────────────────────────
         btn_row = QHBoxLayout()
-        btn_row.addStretch()
 
         assign_male_all = QPushButton("All Male")
         assign_male_all.clicked.connect(lambda: self._assign_all("male"))
@@ -394,19 +451,25 @@ class GenderAssignDialog(QDialog):
         assign_female_all.clicked.connect(lambda: self._assign_all("female"))
         assign_female_all.setStyleSheet(self._btn_style("#ec4899"))
 
+        btn_row.addWidget(assign_male_all)
+        btn_row.addWidget(assign_female_all)
+        btn_row.addStretch()
+
         cancel_btn = QPushButton("Cancel")
         cancel_btn.clicked.connect(self.reject)
         cancel_btn.setStyleSheet(self._btn_style("#374151"))
 
-        apply_btn = QPushButton("Apply & Generate Voice")
-        apply_btn.clicked.connect(self.accept)
-        apply_btn.setStyleSheet(self._btn_style("#22c55e"))
+        self._assign_voices_btn = QPushButton("Assign Voices")
+        self._assign_voices_btn.clicked.connect(self._on_assign_voices)
+        self._assign_voices_btn.setStyleSheet(self._btn_style("#6366f1"))
 
-        btn_row.addWidget(assign_male_all)
-        btn_row.addWidget(assign_female_all)
-        btn_row.addSpacing(20)
+        self._generate_btn = QPushButton("Generate TTS")
+        self._generate_btn.clicked.connect(self._on_generate_tts)
+        self._generate_btn.setStyleSheet(self._btn_style("#22c55e"))
+
         btn_row.addWidget(cancel_btn)
-        btn_row.addWidget(apply_btn)
+        btn_row.addWidget(self._assign_voices_btn)
+        btn_row.addWidget(self._generate_btn)
         root.addLayout(btn_row)
 
     def _fill_row(self, row: int, seg: SubtitleSegment) -> None:
@@ -526,6 +589,103 @@ class GenderAssignDialog(QDialog):
                 btn.setText("⏸ Stop" if playing else "▶ Play")
                 btn.setStyleSheet(self._btn_style("#ef4444" if playing else "#4b5563", height=26))
 
+    # ── voice assignment helpers ──────────────────────────────────────────────
+
+    def _build_voice_select(self, gender: str) -> AppSelect:
+        """Build a dark-styled AppSelect populated with Edge TTS + cloned voices."""
+        options = _EDGE_MALE_OPTIONS[:] if gender == "male" else _EDGE_FEMALE_OPTIONS[:]
+
+        try:
+            entries = VoiceLibraryService().list_entries()
+            for e in entries:
+                if e.gender == gender:
+                    options.append(f"clone:{e.id}:{e.name}")
+        except Exception:
+            pass
+
+        sel = AppSelect(items=options, width=200, height=30)
+        sel.setStyleSheet(self._DARK_SELECT_QSS)
+        original_rebuild = sel.rebuild_menu
+
+        def _patched_rebuild():
+            original_rebuild()
+            sel.menu.setStyleSheet(self._DARK_MENU_QSS)
+
+        sel.rebuild_menu = _patched_rebuild
+        sel.menu.setStyleSheet(self._DARK_MENU_QSS)
+        return sel
+
+    def _voice_value_from_select(self, sel: AppSelect) -> str:
+        """Return the seg.voice string for the currently selected option.
+
+        Options have the form:
+          "edge:Piseth (Male)"       → stored as-is
+          "clone:<id>:<name>"        → stored as "clone:<id>"
+          "edge:Default"             → stored as "Default" (legacy)
+        """
+        val = sel.value or ""
+        if val.startswith("clone:"):
+            parts = val.split(":", 2)
+            return f"clone:{parts[1]}" if len(parts) >= 2 else val
+        return val
+
+    def _on_assign_voices(self) -> None:
+        male_voice   = self._voice_value_from_select(self._male_voice_select)
+        female_voice = self._voice_value_from_select(self._female_voice_select)
+
+        assigned = 0
+        for seg in self._segments:
+            gender = getattr(seg, "gender", "unknown") or "unknown"
+            if gender == "male":
+                seg.voice = male_voice
+                assigned += 1
+            elif gender == "female":
+                seg.voice = female_voice
+                assigned += 1
+            else:
+                seg.voice = "Default"
+
+        self._assign_status.setText(f"✓ {assigned} segment(s) assigned.")
+
+    def _on_generate_tts(self) -> None:
+        # Step 1: ensure voices are assigned.
+        voiced = [s for s in self._segments if getattr(s, "voice", "") not in ("", "Default")]
+        if not voiced:
+            QMessageBox.warning(
+                self,
+                "No Voices Assigned",
+                "Click 'Assign Voices' first to map a voice to each segment.",
+            )
+            return
+
+        # Step 2: if any clone: voices are used, ensure VoxCPM2 model is ready.
+        has_clone = any(
+            (getattr(s, "voice", "") or "").startswith("clone:")
+            for s in self._segments
+        )
+        if has_clone:
+            from ui.components.model_download_dialog import ModelDownloadDialog
+            ok = ModelDownloadDialog.ensure(
+                provider="local_voxcpm",
+                model_name="openbmb/VoxCPM2",
+                parent=self,
+            )
+            if not ok:
+                return
+
+        # Step 3: accept — caller reads get_segments() and starts TtsWorker.
+        self.accept()
+
+    def _on_open_voice_library(self) -> None:
+        from ui.components.voxcpm_dialog import VoxCPMDialog
+        dlg = VoxCPMDialog(parent=self)
+        dlg.exec()
+        # Reload dropdowns in case user saved a new voice clone.
+        self._male_voice_select.deleteLater()
+        self._female_voice_select.deleteLater()
+        self._male_voice_select   = self._build_voice_select("male")
+        self._female_voice_select = self._build_voice_select("female")
+
     def _assign_gender(self, idx: int, gender: str) -> None:
         seg = self._segments[idx]
         seg.gender = gender
@@ -564,6 +724,20 @@ class GenderAssignDialog(QDialog):
         super().reject()
 
     # ── style helpers ─────────────────────────────────────────────────────────
+
+    _DARK_MENU_QSS = """
+        QMenu { background-color: #2d3748; color: #e2e8f0;
+                border: 1px solid #4a5568; border-radius: 6px; padding: 4px 0; }
+        QMenu::item { color: #e2e8f0; padding: 7px 14px; border-radius: 3px; margin: 2px 4px; }
+        QMenu::item:selected { background-color: #3b82f6; color: #fff; }
+        QMenu::item:checked  { background-color: #1e3a5f; color: #93c5fd; font-weight: 600; }
+    """
+    _DARK_SELECT_QSS = """
+        QPushButton#appSelect { background-color: #1e2235; color: #e2e8f0;
+            border: 1px solid #374151; border-radius: 6px;
+            padding: 0 10px; text-align: left; font-size: 12px; }
+        QPushButton#appSelect:hover { border-color: #3b82f6; background-color: #252840; }
+    """
 
     @staticmethod
     def _btn_style(color: str, height: int = 30) -> str:
