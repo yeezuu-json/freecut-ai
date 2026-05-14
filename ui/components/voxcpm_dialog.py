@@ -766,8 +766,8 @@ class VoxCPMDialog(QDialog):
             status = "✓ Good — VoxCPM2 will run on your GPU."
             self._hw_rows["Status"].setStyleSheet("color: #22c55e; font-weight: 700;")
         elif device == "mps":
-            status = "✓ Apple Silicon MPS detected — decent performance expected."
-            self._hw_rows["Status"].setStyleSheet("color: #22c55e; font-weight: 700;")
+            status = "⚠ MPS (Apple Silicon) — torch.compile unsupported, using CPU instead."
+            self._hw_rows["Status"].setStyleSheet("color: #f59e0b; font-weight: 700;")
         else:
             status = "⚠ CPU only — inference will be very slow (5–15 min per segment)."
             self._hw_rows["Status"].setStyleSheet("color: #f59e0b; font-weight: 700;")

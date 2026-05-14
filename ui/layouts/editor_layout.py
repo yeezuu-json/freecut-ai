@@ -1026,7 +1026,11 @@ class EditorLayout(QWidget):
         self.state.set_transcript(segments)
 
         # Show the transcript table immediately.
+        # Must be called AFTER set_transcript because on_transcript_changed
+        # (connected to state.transcript_changed) hides the table; we
+        # re-show it here so the user sees the result straight away.
         self.transcript_table.set_segments(segments)
+        self.transcript_table.show()
 
         # Auto-save SRT next to the source video.
         srt_path = self._auto_save_srt(segments, suffix="")

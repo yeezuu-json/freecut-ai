@@ -45,8 +45,9 @@ if ffprobe_src:
 # Analysis
 # ---------------------------------------------------------------------------
 extra_datas = [
-    (str(ROOT / "assets"), "assets"),
-    (str(ROOT / "config"), "config"),
+    (str(ROOT / "assets"),       "assets"),
+    (str(ROOT / "config"),       "config"),
+    (str(ROOT / "voice_library"), "voice_library"),
 ]
 
 a = Analysis(
@@ -86,6 +87,9 @@ a = Analysis(
         "transformers",
         "accelerate",
         "sentencepiece",
+        # ── VoxCPM2 ───────────────────────────────────────────────────────
+        "voxcpm",
+        "soundfile",
         # ── edge-tts ──────────────────────────────────────────────────────
         "edge_tts",
         "edge_tts.communicate",
@@ -99,6 +103,7 @@ a = Analysis(
         "anyio",
         "anyio._backends._asyncio",
         "pkg_resources",
+        "yt_dlp",
     ],
     # Filter out None entries from datas list
     hookspath=[],
