@@ -583,11 +583,11 @@ class VoxCPMDialog(QDialog):
         card_layout.setSpacing(8)
 
         self._hw_rows: dict[str, QLabel] = {}
-        for key in ("Device", "GPU", "VRAM", "CUDA", "Status"):
+        for key in ("Device", "Physical GPU", "Torch GPU", "VRAM", "CUDA", "Status"):
             row = QHBoxLayout()
             lbl = QLabel(f"{key}:")
             lbl.setObjectName("hwLabel")
-            lbl.setFixedWidth(80)
+            lbl.setFixedWidth(100)
             val = QLabel("—")
             val.setObjectName("hwValue")
             val.setWordWrap(True)
@@ -595,6 +595,23 @@ class VoxCPMDialog(QDialog):
             row.addWidget(lbl)
             row.addWidget(val, 1)
             card_layout.addLayout(row)
+
+        # Warning box (shown only when GPU is detected but torch can't use it)
+        self._hw_warning_box = QFrame()
+        self._hw_warning_box.setStyleSheet(
+            "QFrame { background: #3b1f00; border: 1px solid #d97706; border-radius: 6px; }"
+        )
+        hw_warn_layout = QVBoxLayout(self._hw_warning_box)
+        hw_warn_layout.setContentsMargins(12, 10, 12, 10)
+        self._hw_warning_lbl = QLabel()
+        self._hw_warning_lbl.setWordWrap(True)
+        self._hw_warning_lbl.setStyleSheet("color: #fcd34d; font-size: 12px; border: none;")
+        self._hw_warning_lbl.setTextInteractionFlags(
+            Qt.TextInteractionFlag.TextSelectableByMouse
+        )
+        hw_warn_layout.addWidget(self._hw_warning_lbl)
+        self._hw_warning_box.hide()
+        card_layout.addWidget(self._hw_warning_box)
 
         layout.addWidget(card)
 
@@ -710,26 +727,60 @@ class VoxCPMDialog(QDialog):
             info = VoxCpmService.get_device_info()
         except Exception as exc:
             logger.warning("Could not read device info: %s", exc)
-            info = {"device": "unknown", "gpu_name": "N/A", "vram_gb": 0.0, "cuda_version": "N/A"}
+            info = {
+                "device": "unknown", "gpu_name": "N/A", "vram_gb": 0.0,
+                "cuda_version": "N/A", "torch_cuda_built": False,
+                "nvidia_smi_gpu": "N/A", "warning": "",
+            }
 
         device = info.get("device", "cpu")
         self._hw_rows["Device"].setText(device.upper())
-        self._hw_rows["GPU"].setText(info.get("gpu_name", "N/A"))
+
+        # Physical GPU row — from nvidia-smi if torch can't see it, else from torch
+        smi_gpu = info.get("nvidia_smi_gpu", "N/A")
+        torch_gpu = info.get("gpu_name", "N/A")
+        if device == "cuda":
+            self._hw_rows["Physical GPU"].setText(torch_gpu)
+            self._hw_rows["Torch GPU"].setText(f"{torch_gpu}  ✓ active")
+            self._hw_rows["Torch GPU"].setStyleSheet("color: #22c55e;")
+        else:
+            phys = smi_gpu if smi_gpu != "N/A" else "Not detected"
+            self._hw_rows["Physical GPU"].setText(phys)
+            torch_built = info.get("torch_cuda_built", False)
+            if smi_gpu != "N/A":
+                self._hw_rows["Torch GPU"].setText("✗ GPU found but PyTorch cannot use it")
+                self._hw_rows["Torch GPU"].setStyleSheet("color: #ef4444; font-weight: 700;")
+            else:
+                self._hw_rows["Torch GPU"].setText("No GPU" if not torch_built else "N/A")
+                self._hw_rows["Torch GPU"].setStyleSheet("")
+
         vram = info.get("vram_gb", 0.0)
-        self._hw_rows["VRAM"].setText(f"{vram:.1f} GB" if vram else "N/A")
+        if isinstance(vram, float):
+            self._hw_rows["VRAM"].setText(f"{vram:.1f} GB" if vram else "N/A")
+        else:
+            self._hw_rows["VRAM"].setText(str(vram))
+
         self._hw_rows["CUDA"].setText(info.get("cuda_version", "N/A"))
 
         if device == "cuda":
-            status = "✓ Good — VoxCPM2 should run well on your GPU."
+            status = "✓ Good — VoxCPM2 will run on your GPU."
             self._hw_rows["Status"].setStyleSheet("color: #22c55e; font-weight: 700;")
         elif device == "mps":
             status = "✓ Apple Silicon MPS detected — decent performance expected."
             self._hw_rows["Status"].setStyleSheet("color: #22c55e; font-weight: 700;")
         else:
-            status = "⚠ CPU only — inference will be slow (5–15 min per segment)."
+            status = "⚠ CPU only — inference will be very slow (5–15 min per segment)."
             self._hw_rows["Status"].setStyleSheet("color: #f59e0b; font-weight: 700;")
 
         self._hw_rows["Status"].setText(status)
+
+        # Show/hide the fix warning box
+        warning = info.get("warning", "")
+        if warning:
+            self._hw_warning_lbl.setText(f"⚠  {warning}")
+            self._hw_warning_box.show()
+        else:
+            self._hw_warning_box.hide()
 
     def _on_hw_test_clicked(self) -> None:
         ok = ModelDownloadDialog.ensure(

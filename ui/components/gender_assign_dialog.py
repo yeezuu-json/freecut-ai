@@ -408,7 +408,8 @@ class GenderAssignDialog(QDialog):
         va_title.setStyleSheet("color: #94a3b8; margin-top: 2px;")
         root.addWidget(va_title)
 
-        voice_row = QHBoxLayout()
+        self._voice_row = QHBoxLayout()
+        voice_row = self._voice_row
         voice_row.setSpacing(16)
 
         # Male voice dropdown
@@ -681,10 +682,14 @@ class GenderAssignDialog(QDialog):
         dlg = VoxCPMDialog(parent=self)
         dlg.exec()
         # Reload dropdowns in case user saved a new voice clone.
-        self._male_voice_select.deleteLater()
-        self._female_voice_select.deleteLater()
+        old_male   = self._male_voice_select
+        old_female = self._female_voice_select
         self._male_voice_select   = self._build_voice_select("male")
         self._female_voice_select = self._build_voice_select("female")
+        self._voice_row.replaceWidget(old_male,   self._male_voice_select)
+        self._voice_row.replaceWidget(old_female, self._female_voice_select)
+        old_male.deleteLater()
+        old_female.deleteLater()
 
     def _assign_gender(self, idx: int, gender: str) -> None:
         seg = self._segments[idx]

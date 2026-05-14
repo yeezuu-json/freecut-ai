@@ -9,8 +9,11 @@ from typing import Callable
 import soundfile as sf
 import torch
 
+from app.logger import get_logger
 from app.paths import MODEL_CACHE_DIR, TTS_CACHE_DIR
 from services.voice_library_service import VoiceLibraryService
+
+logger = get_logger(__name__)
 
 
 class VoxCpmService:
@@ -40,26 +43,58 @@ class VoxCpmService:
         """Return the best available torch device string.
 
         Priority: CUDA (Windows/Linux NVIDIA) → MPS (macOS Apple Silicon) → CPU.
+        Logs a warning when a CUDA GPU exists but the torch build lacks CUDA.
         """
         import sys
         if torch.cuda.is_available():
+            name = torch.cuda.get_device_name(0)
+            logger.info("CUDA available — using GPU: %s", name)
             return "cuda"
+
+        # Warn when an NVIDIA driver exists but torch has no CUDA support.
+        if sys.platform != "darwin":
+            try:
+                import subprocess
+                result = subprocess.run(
+                    ["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"],
+                    capture_output=True, text=True, timeout=5
+                )
+                if result.returncode == 0 and result.stdout.strip():
+                    gpu_name = result.stdout.strip().splitlines()[0]
+                    logger.warning(
+                        "NVIDIA GPU detected (%s) but torch.cuda.is_available() is False. "
+                        "Your PyTorch was likely installed without CUDA support. "
+                        "Reinstall with: pip install torch --index-url "
+                        "https://download.pytorch.org/whl/cu121",
+                        gpu_name,
+                    )
+            except Exception:
+                pass
+
         if sys.platform == "darwin":
             mps = getattr(torch.backends, "mps", None)
             if mps and mps.is_available():
+                logger.info("Using Apple MPS device")
                 return "mps"
+
+        logger.warning("Falling back to CPU for VoxCPM2 inference")
         return "cpu"
 
     @classmethod
     def get_device_info(cls) -> dict:
         """Return device diagnostics for the Hardware Check UI panel."""
+        import sys
         device = cls._select_device()
         info: dict = {
             "device": device,
             "gpu_name": "N/A",
             "vram_gb": 0.0,
             "cuda_version": "N/A",
+            "torch_cuda_built": torch.cuda.is_available(),
+            "nvidia_smi_gpu": "N/A",
+            "warning": "",
         }
+
         if device == "cuda":
             idx = torch.cuda.current_device()
             info["gpu_name"] = torch.cuda.get_device_name(idx)
@@ -67,6 +102,30 @@ class VoxCpmService:
                 torch.cuda.get_device_properties(idx).total_memory / 1e9, 1
             )
             info["cuda_version"] = torch.version.cuda or "unknown"
+        else:
+            # Try nvidia-smi to detect the physical GPU even when torch can't use it
+            if sys.platform != "darwin":
+                try:
+                    import subprocess
+                    r = subprocess.run(
+                        ["nvidia-smi", "--query-gpu=name,memory.total",
+                         "--format=csv,noheader"],
+                        capture_output=True, text=True, timeout=5,
+                    )
+                    if r.returncode == 0 and r.stdout.strip():
+                        parts = r.stdout.strip().splitlines()[0].split(",")
+                        info["nvidia_smi_gpu"] = parts[0].strip()
+                        if len(parts) > 1:
+                            info["vram_gb"] = parts[1].strip()
+                        info["warning"] = (
+                            "GPU detected via nvidia-smi but PyTorch cannot use it.\n"
+                            "Fix: reinstall PyTorch with CUDA support —\n"
+                            "  pip install torch --index-url "
+                            "https://download.pytorch.org/whl/cu121"
+                        )
+                except Exception:
+                    pass
+
         return info
 
     @classmethod
@@ -81,18 +140,26 @@ class VoxCpmService:
 
         from voxcpm import VoxCPM
 
+        device = cls._select_device()
+        logger.info("Loading VoxCPM2 model on device: %s", device)
+
         kwargs: dict = {"load_denoiser": False}
         if cache_dir is not None:
             kwargs["cache_dir"] = str(cache_dir)
 
-        cls._model = VoxCPM.from_pretrained(cls.MODEL_NAME, **kwargs)
-
-        device = cls._select_device()
+        # Pass device directly so VoxCPM loads weights onto the correct device
+        # from the start rather than loading to CPU then moving.
         try:
-            cls._model = cls._model.to(device)
-        except Exception:
-            pass
+            cls._model = VoxCPM.from_pretrained(cls.MODEL_NAME, device=device, **kwargs)
+        except TypeError:
+            # Older voxcpm versions may not accept device= — fall back gracefully.
+            cls._model = VoxCPM.from_pretrained(cls.MODEL_NAME, **kwargs)
+            try:
+                cls._model = cls._model.to(device)
+            except Exception as exc:
+                logger.warning("Could not move VoxCPM model to %s: %s", device, exc)
 
+        logger.info("VoxCPM2 model loaded successfully on %s", device)
         return cls._model
 
     def synthesize(
