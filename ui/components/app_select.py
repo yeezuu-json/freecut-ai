@@ -11,7 +11,7 @@ from utils.font_manager import get_google_sans
 class AppSelect(QPushButton):
     def __init__(
         self,
-        items: list[str],
+        items: list,           # list[str] OR list[tuple[str, str]] = (label, value)
         value: Optional[str] = None,
         width: int = 220,
         height: int = 38,
@@ -19,8 +19,14 @@ class AppSelect(QPushButton):
     ):
         super().__init__()
 
-        self.items = items
-        self.value = value or items[0]
+        # Normalise to (label, value) pairs.
+        self._pairs: list[tuple[str, str]] = [
+            (item if isinstance(item, str) else item[0],
+             item if isinstance(item, str) else item[1])
+            for item in items
+        ]
+        self.items = [p[1] for p in self._pairs]   # values list (backward-compat)
+        self.value = value or self.items[0]
         self.on_change = on_change
 
         self.setObjectName("appSelect")
@@ -50,17 +56,24 @@ class AppSelect(QPushButton):
         self.rebuild_menu()
         self.update_text()
 
+    def _label_for(self, value: str) -> str:
+        """Return the display label for a given value."""
+        for label, val in self._pairs:
+            if val == value:
+                return label
+        return value
+
     def update_text(self):
-        self.setText(self.value)
+        self.setText(self._label_for(self.value))
 
     def rebuild_menu(self):
         self.menu.clear()
 
-        for item in self.items:
-            action = QAction(item, self)
+        for label, value in self._pairs:
+            action = QAction(label, self)
             action.setCheckable(True)
-            action.setChecked(item == self.value)
-            action.triggered.connect(lambda checked=False, value=item: self.set_value(value))
+            action.setChecked(value == self.value)
+            action.triggered.connect(lambda checked=False, v=value: self.set_value(v))
             self.menu.addAction(action)
 
     def set_value(self, value: str):

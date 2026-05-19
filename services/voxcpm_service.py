@@ -18,8 +18,22 @@ logger = get_logger(__name__)
 
 class VoxCpmService:
     _model = None
+    _model_device: str | None = None   # tracks which device the cached model is on
 
     MODEL_NAME = "openbmb/VoxCPM2"
+
+    @classmethod
+    def unload_model(cls) -> None:
+        """Release the cached model (e.g. when the app is closing mid-job)."""
+        cls._model = None
+        cls._model_device = None
+        try:
+            import gc
+            gc.collect()
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+        except Exception:
+            pass
 
     def __init__(self):
         self.cache_dir = MODEL_CACHE_DIR / "voxcpm2"
@@ -73,10 +87,11 @@ class VoxCpmService:
                 pass
 
         if sys.platform == "darwin":
-            mps = getattr(torch.backends, "mps", None)
-            if mps and mps.is_available():
-                logger.info("Using Apple MPS device")
-                return "mps"
+            # MPS lacks torch.compile for VoxCPM2 and is much slower / less stable.
+            logger.info(
+                "macOS detected — using CPU for VoxCPM2 (MPS disabled for this model)"
+            )
+            return "cpu"
 
         logger.warning("Falling back to CPU for VoxCPM2 inference")
         return "cpu"
@@ -132,8 +147,20 @@ class VoxCpmService:
 
     @classmethod
     def load_model(cls, cache_dir: Path | None = None):
-        if cls._model is not None:
+        device = cls._select_device()
+
+        # Reload if the cached model is on the wrong device (e.g. a previous
+        # session loaded on MPS, but the policy now forces CPU).
+        if cls._model is not None and cls._model_device == device:
             return cls._model
+
+        if cls._model is not None and cls._model_device != device:
+            logger.info(
+                "Cached model is on %s but target device is %s — reloading.",
+                cls._model_device, device,
+            )
+            cls._model = None
+            cls._model_device = None
 
         if importlib.util.find_spec("voxcpm") is None:
             raise RuntimeError(
@@ -142,7 +169,6 @@ class VoxCpmService:
 
         from voxcpm import VoxCPM
 
-        device = cls._select_device()
         logger.info("Loading VoxCPM2 model on device: %s", device)
 
         kwargs: dict = {"load_denoiser": False}
@@ -161,6 +187,7 @@ class VoxCpmService:
             except Exception as exc:
                 logger.warning("Could not move VoxCPM model to %s: %s", device, exc)
 
+        cls._model_device = device
         logger.info("VoxCPM2 model loaded successfully on %s", device)
         return cls._model
 
@@ -204,15 +231,15 @@ class VoxCpmService:
         if voice_design and voice_design.strip() and not prompt_wav:
             effective_text = f"({voice_design.strip()}){text}"
 
-        generate_kwargs: dict = {
-            "text": effective_text,
-            "cfg_value": 2.0,
-            "inference_timesteps": 10,
-        }
+        # Use the minimal documented API from the VoxCPM2 README.
+        # cfg_value and inference_timesteps are NOT documented parameters —
+        # they caused premature EOS on non-CUDA devices (audio cut off after
+        # just a few tokens) so they are intentionally omitted here.
+        generate_kwargs: dict = {"text": effective_text}
 
         if prompt_wav and prompt_text:
-            # Ultimate Cloning — pass the reference clip to both fields for
-            # maximum timbre / rhythm similarity (per VoxCPM2 README).
+            # Ultimate Cloning: supply both prompt and reference for maximum
+            # timbre / rhythm similarity (per VoxCPM2 README).
             generate_kwargs["prompt_wav_path"]    = str(prompt_wav)
             generate_kwargs["prompt_text"]        = prompt_text.strip()
             generate_kwargs["reference_wav_path"] = str(prompt_wav)

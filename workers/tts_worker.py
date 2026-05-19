@@ -4,6 +4,7 @@ from PySide6.QtCore import QObject, Signal, Slot
 
 from app.logger import get_logger
 from services.tts_dispatcher import TtsDispatcher
+from workers.cancel_token import CancelToken, WorkerCancelled
 
 
 logger = get_logger(__name__)
@@ -37,6 +38,10 @@ class TtsWorker(QObject):
         self.segments = segments
         self.video_stem = video_stem
         self.output_dir = output_dir
+        self._cancel = CancelToken()
+
+    def request_cancel(self) -> None:
+        self._cancel.request_cancel()
 
     @Slot()
     def run(self) -> None:
@@ -46,6 +51,7 @@ class TtsWorker(QObject):
             dispatcher = TtsDispatcher(
                 output_dir=self.output_dir,
                 progress_callback=lambda p, m: self.progress_changed.emit(int(p), m),
+                cancel_token=self._cancel,
             )
 
             result = dispatcher.synthesize_segments(
@@ -60,6 +66,9 @@ class TtsWorker(QObject):
             )
             self.finished.emit(result)
 
+        except WorkerCancelled:
+            logger.info("TTS cancelled by user.")
+            self.failed.emit("Voice generation cancelled.")
         except Exception as exc:
             logger.exception("TTS failed.")
             self.failed.emit(str(exc))

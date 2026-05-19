@@ -16,7 +16,9 @@ Workflow
 
 from __future__ import annotations
 
-from PySide6.QtCore import Qt, QUrl, Signal
+import os
+
+from PySide6.QtCore import Qt, QThread, QUrl, Signal
 from PySide6.QtGui import (
     QColor, QFont, QLinearGradient, QPainter, QPen,
 )
@@ -27,7 +29,11 @@ from PySide6.QtWidgets import (
     QTableWidgetItem, QVBoxLayout, QWidget,
 )
 
+from app.config import AppConfig, load_config
+from app.logger import get_logger
 from models.subtitle_segment import SubtitleSegment
+
+logger = get_logger(__name__)
 from services.voice_library_service import VoiceLibraryService
 from ui.components.app_select import AppSelect
 from utils.font_manager import get_google_sans
@@ -50,6 +56,20 @@ GENDER_COLORS: dict[str, str] = {
     "female":  "#ec4899",   # pink
     "unknown": "#6b7280",   # grey
 }
+
+# Dialogue language hint for AI gender detection (not the same as Whisper code).
+_DIALOGUE_LANG_OPTIONS: list[str] = [
+    "Auto (any language)",
+    "Chinese",
+    "English",
+    "Khmer",
+    "Japanese",
+    "Korean",
+    "Spanish",
+    "French",
+    "Thai",
+    "Vietnamese",
+]
 
 
 def _srt_to_ms(t: str) -> int:
@@ -267,13 +287,18 @@ class GenderAssignDialog(QDialog):
         segments: list[SubtitleSegment],
         vocals_path: str | None,
         duration_ms: int,
+        config: AppConfig | None = None,
         parent: QWidget | None = None,
     ) -> None:
         super().__init__(parent)
+        self._config      = config
         self._segments    = [self._copy_seg(s) for s in segments]
         self._vocals_path = vocals_path
         self._duration_ms = duration_ms
         self._current_preview: int = -1
+        self._gender_thread: QThread | None = None
+        self._gender_worker = None
+        self._gender_btns: dict[int, tuple[QPushButton, QPushButton]] = {}
 
         self._audio_out = QAudioOutput(self)
         self._player    = QMediaPlayer(self)
@@ -287,11 +312,38 @@ class GenderAssignDialog(QDialog):
             self._player.setSource(QUrl.fromLocalFile(vocals_path))
 
         self._setup_ui()
+        self._update_auto_detect_button_state()
 
     # ── public ───────────────────────────────────────────────────────────────
 
+    def showEvent(self, event) -> None:  # noqa: N802
+        """Refresh API-key state when the dialog is shown (e.g. after Settings)."""
+        super().showEvent(event)
+        self._update_auto_detect_button_state()
+
     def get_segments(self) -> list[SubtitleSegment]:
         return self._segments
+
+    def _effective_gemini_key(self) -> str:
+        """Resolve Gemini key from dialog config, .env, or freshly loaded app.json."""
+        if self._config and self._config.gemini_api_key.strip():
+            return self._config.gemini_api_key.strip()
+        env_key = os.getenv("GEMINI_API_KEY", "").strip()
+        if env_key:
+            return env_key
+        try:
+            return load_config().gemini_api_key.strip()
+        except Exception:
+            return ""
+
+    def _update_auto_detect_button_state(self) -> None:
+        has_key = bool(self._effective_gemini_key())
+        busy = self._gender_thread is not None and self._gender_thread.isRunning()
+        self._auto_detect_btn.setEnabled(has_key and not busy)
+        if not has_key:
+            self._auto_detect_btn.setToolTip(
+                "Add a Gemini API key in Settings (or GEMINI_API_KEY in .env), then reopen this dialog."
+            )
 
     # ── UI construction ───────────────────────────────────────────────────────
 
@@ -441,8 +493,36 @@ class GenderAssignDialog(QDialog):
         self._assign_status.setStyleSheet("color: #22c55e; font-size: 11px;")
         root.addWidget(self._assign_status)
 
+        # ── AI gender detection options ───────────────────────────────────────
+        ai_row = QHBoxLayout()
+        ai_row.setSpacing(10)
+        ai_lang_lbl = QLabel("Dialogue language (for AI):")
+        ai_lang_lbl.setStyleSheet("color: #94a3b8; font-size: 11px;")
+        self._dialogue_lang_select = AppSelect(
+            items=_DIALOGUE_LANG_OPTIONS,
+            value=self._default_dialogue_language(),
+            width=180,
+            height=28,
+        )
+        self._dialogue_lang_select.setStyleSheet(self._DARK_SELECT_QSS)
+        ai_hint = QLabel("Gender is still assigned by you — AI only suggests.")
+        ai_hint.setStyleSheet("color: #64748b; font-size: 10px;")
+        ai_row.addWidget(ai_lang_lbl)
+        ai_row.addWidget(self._dialogue_lang_select)
+        ai_row.addWidget(ai_hint, 1)
+        root.addLayout(ai_row)
+
         # ── Bottom buttons ────────────────────────────────────────────────────
         btn_row = QHBoxLayout()
+
+        self._auto_detect_btn = QPushButton("Auto-Detect (AI)")
+        self._auto_detect_btn.setToolTip(
+            "Use Google Gemini to guess speaker gender from dialogue text.\n"
+            "Pick dialogue language above (or Auto for mixed EN/ZH/etc.).\n"
+            "Review results before generating TTS — AI can be wrong."
+        )
+        self._auto_detect_btn.clicked.connect(self._on_auto_detect_gender)
+        self._auto_detect_btn.setStyleSheet(self._btn_style("#7c3aed"))
 
         assign_male_all = QPushButton("All Male")
         assign_male_all.clicked.connect(lambda: self._assign_all("male"))
@@ -452,6 +532,7 @@ class GenderAssignDialog(QDialog):
         assign_female_all.clicked.connect(lambda: self._assign_all("female"))
         assign_female_all.setStyleSheet(self._btn_style("#ec4899"))
 
+        btn_row.addWidget(self._auto_detect_btn)
         btn_row.addWidget(assign_male_all)
         btn_row.addWidget(assign_female_all)
         btn_row.addStretch()
@@ -512,6 +593,7 @@ class GenderAssignDialog(QDialog):
 
         gl.addWidget(male_btn)
         gl.addWidget(female_btn)
+        self._gender_btns[row] = (male_btn, female_btn)
         self._table.setCellWidget(row, self._COL_GENDER, gender_widget)
 
         # Play button.
@@ -590,17 +672,47 @@ class GenderAssignDialog(QDialog):
                 btn.setText("⏸ Stop" if playing else "▶ Play")
                 btn.setStyleSheet(self._btn_style("#ef4444" if playing else "#4b5563", height=26))
 
+    def _default_dialogue_language(self) -> str:
+        """Map Settings → translation source language to dialog options."""
+        if not self._config:
+            return "Auto (any language)"
+        src = (self._config.translation_source_language or "").strip()
+        if not src:
+            return "Auto (any language)"
+        for opt in _DIALOGUE_LANG_OPTIONS:
+            if opt.lower() == src.lower():
+                return opt
+        # Fuzzy: "Chinese" in settings, "zh" in transcription, etc.
+        aliases = {
+            "zh": "Chinese", "cn": "Chinese", "chinese": "Chinese",
+            "en": "English", "english": "English",
+            "km": "Khmer", "khmer": "Khmer",
+            "ja": "Japanese", "jp": "Japanese",
+            "ko": "Korean", "kr": "Korean",
+        }
+        return aliases.get(src.lower(), src if src in _DIALOGUE_LANG_OPTIONS else "Auto (any language)")
+
     # ── voice assignment helpers ──────────────────────────────────────────────
 
     def _build_voice_select(self, gender: str) -> AppSelect:
-        """Build a dark-styled AppSelect populated with Edge TTS + cloned voices."""
-        options = _EDGE_MALE_OPTIONS[:] if gender == "male" else _EDGE_FEMALE_OPTIONS[:]
+        """Build a dark-styled AppSelect populated with Edge TTS + all cloned voices.
+
+        Items are (display_label, stored_value) tuples so the dropdown shows a
+        clean name while the internal value keeps the full prefix for routing.
+        All saved voice library entries are shown in both male and female dropdowns
+        so any cloned voice can be freely assigned to either gender role.
+        """
+        # Edge TTS options: label == value (legacy format, no tuple needed)
+        raw_edge = _EDGE_MALE_OPTIONS[:] if gender == "male" else _EDGE_FEMALE_OPTIONS[:]
+        options: list = list(raw_edge)   # plain strings → label == value
 
         try:
             entries = VoiceLibraryService().list_entries()
             for e in entries:
-                if e.gender == gender:
-                    options.append(f"clone:{e.id}:{e.name}")
+                icon = "♂" if e.gender == "male" else ("♀" if e.gender == "female" else "🎙")
+                label = f"{icon} {e.name}"          # "♂ Man 01"
+                value = f"clone:{e.id}"             # "clone:e5b82898ce54"
+                options.append((label, value))       # (display, stored-value) tuple
         except Exception:
             pass
 
@@ -705,27 +817,147 @@ class GenderAssignDialog(QDialog):
         for i in range(len(self._segments)):
             self._assign_gender(i, gender)
 
+    def _on_auto_detect_gender(self) -> None:
+        api_key = self._effective_gemini_key()
+        if not api_key:
+            QMessageBox.warning(
+                self,
+                "Gemini API Key Required",
+                "Add your Gemini API key in Settings (or GEMINI_API_KEY in .env), "
+                "then try again.",
+            )
+            return
+
+        if not self._config:
+            QMessageBox.warning(self, "Configuration Error", "App configuration is missing.")
+            return
+
+        if self._gender_thread and self._gender_thread.isRunning():
+            return
+
+        texts = [
+            (s.original_text or s.khmer_text or "").strip()
+            for s in self._segments
+        ]
+        if not any(texts):
+            QMessageBox.warning(
+                self,
+                "No Dialogue Text",
+                "Segments have no transcript text to analyze.\n"
+                "Run transcribe / translate first.",
+            )
+            return
+
+        logger.info("Starting AI gender detection for %d segments.", len(self._segments))
+
+        self._set_busy(True)
+        self._assign_status.setText("Detecting speaker gender with AI…")
+        self._assign_status.setStyleSheet("color: #a78bfa; font-size: 11px;")
+
+        from workers.gender_detection_worker import GenderDetectionWorker
+
+        thread = QThread()
+        worker = GenderDetectionWorker(
+            self._config,
+            self._segments,
+            dialogue_language=self._dialogue_lang_select.value,
+            api_key=api_key,
+        )
+        worker.moveToThread(thread)
+        thread.worker = worker
+        self._gender_thread = thread
+        self._gender_worker = worker
+
+        thread.started.connect(
+            worker.run,
+            Qt.ConnectionType.QueuedConnection,
+        )
+        worker.progress_changed.connect(
+            self._on_gender_detect_progress,
+            Qt.ConnectionType.QueuedConnection,
+        )
+        worker.finished.connect(
+            self._on_gender_detect_finished,
+            Qt.ConnectionType.QueuedConnection,
+        )
+        worker.failed.connect(
+            self._on_gender_detect_failed,
+            Qt.ConnectionType.QueuedConnection,
+        )
+        worker.finished.connect(thread.quit)
+        worker.failed.connect(thread.quit)
+        thread.finished.connect(self._on_gender_thread_finished)
+
+        thread.start()
+
+    def _on_gender_detect_progress(self, pct: int, msg: str) -> None:
+        self._assign_status.setText(f"{msg} ({pct}%)")
+
+    def _on_gender_detect_finished(self, _segments: object) -> None:
+        self._set_busy(False)
+        for i in range(len(self._segments)):
+            self._refresh_gender_buttons(i)
+        self._timeline.update()
+
+        male = sum(1 for s in self._segments if s.gender == "male")
+        female = sum(1 for s in self._segments if s.gender == "female")
+        unknown = len(self._segments) - male - female
+        self._assign_status.setText(
+            f"AI assigned: {male} male, {female} female, {unknown} unknown — review and adjust."
+        )
+        self._assign_status.setStyleSheet("color: #22c55e; font-size: 11px;")
+
+    def _on_gender_detect_failed(self, message: str) -> None:
+        self._set_busy(False)
+        self._assign_status.setText("")
+        QMessageBox.critical(self, "Gender Detection Failed", message)
+
+    def _set_busy(self, busy: bool) -> None:
+        self._update_auto_detect_button_state()
+        self._assign_voices_btn.setEnabled(not busy)
+        self._generate_btn.setEnabled(not busy)
+
+    def _on_gender_thread_finished(self) -> None:
+        if self._gender_worker:
+            try:
+                self._gender_worker.progress_changed.disconnect()
+                self._gender_worker.finished.disconnect()
+                self._gender_worker.failed.disconnect()
+            except Exception:
+                pass
+        self._gender_worker = None
+        self._gender_thread = None
+        self._update_auto_detect_button_state()
+
     def _refresh_gender_buttons(self, idx: int) -> None:
         gender = self._segments[idx].gender or "unknown"
-        w = self._table.cellWidget(idx, self._COL_GENDER)
-        if not w:
+        pair = self._gender_btns.get(idx)
+        if not pair:
             return
-        buttons = w.findChildren(QPushButton)
-        if len(buttons) >= 2:
-            male_btn, female_btn = buttons[0], buttons[1]
-            male_btn.setChecked(gender == "male")
-            female_btn.setChecked(gender == "female")
-            male_btn.setStyleSheet(self._toggle_style("#3b82f6",   checked=(gender == "male")))
-            female_btn.setStyleSheet(self._toggle_style("#ec4899", checked=(gender == "female")))
+        male_btn, female_btn = pair
+        male_btn.blockSignals(True)
+        female_btn.blockSignals(True)
+        male_btn.setChecked(gender == "male")
+        female_btn.setChecked(gender == "female")
+        male_btn.setStyleSheet(self._toggle_style("#3b82f6",   checked=(gender == "male")))
+        female_btn.setStyleSheet(self._toggle_style("#ec4899", checked=(gender == "female")))
+        male_btn.blockSignals(False)
+        female_btn.blockSignals(False)
 
     # ── closeEvent ────────────────────────────────────────────────────────────
 
     def closeEvent(self, event) -> None:
         self._player.stop()
+        if self._gender_thread and self._gender_thread.isRunning():
+            self._gender_thread.quit()
+            self._gender_thread.wait(3000)
         super().closeEvent(event)
 
     def reject(self) -> None:
         self._player.stop()
+        if self._gender_thread and self._gender_thread.isRunning():
+            self._gender_thread.quit()
+            self._gender_thread.wait(3000)
         super().reject()
 
     # ── style helpers ─────────────────────────────────────────────────────────

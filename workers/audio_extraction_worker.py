@@ -55,7 +55,20 @@ class AudioExtractionWorker(QObject):
 
         except Exception as exc:
             logger.exception("Audio extraction failed.")
-            self.failed.emit(str(exc))
+
+            message = str(exc)
+            if "torchcodec" in message.lower() or "libtorchcodec" in message.lower():
+                message = (
+                    "Demucs failed because TorchCodec/PyTorch DLLs are broken on Windows.\n\n"
+                    "Run:\n"
+                    "uv pip uninstall torchcodec\n"
+                    "uv remove torch torchaudio torchvision demucs\n"
+                    "uv pip install demucs==4.0.1\n"
+                    "uv pip install torch==2.5.1 torchaudio==2.5.1 torchvision==0.20.1 "
+                    "--index-url https://download.pytorch.org/whl/cpu"
+                )
+
+            self.failed.emit(message)
 
     def _on_progress(self, pct: int, msg: str) -> None:
         self.progress_changed.emit(int(pct), msg)

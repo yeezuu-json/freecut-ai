@@ -9,9 +9,12 @@ Voice prefix conventions
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Callable
+from typing import Callable, TYPE_CHECKING
 
 from app.logger import get_logger
+
+if TYPE_CHECKING:
+    from workers.cancel_token import CancelToken
 
 logger = get_logger(__name__)
 
@@ -25,9 +28,15 @@ class TtsDispatcher:
         self,
         output_dir: Path | None = None,
         progress_callback: ProgressCallback | None = None,
+        cancel_token: "CancelToken | None" = None,
     ) -> None:
         self.output_dir = output_dir
         self.progress_callback = progress_callback
+        self._cancel = cancel_token
+
+    def _check_cancel(self) -> None:
+        if self._cancel:
+            self._cancel.check()
 
     # ── public ───────────────────────────────────────────────────────────────
 
@@ -49,6 +58,8 @@ class TtsDispatcher:
         total = len(segments)
         results: dict = {}
 
+        self._check_cancel()
+
         # ── Edge TTS ─────────────────────────────────────────────────────────
         if edge_segs:
             from services.edge_tts_service import EdgeTtsService
@@ -65,16 +76,26 @@ class TtsDispatcher:
             )
 
             # Strip the "edge:" prefix so EdgeTtsService can look up the label
-            # in its KHMER_VOICES dict.
+            # in its KHMER_VOICES dict.  Use a shallow copy per segment so we
+            # never mutate the original segment objects (avoids corrupting the
+            # results dict when segments are referenced from multiple lists).
+            import copy
+            edge_segs_copy = []
             for seg in edge_segs:
-                v = getattr(seg, "voice", "") or ""
+                seg_copy = copy.copy(seg)
+                v = getattr(seg_copy, "voice", "") or ""
                 if v.startswith("edge:"):
-                    seg.voice = v[len("edge:"):]
+                    seg_copy.voice = v[len("edge:"):]
+                edge_segs_copy.append(seg_copy)
 
-            for seg in service.synthesize_segments(edge_segs, video_stem):
+            for seg in service.synthesize_segments(
+                edge_segs_copy, video_stem, should_cancel=self._is_cancelled
+            ):
+                self._check_cancel()
                 results[seg.index] = seg
 
         # ── VoxCPM2 clone ────────────────────────────────────────────────────
+        self._check_cancel()
         if clone_segs:
             from services.voxcpm_service import VoxCpmService
 
@@ -83,6 +104,7 @@ class TtsDispatcher:
             edge_done_pct = int(len(edge_segs) / total * 100)
 
             for ci, seg in enumerate(clone_segs):
+                self._check_cancel()
                 voice_id = (getattr(seg, "voice", "") or "").removeprefix("clone:")
                 text = (
                     getattr(seg, "khmer_text", "") or
@@ -113,7 +135,10 @@ class TtsDispatcher:
                     )
                     seg.audio_path = str(out)
                     logger.debug("VoxCPM ok: seg=%d path=%s", seg.index, out)
-                except Exception:
+                except Exception as exc:
+                    from workers.cancel_token import WorkerCancelled
+                    if isinstance(exc, WorkerCancelled):
+                        raise
                     logger.exception("VoxCPM failed for segment %d.", seg.index)
 
                 results[seg.index] = seg
@@ -123,3 +148,6 @@ class TtsDispatcher:
 
         # Return in original order; fall back to unmodified seg for any missed.
         return [results.get(seg.index, seg) for seg in segments]
+
+    def _is_cancelled(self) -> bool:
+        return bool(self._cancel and self._cancel.is_cancelled)

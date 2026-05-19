@@ -1,7 +1,8 @@
+import time
 from pathlib import Path
 
 from PySide6.QtWidgets import QFileDialog, QFrame, QHBoxLayout, QVBoxLayout, QWidget, QMessageBox
-from PySide6.QtCore import QThread, QUrl, Slot
+from PySide6.QtCore import QCoreApplication, QThread, QUrl, Slot
 from PySide6.QtMultimedia import QAudioOutput, QMediaPlayer
 
 ## Import workers
@@ -40,7 +41,8 @@ class EditorLayout(QWidget):
         self.state = AppState()
         self.config = config
 
-        self.running_threads = []
+        self.running_threads: list[QThread] = []
+        self._workers: list = []
 
         self.setObjectName("editorRoot")
 
@@ -443,12 +445,13 @@ class EditorLayout(QWidget):
         logger.info("Starting Demucs audio extraction for: %s", video_path)
         self.status_bar.set_progress(0, "Starting audio extraction…")
 
-        thread = QThread(self)
+        thread = QThread()
         worker = AudioExtractionWorker(video_path=video_path)
 
         worker.moveToThread(thread)
         thread.worker = worker
         self.running_threads.append(thread)
+        self._workers.append(worker)
 
         thread.started.connect(worker.run)
 
@@ -459,11 +462,7 @@ class EditorLayout(QWidget):
         worker.finished.connect(thread.quit)
         worker.failed.connect(thread.quit)
 
-        worker.finished.connect(worker.deleteLater)
-        worker.failed.connect(worker.deleteLater)
-
-        thread.finished.connect(lambda: self.cleanup_thread(thread))
-        thread.finished.connect(thread.deleteLater)
+        thread.finished.connect(lambda t=thread: self._on_worker_thread_finished(t))
 
         thread.start()
 
@@ -550,6 +549,7 @@ class EditorLayout(QWidget):
             segments=list(segments),
             vocals_path=vocals_path,
             duration_ms=self.current_timeline_cache.duration_ms if self.current_timeline_cache else 0,
+            config=self.config,
             parent=self,
         )
         if dialog.exec() != GenderAssignDialog.DialogCode.Accepted:
@@ -567,7 +567,7 @@ class EditorLayout(QWidget):
         tts_dir = TTS_CACHE_DIR / video_path.stem
         tts_dir.mkdir(parents=True, exist_ok=True)
 
-        thread = QThread(self)
+        thread = QThread()
         worker = TtsWorker(
             segments=list(segments),
             video_stem=video_path.stem,
@@ -577,6 +577,7 @@ class EditorLayout(QWidget):
         worker.moveToThread(thread)
         thread.worker = worker
         self.running_threads.append(thread)
+        self._workers.append(worker)
 
         thread.started.connect(worker.run)
 
@@ -589,11 +590,7 @@ class EditorLayout(QWidget):
         worker.finished.connect(thread.quit)
         worker.failed.connect(thread.quit)
 
-        worker.finished.connect(worker.deleteLater)
-        worker.failed.connect(worker.deleteLater)
-
-        thread.finished.connect(lambda: self.cleanup_thread(thread))
-        thread.finished.connect(thread.deleteLater)
+        thread.finished.connect(lambda t=thread: self._on_worker_thread_finished(t))
 
         thread.start()
 
@@ -699,12 +696,13 @@ class EditorLayout(QWidget):
         logger.info("Exporting MP3: %s → %s", video_path, output_path)
         self.status_bar.set_progress(0, "Starting MP3 export…")
 
-        thread = QThread(self)
+        thread = QThread()
         worker = VideoToMp3Worker(video_path=video_path, output_path=output_path)
 
         worker.moveToThread(thread)
         thread.worker = worker
         self.running_threads.append(thread)
+        self._workers.append(worker)
 
         thread.started.connect(worker.run)
 
@@ -717,11 +715,7 @@ class EditorLayout(QWidget):
         worker.finished.connect(thread.quit)
         worker.failed.connect(thread.quit)
 
-        worker.finished.connect(worker.deleteLater)
-        worker.failed.connect(worker.deleteLater)
-
-        thread.finished.connect(lambda: self.cleanup_thread(thread))
-        thread.finished.connect(thread.deleteLater)
+        thread.finished.connect(lambda t=thread: self._on_worker_thread_finished(t))
 
         thread.start()
 
@@ -795,7 +789,7 @@ class EditorLayout(QWidget):
 
         self.status_bar.set_progress(0, "Starting dubbed video export…")
 
-        thread = QThread(self)
+        thread = QThread()
         worker = ExportWorker(
             video_path=video_path,
             segments=dubbed,
@@ -806,6 +800,7 @@ class EditorLayout(QWidget):
         worker.moveToThread(thread)
         thread.worker = worker
         self.running_threads.append(thread)
+        self._workers.append(worker)
 
         thread.started.connect(worker.run)
         worker.progress_changed.connect(
@@ -816,11 +811,7 @@ class EditorLayout(QWidget):
 
         worker.finished.connect(thread.quit)
         worker.failed.connect(thread.quit)
-        worker.finished.connect(worker.deleteLater)
-        worker.failed.connect(worker.deleteLater)
-
-        thread.finished.connect(lambda: self.cleanup_thread(thread))
-        thread.finished.connect(thread.deleteLater)
+        thread.finished.connect(lambda t=thread: self._on_worker_thread_finished(t))
 
         thread.start()
 
@@ -981,7 +972,7 @@ class EditorLayout(QWidget):
 
         self.status_bar.set_progress(0, "Preparing transcription...")
 
-        thread = QThread(self)
+        thread = QThread()
         worker = TranscriptionWorker(
             config=self.config,
             video_path=video_path,
@@ -995,6 +986,7 @@ class EditorLayout(QWidget):
 
         thread.worker = worker
         self.running_threads.append(thread)
+        self._workers.append(worker)
 
         thread.started.connect(worker.run)
 
@@ -1005,11 +997,7 @@ class EditorLayout(QWidget):
         worker.finished.connect(thread.quit)
         worker.failed.connect(thread.quit)
 
-        worker.finished.connect(worker.deleteLater)
-        worker.failed.connect(worker.deleteLater)
-
-        thread.finished.connect(lambda: self.cleanup_thread(thread))
-        thread.finished.connect(thread.deleteLater)
+        thread.finished.connect(lambda t=thread: self._on_worker_thread_finished(t))
 
         thread.start()
 
@@ -1117,15 +1105,73 @@ class EditorLayout(QWidget):
             message,
         )
 
-    def cleanup_thread(self, thread: QThread):
+    def cleanup_thread(self, thread: QThread) -> None:
         if thread in self.running_threads:
             self.running_threads.remove(thread)
 
-        logger.info("Transcription thread cleaned up.")
+    def _on_worker_thread_finished(self, thread: QThread) -> None:
+        """Thread event loop ended — safe to delete worker/thread objects."""
+        worker = getattr(thread, "worker", None)
+        if worker and worker in self._workers:
+            self._workers.remove(worker)
+        self.cleanup_thread(thread)
+        try:
+            thread.deleteLater()
+        except Exception:
+            pass
+        if worker:
+            try:
+                worker.deleteLater()
+            except Exception:
+                pass
+
+    def _stop_all_workers(self, wait_ms: int = 15_000) -> None:
+        """Cooperatively stop background jobs; avoid QThread destroyed while running."""
+        for worker in list(self._workers):
+            cancel = getattr(worker, "request_cancel", None)
+            if callable(cancel):
+                try:
+                    cancel()
+                except Exception:
+                    pass
+
+        try:
+            from services.voxcpm_service import VoxCpmService
+            VoxCpmService.unload_model()
+        except Exception:
+            pass
+
+        for thread in list(self.running_threads):
+            worker = getattr(thread, "worker", None)
+            if worker:
+                try:
+                    worker.disconnect()
+                except Exception:
+                    pass
+            thread.quit()
+
+        deadline = time.monotonic() + wait_ms / 1000.0
+        while self.running_threads and time.monotonic() < deadline:
+            for thread in list(self.running_threads):
+                if thread.isRunning():
+                    thread.wait(250)
+            QCoreApplication.processEvents()
+
+        for thread in list(self.running_threads):
+            if thread.isRunning():
+                logger.warning("Background thread still running — terminating.")
+                thread.terminate()
+                thread.wait(3000)
+            self.cleanup_thread(thread)
+
+        self._workers.clear()
 
     def cleanup(self) -> None:
         """Stop all players, quit background threads, and wipe saved timeline caches."""
         logger.info("EditorLayout cleanup started.")
+
+        # Stop workers first so closing the window does not destroy QThreads mid-run.
+        self._stop_all_workers()
 
         # Stop the main video player.
         try:
@@ -1150,15 +1196,6 @@ class EditorLayout(QWidget):
             except Exception:
                 pass
             self._dubbed_voice_player = None
-
-        # Terminate any running background threads.
-        for thread in list(self.running_threads):
-            try:
-                thread.quit()
-                thread.wait(2000)
-            except Exception:
-                pass
-        self.running_threads.clear()
 
         # Persist current cache so the next session can restore cached steps.
         try:
@@ -1231,7 +1268,7 @@ class EditorLayout(QWidget):
 
         self.status_bar.set_progress(0, "Preparing Khmer translation...")
 
-        thread = QThread(self)
+        thread = QThread()
         worker = TranslationWorker(
             config=self.config,
             segments=self.state.segments,
@@ -1245,6 +1282,7 @@ class EditorLayout(QWidget):
 
         thread.worker = worker
         self.running_threads.append(thread)
+        self._workers.append(worker)
 
         thread.started.connect(worker.run)
 
@@ -1255,11 +1293,7 @@ class EditorLayout(QWidget):
         worker.finished.connect(thread.quit)
         worker.failed.connect(thread.quit)
 
-        worker.finished.connect(worker.deleteLater)
-        worker.failed.connect(worker.deleteLater)
-
-        thread.finished.connect(lambda: self.cleanup_thread(thread))
-        thread.finished.connect(thread.deleteLater)
+        thread.finished.connect(lambda t=thread: self._on_worker_thread_finished(t))
 
         thread.start()
 
@@ -1319,7 +1353,7 @@ class EditorLayout(QWidget):
 
         self.status_bar.set_progress(0, "Starting CapCut export...")
 
-        thread = QThread(self)
+        thread = QThread()
         worker = CapCutExportWorker(
             cache=self.current_timeline_cache,
         )
@@ -1328,6 +1362,7 @@ class EditorLayout(QWidget):
 
         thread.worker = worker
         self.running_threads.append(thread)
+        self._workers.append(worker)
 
         thread.started.connect(worker.run)
 
@@ -1338,11 +1373,7 @@ class EditorLayout(QWidget):
         worker.finished.connect(thread.quit)
         worker.failed.connect(thread.quit)
 
-        worker.finished.connect(worker.deleteLater)
-        worker.failed.connect(worker.deleteLater)
-
-        thread.finished.connect(lambda: self.cleanup_thread(thread))
-        thread.finished.connect(thread.deleteLater)
+        thread.finished.connect(lambda t=thread: self._on_worker_thread_finished(t))
 
         thread.start()
 

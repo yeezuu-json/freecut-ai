@@ -1879,3 +1879,355 @@ google.genai.errors.ClientError: 403 PERMISSION_DENIED. {'error': {'code': 403, 
 2026-05-14 15:56:54 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:144 | Loading VoxCPM2 model on device: mps
 2026-05-14 16:09:14 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:162 | VoxCPM2 model loaded successfully on mps
 2026-05-14 16:09:15 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:940 | VoxCPM progress: 35% - Generating voice...
+2026-05-14 16:25:03 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:940 | VoxCPM progress: 80% - Saving audio file...
+2026-05-14 16:25:03 | INFO     | my_app.ui.components.voxcpm_dialog | voxcpm_dialog.py:940 | VoxCPM progress: 100% - Voice generated successfully.
+2026-05-14 17:30:08 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:77 | Using Apple MPS device
+2026-05-14 17:30:21 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:77 | Using Apple MPS device
+2026-05-14 17:37:42 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1128 | EditorLayout cleanup started.
+2026-05-14 17:37:42 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/Film_drama_china_-_Terjebak_pesona_brondong_(Episode_4)_01122d9145.timeline.json
+2026-05-14 17:37:42 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1167 | Timeline cache saved on close.
+2026-05-14 17:37:42 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1175 | EditorLayout cleanup complete.
+2026-05-14 17:38:01 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 17:38:01 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 17:38:01 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 17:38:01 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 17:38:02 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 17:38:03 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 17:38:03 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 17:38:03 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 17:38:03 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 17:38:13 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:165 | Selected video: /Users/piseth/Desktop/Movie/Film drama china - Terjebak pesona brondong (Episode 4).mp4
+2026-05-14 17:38:13 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:170 | Current project video: /Users/piseth/Desktop/Movie/Film drama china - Terjebak pesona brondong (Episode 4).mp4
+2026-05-14 17:38:13 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:81 | Timeline cache loaded: /Users/piseth/.freecut-ai/cache/projects/Film_drama_china_-_Terjebak_pesona_brondong_(Episode_4)_01122d9145.timeline.json
+2026-05-14 17:38:13 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:193 | Using existing timeline cache.
+2026-05-14 17:38:13 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:195 | Timeline cache loaded: tracks=5 items=45
+2026-05-14 17:38:14 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1185 | Khmer translation ready with 41 segment(s).
+2026-05-14 17:38:14 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:250 | Restored 41 translated segment(s) from cache.
+2026-05-14 17:38:14 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:419 | Stem players set up for ['track_raw_audio', 'track_background', 'track_vocal']
+2026-05-14 17:38:14 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:267 | Restored Demucs stem players from cache.
+2026-05-14 17:38:14 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:666 | Dubbed voice player ready: 41 segments, muted=False.
+2026-05-14 17:38:14 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:272 | Restored dubbed voice player (41 clips).
+2026-05-14 17:38:16 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/Film_drama_china_-_Terjebak_pesona_brondong_(Episode_4)_01122d9145.timeline.json
+2026-05-14 17:38:33 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1185 | Khmer translation ready with 41 segment(s).
+2026-05-14 17:38:33 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:563 | Starting TTS for 41 segments.
+2026-05-14 17:38:35 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=1 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0001.mp3
+2026-05-14 17:38:36 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=2 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0002.mp3
+2026-05-14 17:38:37 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=7 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0007.mp3
+2026-05-14 17:38:38 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=8 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0008.mp3
+2026-05-14 17:38:39 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=9 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0009.mp3
+2026-05-14 17:38:40 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=12 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0012.mp3
+2026-05-14 17:38:41 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=13 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0013.mp3
+2026-05-14 17:38:42 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=19 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0019.mp3
+2026-05-14 17:38:43 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=20 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0020.mp3
+2026-05-14 17:38:43 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=21 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0021.mp3
+2026-05-14 17:48:50 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-14 17:48:50 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-14 17:48:50 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-14 17:48:50 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-14 17:48:50 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-14 17:48:51 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-14 17:48:51 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-14 17:48:51 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-14 17:48:51 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-14 17:48:56 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:165 | Selected video: /Users/piseth/Desktop/Movie/Film drama china - Terjebak pesona brondong (Episode 4).mp4
+2026-05-14 17:48:56 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:170 | Current project video: /Users/piseth/Desktop/Movie/Film drama china - Terjebak pesona brondong (Episode 4).mp4
+2026-05-14 17:48:56 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:81 | Timeline cache loaded: /Users/piseth/.freecut-ai/cache/projects/Film_drama_china_-_Terjebak_pesona_brondong_(Episode_4)_01122d9145.timeline.json
+2026-05-14 17:48:56 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:193 | Using existing timeline cache.
+2026-05-14 17:48:56 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:195 | Timeline cache loaded: tracks=5 items=45
+2026-05-14 17:48:57 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1185 | Khmer translation ready with 41 segment(s).
+2026-05-14 17:48:57 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:250 | Restored 41 translated segment(s) from cache.
+2026-05-14 17:48:57 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:419 | Stem players set up for ['track_raw_audio', 'track_background', 'track_vocal']
+2026-05-14 17:48:57 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:267 | Restored Demucs stem players from cache.
+2026-05-14 17:48:57 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:666 | Dubbed voice player ready: 41 segments, muted=False.
+2026-05-14 17:48:57 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:272 | Restored dubbed voice player (41 clips).
+2026-05-14 17:48:59 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/Film_drama_china_-_Terjebak_pesona_brondong_(Episode_4)_01122d9145.timeline.json
+2026-05-14 17:49:04 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1185 | Khmer translation ready with 41 segment(s).
+2026-05-14 17:49:04 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:563 | Starting TTS for 41 segments.
+2026-05-14 17:49:05 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=1 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0001.mp3
+2026-05-14 17:49:06 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=2 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0002.mp3
+2026-05-14 17:49:07 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=7 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0007.mp3
+2026-05-14 17:49:08 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=8 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0008.mp3
+2026-05-14 17:49:09 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=9 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0009.mp3
+2026-05-14 17:49:10 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=12 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0012.mp3
+2026-05-14 17:49:11 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=13 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0013.mp3
+2026-05-14 17:49:12 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=19 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0019.mp3
+2026-05-14 17:49:13 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=20 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0020.mp3
+2026-05-14 17:49:14 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=21 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0021.mp3
+2026-05-14 17:49:15 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=22 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0022.mp3
+2026-05-14 17:49:16 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=24 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0024.mp3
+2026-05-14 17:49:17 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=25 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0025.mp3
+2026-05-14 17:49:18 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=26 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0026.mp3
+2026-05-14 17:49:19 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=32 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0032.mp3
+2026-05-14 17:49:20 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=34 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0034.mp3
+2026-05-14 17:49:21 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=35 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0035.mp3
+2026-05-14 17:49:22 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=38 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0038.mp3
+2026-05-14 17:49:23 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=39 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0039.mp3
+2026-05-14 17:49:24 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=40 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0040.mp3
+2026-05-14 17:49:25 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=41 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0041.mp3
+2026-05-14 17:49:25 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:79 | Using Apple MPS device
+2026-05-14 17:49:25 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:158 | Loading VoxCPM2 model on device: mps
+2026-05-14 18:01:30 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:177 | VoxCPM2 model loaded successfully on mps
+2026-05-14 20:22:05 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1185 | Khmer translation ready with 41 segment(s).
+2026-05-14 20:22:05 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:563 | Starting TTS for 41 segments.
+2026-05-14 20:22:07 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=1 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0001.mp3
+2026-05-14 20:22:08 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=2 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0002.mp3
+2026-05-14 20:22:09 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=7 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0007.mp3
+2026-05-14 20:22:10 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=8 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0008.mp3
+2026-05-14 20:22:11 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=9 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0009.mp3
+2026-05-14 20:22:12 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=12 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0012.mp3
+2026-05-14 20:22:13 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=13 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0013.mp3
+2026-05-14 20:22:14 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=19 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0019.mp3
+2026-05-14 20:22:15 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=20 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0020.mp3
+2026-05-14 20:22:16 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=21 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0021.mp3
+2026-05-14 20:22:17 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=22 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0022.mp3
+2026-05-14 20:22:18 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=24 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0024.mp3
+2026-05-14 20:22:19 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=25 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0025.mp3
+2026-05-14 20:22:20 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=26 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0026.mp3
+2026-05-14 20:22:21 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=32 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0032.mp3
+2026-05-14 20:22:22 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=34 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0034.mp3
+2026-05-14 20:22:22 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=35 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0035.mp3
+2026-05-14 20:22:24 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=38 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0038.mp3
+2026-05-14 20:22:24 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=39 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0039.mp3
+2026-05-14 20:22:25 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=40 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0040.mp3
+2026-05-14 20:22:26 | DEBUG    | my_app.services.edge_tts_service | edge_tts_service.py:92 | TTS ok: seg=41 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_seg0041.mp3
+2026-05-14 20:22:26 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:79 | Using Apple MPS device
+2026-05-14 20:33:19 | DEBUG    | my_app.services.tts_dispatcher | tts_dispatcher.py:121 | VoxCPM ok: seg=3 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_vox_0003.wav
+2026-05-14 20:33:19 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:79 | Using Apple MPS device
+2026-05-14 21:35:07 | DEBUG    | my_app.services.tts_dispatcher | tts_dispatcher.py:121 | VoxCPM ok: seg=4 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_vox_0004.wav
+2026-05-14 21:35:07 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:79 | Using Apple MPS device
+2026-05-14 22:55:48 | DEBUG    | my_app.services.tts_dispatcher | tts_dispatcher.py:121 | VoxCPM ok: seg=3 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_vox_0003.wav
+2026-05-14 22:55:48 | DEBUG    | my_app.services.tts_dispatcher | tts_dispatcher.py:121 | VoxCPM ok: seg=5 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_vox_0005.wav
+2026-05-14 22:55:48 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:79 | Using Apple MPS device
+2026-05-14 22:55:48 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:79 | Using Apple MPS device
+2026-05-14 22:56:47 | ERROR    | my_app.services.tts_dispatcher | tts_dispatcher.py:123 | VoxCPM failed for segment 6.
+Traceback (most recent call last):
+  File "/Users/piseth/developer/desktop-app/freecut-ai/services/tts_dispatcher.py", line 114, in synthesize_segments
+    out = vox_service.synthesize_with_voice_id(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/services/voxcpm_service.py", line 276, in synthesize_with_voice_id
+    return self.synthesize(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/services/voxcpm_service.py", line 240, in synthesize
+    audio = model.generate(**generate_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/voxcpm/core.py", line 175, in generate
+    return next_and_close(self._generate(*args, streaming=False, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/voxcpm/model/utils.py", line 19, in next_and_close
+    return next(gen)
+           ^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/voxcpm/core.py", line 303, in _generate
+    wav, _, _ = next_and_close(generate_result)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/voxcpm/model/utils.py", line 19, in next_and_close
+    return next(gen)
+           ^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 40, in generator_context
+    response = gen.send(None)
+               ^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/voxcpm/model/voxcpm2.py", line 944, in _generate_with_prompt_cache
+    latent_pred, pred_audio_feat, context_len = next_and_close(inference_result)
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/voxcpm/model/utils.py", line 19, in next_and_close
+    return next(gen)
+           ^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 40, in generator_context
+    response = gen.send(None)
+               ^^^^^^^^^^^^^^
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/voxcpm/model/voxcpm2.py", line 1045, in _inference
+    self.base_lm.kv_cache.fill_caches(kv_cache_tuple)
+  File "/Users/piseth/developer/desktop-app/freecut-ai/.venv/lib/python3.12/site-packages/voxcpm/modules/minicpm4/cache.py", line 46, in fill_caches
+    self.kv_cache[0, i, :, :, : self.current_length, :] = kv_caches[i][0]
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: The expanded size of the tensor (501) must match the existing size (518) at non-singleton dimension 2.  Target sizes: [1, 2, 501, 128].  Tensor sizes: [2, 518, 128]
+2026-05-14 22:56:48 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:79 | Using Apple MPS device
+2026-05-15 00:20:04 | DEBUG    | my_app.services.tts_dispatcher | tts_dispatcher.py:121 | VoxCPM ok: seg=10 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_vox_0010.wav
+2026-05-15 00:20:04 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:79 | Using Apple MPS device
+2026-05-15 00:43:38 | DEBUG    | my_app.services.tts_dispatcher | tts_dispatcher.py:121 | VoxCPM ok: seg=4 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_vox_0004.wav
+2026-05-15 00:43:38 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:79 | Using Apple MPS device
+2026-05-15 02:03:21 | DEBUG    | my_app.services.tts_dispatcher | tts_dispatcher.py:121 | VoxCPM ok: seg=11 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_vox_0011.wav
+2026-05-15 02:03:21 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:79 | Using Apple MPS device
+2026-05-15 02:07:30 | DEBUG    | my_app.services.tts_dispatcher | tts_dispatcher.py:121 | VoxCPM ok: seg=5 path=/Users/piseth/.freecut-ai/cache/tts/Film drama china - Terjebak pesona brondong (Episode 4)/Film drama china - Terjebak pesona brondong (Episode 4)_vox_0005.wav
+2026-05-15 02:07:30 | INFO     | my_app.services.voxcpm_service | voxcpm_service.py:79 | Using Apple MPS device
+2026-05-15 17:16:11 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1128 | EditorLayout cleanup started.
+2026-05-15 17:16:15 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/Film_drama_china_-_Terjebak_pesona_brondong_(Episode_4)_01122d9145.timeline.json
+2026-05-15 17:16:15 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1167 | Timeline cache saved on close.
+2026-05-15 17:16:15 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1175 | EditorLayout cleanup complete.
+2026-05-15 17:20:26 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-15 17:20:26 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-15 17:20:26 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-15 17:20:26 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-15 17:20:26 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-15 17:20:27 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-15 17:20:27 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-15 17:20:27 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-15 17:20:27 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-15 17:21:50 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:165 | Selected video: /Users/piseth/Desktop/Movie/Film drama china - Terjebak pesona brondong (Episode 4).mp4
+2026-05-15 17:21:50 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:170 | Current project video: /Users/piseth/Desktop/Movie/Film drama china - Terjebak pesona brondong (Episode 4).mp4
+2026-05-15 17:21:50 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:81 | Timeline cache loaded: /Users/piseth/.freecut-ai/cache/projects/Film_drama_china_-_Terjebak_pesona_brondong_(Episode_4)_01122d9145.timeline.json
+2026-05-15 17:21:50 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:193 | Using existing timeline cache.
+2026-05-15 17:21:50 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:195 | Timeline cache loaded: tracks=5 items=45
+2026-05-15 17:21:52 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1186 | Khmer translation ready with 41 segment(s).
+2026-05-15 17:21:52 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:250 | Restored 41 translated segment(s) from cache.
+2026-05-15 17:21:52 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:419 | Stem players set up for ['track_raw_audio', 'track_background', 'track_vocal']
+2026-05-15 17:21:52 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:267 | Restored Demucs stem players from cache.
+2026-05-15 17:21:52 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:667 | Dubbed voice player ready: 41 segments, muted=False.
+2026-05-15 17:21:52 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:272 | Restored dubbed voice player (41 clips).
+2026-05-15 17:21:53 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/Film_drama_china_-_Terjebak_pesona_brondong_(Episode_4)_01122d9145.timeline.json
+2026-05-15 17:22:26 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1129 | EditorLayout cleanup started.
+2026-05-15 17:22:26 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/Film_drama_china_-_Terjebak_pesona_brondong_(Episode_4)_01122d9145.timeline.json
+2026-05-15 17:22:26 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1168 | Timeline cache saved on close.
+2026-05-15 17:22:26 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1176 | EditorLayout cleanup complete.
+2026-05-15 17:37:02 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-15 17:37:03 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-15 17:37:03 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-15 17:37:03 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-15 17:37:03 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-15 17:37:03 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-15 17:37:03 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-15 17:37:03 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-15 17:37:03 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-15 17:38:08 | INFO     | my_app.ui.components.settings_dialog | settings_dialog.py:903 | Settings saved to /Users/piseth/developer/desktop-app/freecut-ai/config/app.json
+2026-05-15 17:38:08 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:931 | Settings applied — transcription: local/small  translation: gemini/gemini-2.5-flash
+2026-05-15 17:38:13 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:167 | Selected video: /Users/piseth/Desktop/Movie/Film drama china - Terjebak pesona brondong (Episode 4).mp4
+2026-05-15 17:38:13 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:172 | Current project video: /Users/piseth/Desktop/Movie/Film drama china - Terjebak pesona brondong (Episode 4).mp4
+2026-05-15 17:38:13 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:81 | Timeline cache loaded: /Users/piseth/.freecut-ai/cache/projects/Film_drama_china_-_Terjebak_pesona_brondong_(Episode_4)_01122d9145.timeline.json
+2026-05-15 17:38:13 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:195 | Using existing timeline cache.
+2026-05-15 17:38:13 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:197 | Timeline cache loaded: tracks=5 items=45
+2026-05-15 17:38:14 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1222 | Khmer translation ready with 41 segment(s).
+2026-05-15 17:38:14 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:252 | Restored 41 translated segment(s) from cache.
+2026-05-15 17:38:14 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:421 | Stem players set up for ['track_raw_audio', 'track_background', 'track_vocal']
+2026-05-15 17:38:14 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:269 | Restored Demucs stem players from cache.
+2026-05-15 17:38:14 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:663 | Dubbed voice player ready: 41 segments, muted=False.
+2026-05-15 17:38:14 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:274 | Restored dubbed voice player (41 clips).
+2026-05-15 17:38:15 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/Film_drama_china_-_Terjebak_pesona_brondong_(Episode_4)_01122d9145.timeline.json
+2026-05-15 17:38:17 | INFO     | my_app.ui.components.gender_assign_dialog | gender_assign_dialog.py:851 | Starting AI gender detection for 41 segments.
+2026-05-15 17:38:46 | DEBUG    | my_app.services.gender_detection_service | gender_detection_service.py:112 | Gender detection raw response:
+female
+female
+male
+male
+male
+male
+female
+female
+female
+male
+male
+female
+female
+male
+male
+male
+male
+male
+female
+female
+female
+female
+unknown
+female
+female
+2026-05-15 17:39:06 | DEBUG    | my_app.services.gender_detection_service | gender_detection_service.py:112 | Gender detection raw response:
+1. unknown
+2. unknown
+3. unknown
+4. unknown
+5. unknown
+6. unknown
+7. unknown
+8. unknown
+9. female
+10. unknown
+11. unknown
+12. unknown
+13. unknown
+14. unknown
+15. unknown
+16. unknown
+2026-05-15 17:39:06 | INFO     | my_app.workers.gender_detection_worker | gender_detection_worker.py:56 | Gender detection finished for 41 segments.
+2026-05-15 17:41:54 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1171 | EditorLayout cleanup started.
+2026-05-15 17:41:54 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/Film_drama_china_-_Terjebak_pesona_brondong_(Episode_4)_01122d9145.timeline.json
+2026-05-15 17:41:54 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1204 | Timeline cache saved on close.
+2026-05-15 17:41:54 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1212 | EditorLayout cleanup complete.
+2026-05-15 17:42:04 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-15 17:42:04 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-15 17:42:04 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-15 17:42:04 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-15 17:42:04 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-15 17:42:05 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-15 17:42:05 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-15 17:42:05 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-15 17:42:05 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.
+2026-05-15 17:42:11 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:167 | Selected video: /Users/piseth/Desktop/Movie/Film drama china - Terjebak pesona brondong (Episode 4).mp4
+2026-05-15 17:42:11 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:172 | Current project video: /Users/piseth/Desktop/Movie/Film drama china - Terjebak pesona brondong (Episode 4).mp4
+2026-05-15 17:42:11 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:81 | Timeline cache loaded: /Users/piseth/.freecut-ai/cache/projects/Film_drama_china_-_Terjebak_pesona_brondong_(Episode_4)_01122d9145.timeline.json
+2026-05-15 17:42:11 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:195 | Using existing timeline cache.
+2026-05-15 17:42:11 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:197 | Timeline cache loaded: tracks=5 items=45
+2026-05-15 17:42:12 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1222 | Khmer translation ready with 41 segment(s).
+2026-05-15 17:42:12 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:252 | Restored 41 translated segment(s) from cache.
+2026-05-15 17:42:12 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:421 | Stem players set up for ['track_raw_audio', 'track_background', 'track_vocal']
+2026-05-15 17:42:12 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:269 | Restored Demucs stem players from cache.
+2026-05-15 17:42:12 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:663 | Dubbed voice player ready: 41 segments, muted=False.
+2026-05-15 17:42:12 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:274 | Restored dubbed voice player (41 clips).
+2026-05-15 17:42:14 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/Film_drama_china_-_Terjebak_pesona_brondong_(Episode_4)_01122d9145.timeline.json
+2026-05-15 17:42:15 | INFO     | my_app.ui.components.gender_assign_dialog | gender_assign_dialog.py:851 | Starting AI gender detection for 41 segments.
+2026-05-15 17:42:41 | DEBUG    | my_app.services.gender_detection_service | gender_detection_service.py:127 | Gender detection raw response:
+1. unknown
+2. female
+3. male
+4. male
+5. male
+6. male
+7. female
+8. female
+9. female
+10. male
+11. male
+12. female
+13. female
+14. female
+15. female
+16. male
+17. male
+18. male
+19. female
+20. female
+21. female
+22. female
+23. unknown
+24. female
+25. female
+2026-05-15 17:42:41 | DEBUG    | my_app.services.gender_detection_service | gender_detection_service.py:61 | Gender batch 1: 25 lines → male:9 female:14 unknown:2
+2026-05-15 17:43:02 | DEBUG    | my_app.services.gender_detection_service | gender_detection_service.py:127 | Gender detection raw response:
+1. female
+2. unknown
+3. unknown
+4. unknown
+5. unknown
+6. unknown
+7. female
+8. unknown
+9. female
+10. unknown
+11. unknown
+12. unknown
+13. female
+14. female
+15. female
+16. female
+2026-05-15 17:43:02 | DEBUG    | my_app.services.gender_detection_service | gender_detection_service.py:61 | Gender batch 2: 16 lines → male:0 female:7 unknown:9
+2026-05-15 17:43:02 | INFO     | my_app.workers.gender_detection_worker | gender_detection_worker.py:53 | Gender detection finished for 41 segments.
+2026-05-15 17:44:07 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1171 | EditorLayout cleanup started.
+2026-05-15 17:44:07 | INFO     | my_app.services.timeline_cache_service | timeline_cache_service.py:44 | Timeline cache saved: /Users/piseth/.freecut-ai/cache/projects/Film_drama_china_-_Terjebak_pesona_brondong_(Episode_4)_01122d9145.timeline.json
+2026-05-15 17:44:07 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1204 | Timeline cache saved on close.
+2026-05-15 17:44:07 | INFO     | my_app.ui.layouts.editor_layout | editor_layout.py:1212 | EditorLayout cleanup complete.
+2026-05-19 11:25:50 | INFO     | my_app.app.bootstrap | bootstrap.py:45 | Bootstrap started.
+2026-05-19 11:25:50 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans
+2026-05-19 11:25:50 | INFO     | my_app.utils.font_manager | font_manager.py:49 | Loaded font family: Google Sans 17pt
+2026-05-19 11:25:50 | INFO     | my_app.utils.font_manager | font_manager.py:55 | Loaded 18 font file(s).
+2026-05-19 11:25:50 | INFO     | my_app.services.system_check_service | system_check_service.py:31 | FFmpeg check passed: ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+2026-05-19 11:25:51 | INFO     | my_app.app.bootstrap | bootstrap.py:87 | Bootstrap finished.
+2026-05-19 11:25:51 | INFO     | my_app.app.application | application.py:62 | Opening main window.
+2026-05-19 11:25:51 | INFO     | my_app.app.application | application.py:57 | Theme loaded: /Users/piseth/developer/desktop-app/freecut-ai/assets/styles/theme.qss
+2026-05-19 11:25:51 | INFO     | my_app.ui.windows.main_window | main_window.py:16 | MainWindow initialized.

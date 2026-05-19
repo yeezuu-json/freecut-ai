@@ -46,6 +46,7 @@ class EdgeTtsService:
         self,
         segments,           # list[SubtitleSegment]
         video_stem: str,
+        should_cancel=None,
     ) -> list:              # returns the same list with audio_path filled in
         # On Windows Python 3.8+, the default event loop policy is Proactor.
         # edge-tts / aiohttp works best with the Selector policy on Windows.
@@ -63,6 +64,10 @@ class EdgeTtsService:
 
         try:
             for idx, seg in enumerate(segments):
+                if should_cancel and should_cancel():
+                    from workers.cancel_token import WorkerCancelled
+                    raise WorkerCancelled("Edge TTS cancelled.")
+
                 pct = int(idx / total * 95)
                 self._emit(pct, f"Generating voice {idx + 1}/{total}…")
 

@@ -26,7 +26,9 @@ class MainWindow(QMainWindow):
             result = QMessageBox.question(
                 self,
                 "Process Running",
-                "A background process is still running. Close anyway?",
+                "A background process is still running (TTS, Demucs, etc.).\n\n"
+                "Close anyway? Running jobs will be cancelled. "
+                "This may take a few seconds.",
                 QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
             )
 
